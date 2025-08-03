@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Header + Banner</title>
+  <title>Ekbara</title>
   <style>
     * {
       margin: 0;
@@ -25,7 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 10;
+      z-index: 100;
       background: transparent;
     }
 
@@ -75,7 +75,7 @@
       display: none;
       flex-direction: column;
       padding: 0.5rem 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px #bada55;
       border-radius: 6px;
       z-index: 99;
     }
@@ -88,20 +88,41 @@
       padding: 0.5rem 1rem;
       white-space: nowrap;
       display: block;
+      color: black;
     }
 
     /* BANNER */
     .banner {
       height: 100vh;
-      background: #bada55;
+      background: linear-gradient(#1d1d1d, #111);
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .banner h1 {
       font-size: 3rem;
-      color: #222;
+      color: #ffffff;
+    }
+
+    /* PRÓXIMA SEÇÃO */
+    .section-content {
+      background: white;
+      padding: 4rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-content p {
+      font-size: 1rem;
+      color: #333;
     }
   </style>
 </head>
@@ -128,7 +149,12 @@
   </header>
 
   <section class="banner">
-    <h1>Bem-vindo à EKbara</h1>
+    <h1>Bem-vindo à Ekbara</h1>
+  </section>
+
+  <section class="section-content" id="quem-somos">
+    <h2>Quem Somos</h2>
+    <p>A EKbara é uma agência criativa focada em soluções digitais, moda e educação. Acreditamos no poder das ideias e da tecnologia para transformar o mundo.</p>
   </section>
 
 </body>
