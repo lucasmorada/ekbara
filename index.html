@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ekbara</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -12,7 +13,7 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     /* HEADER FIXO */
@@ -27,6 +28,13 @@
       align-items: center;
       z-index: 100;
       background: transparent;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Header com fundo ao rolar a página */
+    header.scrolled {
+      background-color: #bada55;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
 
     .logo {
@@ -71,11 +79,11 @@
       position: absolute;
       top: 120%;
       left: 0;
-      background: white;
+      background: rgb(255, 255, 255);
       display: none;
       flex-direction: column;
       padding: 0.5rem 0;
-      box-shadow: 0 4px 8px #bada55;
+      box-shadow: 0 4px 8px #333;
       border-radius: 6px;
       z-index: 99;
     }
@@ -177,6 +185,5 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-  <script src="script.js"></script>
 </body>
 </html>
