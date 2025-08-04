@@ -6,3 +6,18 @@ window.addEventListener('scroll', () => {
     header.classList.remove('scrolled');
   }
 });
+
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const isActive = card.classList.contains('active');
+
+      cards.forEach(c => c.classList.remove('active'));
+
+      if (!isActive) {
+        card.classList.add('active');
+      }
+    });
+  });
+
