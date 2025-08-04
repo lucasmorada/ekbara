@@ -133,78 +133,22 @@
       color: #333;
     }
  
-    .folders-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  font-family: 'Arial', sans-serif;
+.folder-card {
+  @apply cursor-pointer transition-all duration-500 ease-in-out bg-neutral-800 text-white p-6 rounded-2xl shadow-xl min-w-[220px] max-w-[220px] flex-shrink-0 flex flex-col justify-between h-[300px] hover:scale-105;
 }
 
-.folders {
-  display: flex;
-  transition: transform 0.6s ease;
-  will-change: transform;
+.folder-card.active {
+  @apply bg-neutral-700 scale-105 shadow-2xl;
 }
 
-.folder {
-  min-width: 300px;
-  max-width: 300px;
-  height: 400px;
-  padding: 20px;
-  margin-left: -60px;
-  border-radius: 30px 0 0 30px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: transform 0.4s ease, z-index 0.4s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  opacity: 0.7;
-  transform: scale(0.9);
-  z-index: 1;
+.folder-title {
+  @apply text-2xl font-semibold mb-2;
 }
 
-.folder.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 10;
-  color: black;
+.folder-desc {
+  @apply text-sm opacity-80;
 }
 
-.folder h2 {
-  margin: 0 0 10px;
-  font-size: 2rem;
-}
-
-.folder p {
-  font-size: 1rem;
-  max-width: 220px;
-}
-
-.folder-controls {
-  position: absolute;
-  bottom: 40px;
-  display: flex;
-  gap: 10px;
-}
-
-.folder-controls button {
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.folder-controls button:hover {
-  background: #333;
-}
 
   </style>
 </head>
@@ -259,28 +203,10 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-<section class="folders-container">
-  <div class="folders">
-    <div class="folder active" style="background-color: #BEF264">
-      <h2>ekbara</h2>
-      <p>Hub principal da nossa criação.</p>
-    </div>
-    <div class="folder" style="background-color: #FB7185">
-      <h2>web</h2>
-      <p>Sites, sistemas e experiências interativas.</p>
-    </div>
-    <div class="folder" style="background-color: #FACC15">
-      <h2>creative</h2>
-      <p>Design, identidade e campanhas visuais.</p>
-    </div>
-    <div class="folder" style="background-color: #0F766E">
-      <h2>forma</h2>
-      <p>Arquitetura, espaços e expressão física.</p>
-    </div>
-  </div>
-  <div class="folder-controls">
-    <button id="prev">&#9664;</button>
-    <button id="next">&#9654;</button>
+<section id="divisoes-ekbara" class="w-full px-6 py-16 bg-neutral-950 text-white flex flex-col items-center">
+  <h2 class="text-4xl font-bold mb-12 text-center">Nossas Divisões</h2>
+  <div id="folderContainer" class="relative flex w-full max-w-5xl overflow-hidden gap-6">
+    <!-- Folders serão inseridos dinamicamente aqui -->
   </div>
 </section>
 

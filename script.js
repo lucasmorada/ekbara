@@ -7,30 +7,51 @@ window.addEventListener('scroll', () => {
   }
 });
 
-  const folders = document.querySelectorAll(".folder");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-
-let activeIndex = 0;
-
-function updateFolders() {
-  folders.forEach((folder, i) => {
-    folder.classList.remove("active");
-    if (i === activeIndex) {
-      folder.classList.add("active");
+  const divisions = [
+    {
+      title: "Ekbara Creative",
+      desc: "Onde nascem as ideias visuais e conceitos criativos que movem nossas marcas."
+    },
+    {
+      title: "Ekbara Atelier",
+      desc: "O nosso núcleo artesanal e artístico: design, moda e produção autoral."
+    },
+    {
+      title: "Ekbara Web",
+      desc: "Criação de experiências digitais, sites, sistemas e interações."
+    },
+    {
+      title: "Ekbara Sounds",
+      desc: "Identidade sonora, trilhas, produções e tudo que envolve áudio."
+    },
+    {
+      title: "Ekbara Forma",
+      desc: "Exploração de estruturas, arquitetura e projetos físicos e visuais."
     }
+  ];
+
+  const container = document.getElementById("folderContainer");
+
+  divisions.forEach((div, i) => {
+    const el = document.createElement("div");
+    el.className = "folder-card";
+    el.innerHTML = `
+      <div>
+        <h3 class="folder-title">${div.title}</h3>
+        <p class="folder-desc">${div.desc}</p>
+      </div>
+    `;
+    el.addEventListener("click", () => {
+      document.querySelectorAll('.folder-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+    });
+    container.appendChild(el);
   });
-}
 
-prevBtn.addEventListener("click", () => {
-  activeIndex = (activeIndex - 1 + folders.length) % folders.length;
-  updateFolders();
-});
+  // Ativar o primeiro por padrão
+  window.addEventListener("DOMContentLoaded", () => {
+    const first = container.querySelector('.folder-card');
+    if (first) first.classList.add('active');
+  });
 
-nextBtn.addEventListener("click", () => {
-  activeIndex = (activeIndex + 1) % folders.length;
-  updateFolders();
-});
-
-updateFolders();
 
