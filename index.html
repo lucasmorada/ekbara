@@ -133,59 +133,51 @@
       color: #333;
     }
  
-    .ekbara-divisions {
-  background: #111;
-  color: white;
-  padding: 5rem 2rem;
+    .divisions-horizontal {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 1rem;
   overflow-x: auto;
+  padding: 4rem 2rem;
+  background: #f9f9f9;
 }
 
-.divisions-container {
-  display: flex;
-  gap: 1.5rem;
-  position: relative;
-  transition: transform 0.5s ease;
-}
-
-.card {
-  flex: 0 0 300px;
-  background: #1c1c1c;
-  border-radius: 20px;
-  padding: 2rem;
+.division-card {
+  flex: 0 0 280px;
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: all 0.5s ease;
-  transform: scale(0.95);
-  opacity: 0.7;
-  overflow: hidden;
+  border-left: 6px solid var(--color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  min-height: 120px;
   position: relative;
-  box-shadow: 0 0 10px rgba(203, 251, 4, 0.1);
 }
 
-.card:hover {
-  transform: scale(1.02);
+.card-header {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.card-body {
+  font-size: 0.95rem;
+  color: #333;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.division-card.active .card-body {
+  max-height: 200px;
   opacity: 1;
-}
-
-.card.active {
-  flex: 0 0 600px;
-  background: #cbfb04;
-  color: black;
-  transform: scale(1.05);
-  opacity: 1;
-  z-index: 10;
-}
-
-.card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.card p {
-  font-size: 1rem;
-  line-height: 1.5;
+  margin-top: 0.5rem;
 }
 
   </style>
@@ -241,28 +233,26 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-  <section class="ekbara-divisions">
-  <div class="divisions-container">
-    <div class="card" data-title="EKBARA Creative">
-      <h3>EKBARA Creative</h3>
-      <p>Agência de ideias, branding, campanhas e direção criativa.</p>
-    </div>
-    <div class="card" data-title="Atelier">
-      <h3>Atelier</h3>
-      <p>Moda autoral, costura criativa, collabs e identidade de vestuário.</p>
-    </div>
-    <div class="card" data-title="Web">
-      <h3>Web</h3>
-      <p>Desenvolvimento de sites, sistemas e experiências digitais.</p>
-    </div>
-    <div class="card" data-title="Sounds">
-      <h3>Sounds</h3>
-      <p>Trilhas, beats, identidade sonora e produção musical independente.</p>
-    </div>
-    <div class="card" data-title="Forma">
-      <h3>Forma</h3>
-      <p>Projetos gráficos, impressos, objetos físicos e design experimental.</p>
-    </div>
+  <section class="divisions-horizontal">
+  <div class="division-card" style="--color: #cbfb04;">
+    <div class="card-header">1. Creative</div>
+    <div class="card-body">Agência de ideias, branding e campanhas criativas com direção de arte estratégica.</div>
+  </div>
+  <div class="division-card" style="--color: #ffbb33;">
+    <div class="card-header">2. Atelier</div>
+    <div class="card-body">Moda autoral e vestuário com identidade única, feita por mãos independentes.</div>
+  </div>
+  <div class="division-card" style="--color: #3edbff;">
+    <div class="card-header">3. Web</div>
+    <div class="card-body">Criação de sites, plataformas e experiências digitais inovadoras.</div>
+  </div>
+  <div class="division-card" style="--color: #e96fff;">
+    <div class="card-header">4. Sounds</div>
+    <div class="card-body">Produção musical, trilhas e identidade sonora artística e independente.</div>
+  </div>
+  <div class="division-card" style="--color: #ff6a6a;">
+    <div class="card-header">5. Forma</div>
+    <div class="card-body">Design gráfico e físico: da tela ao papel, da ideia ao objeto.</div>
   </div>
 </section>
 

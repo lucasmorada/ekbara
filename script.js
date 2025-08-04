@@ -7,17 +7,16 @@ window.addEventListener('scroll', () => {
   }
 });
 
-  const cards = document.querySelectorAll('.card');
+  const cards = document.querySelectorAll(".division-card");
 
   cards.forEach(card => {
-    card.addEventListener('click', () => {
-      const isActive = card.classList.contains('active');
-
-      cards.forEach(c => c.classList.remove('active'));
-
-      if (!isActive) {
-        card.classList.add('active');
-      }
+    card.addEventListener("click", () => {
+      cards.forEach(c => {
+        if (c !== card) c.classList.remove("active");
+      });
+      card.classList.toggle("active");
     });
   });
+
+
 
