@@ -133,85 +133,99 @@
       color: #333;
     }
  
-.universe {
-  position: relative;
+.orbit-carousel {
+  background: #000;
   height: 100vh;
-  background: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   overflow: hidden;
+}
+
+.center-sun {
+  background: white;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.stars {
+  box-shadow: 0 0 60px white;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 3px 3px;
-  animation: twinkle 5s infinite;
-  z-index: 0;
-  opacity: 0.2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@keyframes twinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.4; }
+.center-sun img {
+  width: 60%;
+  height: auto;
 }
 
-.sun {
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   position: relative;
-  z-index: 2;
-  background: radial-gradient(circle, #ffd700, #ff8c00);
-  color: #000;
-  font-weight: bold;
-  font-size: 2rem;
-  padding: 30px;
-  border-radius: 50%;
-  box-shadow: 0 0 60px 20px #ffaa00;
-  text-align: center;
-  user-select: none;
-}
-
-.orbit {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  animation: rotate 60s linear infinite;
   z-index: 1;
 }
 
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.planet {
-  position: absolute;
-  background: #444;
+.nav {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
   color: white;
-  padding: 10px 20px;
-  border-radius: 50px;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.nav:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.planets {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+  min-width: 600px;
+  transition: transform 0.6s ease;
+}
+
+.planet-card {
+  background: #111;
+  color: white;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
   font-size: 1rem;
-  text-decoration: none;
   text-align: center;
-  transition: transform 0.3s ease, background 0.3s;
-  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.planet:hover {
-  transform: scale(1.2);
-  background: #0ff;
-  box-shadow: 0 0 20px #0ff;
+.planet-card.active {
+  transform: scale(1.3);
+  opacity: 1;
+  background: #00f0ff;
+  box-shadow: 0 0 20px #00f0ff;
 }
 
-/* Planet positions on orbit */
-.planet1 { top: 0; left: 50%; transform: translate(-50%, -50%); }
-.planet2 { top: 25%; right: 0; transform: translate(50%, -50%); }
-.planet3 { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
-.planet4 { top: 75%; left: 0; transform: translate(-50%, -50%); }
-.planet5 { top: 50%; left: 50%; transform: translate(200px, -200px); }
+.planet-card.inactive {
+  opacity: 0.3;
+  transform: scale(1);
+}
 
 
   </style>
@@ -267,19 +281,21 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-  <section class="universe">
-  <div class="stars"></div>
-  <div class="sun">Ekbara</div>
+  <section class="orbit-carousel">
+  <div class="center-sun">
+    <img src="sua-logo.png" alt="Ekbara Logo" />
+  </div>
 
-  <div class="orbit">
-    <a href="/creative" class="planet planet1">Creative</a>
-    <a href="/atelier" class="planet planet2">Atelier</a>
-    <a href="/web" class="planet planet3">Web</a>
-    <a href="/sounds" class="planet planet4">Sounds</a>
-    <a href="/forma" class="planet planet5">Forma</a>
+  <div class="carousel">
+    <button class="nav left">&#8592;</button>
+    
+    <div class="planets">
+      <!-- Os nomes das áreas são inseridos dinamicamente via JS -->
+    </div>
+
+    <button class="nav right">&#8594;</button>
   </div>
 </section>
-
 
   <script src="script.js"></script>
 </body>
