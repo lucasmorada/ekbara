@@ -1,4 +1,4 @@
-boa chat, só mude algumas muitas coisas kkkk: 1- ta ao contrário, os folders ali tem que comecar na esquerda já sabe, e irem pra direita. 2- não precisa ter aquela animação de giro tudo, é só uma de deslisar suave sabe. 3- quando for o principal ali, vc ta deixando ele branco kkk, é pra deixar da cor que ele é mesmo. 4- melhore o design disso, o titulo ali tem que ser grande centralizado, branco, e os textinhos maiores em baixo tbm centralizados. 5- a seta ta entre os folders, é pra ser uma seta fixa sabe, quando for o ultimo dos cantos e nao der pra pular, aí ela some. vou mandar meu código todo dnv pra vc trocar: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -33,7 +33,7 @@ boa chat, só mude algumas muitas coisas kkkk: 1- ta ao contrário, os folders a
 
     /* Header com fundo ao rolar a página */
     header.scrolled {
-      background-color: #cbfb04;
+      background-color: #e2f0ab;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
 
@@ -133,105 +133,77 @@ boa chat, só mude algumas muitas coisas kkkk: 1- ta ao contrário, os folders a
       color: #333;
     }
  
-    .ekbara-divisions-tabs {
-  display: flex;
-  height: 60vh;
-  background: #f7f7f7;
-  font-family: 'Poppins', sans-serif;
-  padding: 1rem 0;
-}
-
-.tabs {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.tab {
-  background: #e0e0e0;
-  min-width: 80px;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-weight: 600;
-  font-size: 0.9rem;
-  padding: 1rem 0.5rem;
-  text-align: center;
-  cursor: pointer;
-  color: #333;
+    .folders-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  height: 100vh;
   position: relative;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
 }
 
-.tab:hover {
-  background: #d5d5d5;
+.folders {
+  display: flex;
+  transition: transform 0.6s ease;
+  will-change: transform;
 }
 
-.tab.active {
-  background: #ffffff;
-  flex-grow: 1;
-  writing-mode: horizontal-tb;
-  transform: rotate(0);
-  justify-content: flex-start;
-  align-items: flex-start;
+.folder {
+  min-width: 300px;
+  max-width: 300px;
+  height: 400px;
+  padding: 20px;
+  margin-left: -60px;
+  border-radius: 30px 0 0 30px;
+  color: white;
+  display: flex;
   flex-direction: column;
-  padding: 2rem;
-  color: #111;
+  justify-content: center;
+  transition: transform 0.4s ease, z-index 0.4s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0.7;
+  transform: scale(0.9);
+  z-index: 1;
 }
 
-.tab.active .tab-content {
-  display: block;
+.folder.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 10;
+  color: black;
 }
 
-.tab-content {
-  display: none;
-  margin-top: 0.75rem;
-  font-size: 0.95rem;
-  line-height: 1.5;
+.folder h2 {
+  margin: 0 0 10px;
+  font-size: 2rem;
 }
 
-.tab h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 700;
-}
-
-/* Cores das abas fechadas */
-.forma   { background-color: #00cfff; color: #fff; }
-.sounds  { background-color: #00695c; color: #fff; }
-.atelier { background-color: #ffa500; color: #fff; }
-.web     { background-color: #00c851; color: #fff; }
-.creative{ background-color: #ff4c4c; color: #fff; }
-
-.tab.active.forma,
-.tab.active.sounds,
-.tab.active.atelier,
-.tab.active.web,
-.tab.active.creative {
-  background-color: #fff;
-  color: #111;
-}
-
-/* Setinha */
-.arrow {
-  position: absolute;
-  top: 50%;
-  right: -12px;
-  transform: translateY(-50%) rotate(90deg);
+.folder p {
   font-size: 1rem;
-  color: #111;
-  opacity: 0.5;
-  transition: transform 0.3s;
+  max-width: 220px;
 }
 
-.tab:hover .arrow {
-  transform: translateY(-50%) rotate(90deg) scale(1.1);
+.folder-controls {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  gap: 10px;
+}
+
+.folder-controls button {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.folder-controls button:hover {
+  background: #333;
 }
 
   </style>
@@ -287,47 +259,28 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-<section class="ekbara-divisions-tabs">
-  <div class="tabs">
-    <div class="tab forma active" data-tab="forma">
-      forma <span class="arrow">➜</span>
-      <div class="tab-content">
-        <h2>Forma</h2>
-        <p>Design gráfico e físico. Criamos objetos, impressos, embalagens e visuais com identidade própria e conceito.</p>
-      </div>
+<section class="folders-container">
+  <div class="folders">
+    <div class="folder active" style="background-color: #BEF264">
+      <h2>ekbara</h2>
+      <p>Hub principal da nossa criação.</p>
     </div>
-
-    <div class="tab sounds" data-tab="sounds">
-      sounds <span class="arrow">➜</span>
-      <div class="tab-content">
-        <h2>Sounds</h2>
-        <p>Produção musical, trilhas, identidade sonora e beats originais que carregam emoção e estilo Ekbara.</p>
-      </div>
+    <div class="folder" style="background-color: #FB7185">
+      <h2>web</h2>
+      <p>Sites, sistemas e experiências interativas.</p>
     </div>
-
-    <div class="tab atelier" data-tab="atelier">
-      Atelier <span class="arrow">➜</span>
-      <div class="tab-content">
-        <h2>Atelier</h2>
-        <p>Moda autoral, costura criativa, collabs com artistas e desenvolvimento de peças únicas.</p>
-      </div>
+    <div class="folder" style="background-color: #FACC15">
+      <h2>creative</h2>
+      <p>Design, identidade e campanhas visuais.</p>
     </div>
-
-    <div class="tab web" data-tab="web">
-      Web <span class="arrow">➜</span>
-      <div class="tab-content">
-        <h2>Web</h2>
-        <p>Criação de sites, sistemas, lojas e experiências digitais personalizadas com tecnologia moderna.</p>
-      </div>
+    <div class="folder" style="background-color: #0F766E">
+      <h2>forma</h2>
+      <p>Arquitetura, espaços e expressão física.</p>
     </div>
-
-    <div class="tab creative" data-tab="creative">
-      Creative <span class="arrow">➜</span>
-      <div class="tab-content">
-        <h2>Creative</h2>
-        <p>Agência criativa com foco em ideias, campanhas, direção de arte e soluções visuais ousadas.</p>
-      </div>
-    </div>
+  </div>
+  <div class="folder-controls">
+    <button id="prev">&#9664;</button>
+    <button id="next">&#9654;</button>
   </div>
 </section>
 

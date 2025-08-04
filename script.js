@@ -7,11 +7,30 @@ window.addEventListener('scroll', () => {
   }
 });
 
-  const ekbaraTabs = document.querySelectorAll('.ekbara-divisions-tabs .tab');
+  const folders = document.querySelectorAll(".folder");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
 
-ekbaraTabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    ekbaraTabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
+let activeIndex = 0;
+
+function updateFolders() {
+  folders.forEach((folder, i) => {
+    folder.classList.remove("active");
+    if (i === activeIndex) {
+      folder.classList.add("active");
+    }
   });
+}
+
+prevBtn.addEventListener("click", () => {
+  activeIndex = (activeIndex - 1 + folders.length) % folders.length;
+  updateFolders();
 });
+
+nextBtn.addEventListener("click", () => {
+  activeIndex = (activeIndex + 1) % folders.length;
+  updateFolders();
+});
+
+updateFolders();
+
