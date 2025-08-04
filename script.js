@@ -7,16 +7,15 @@ window.addEventListener('scroll', () => {
   }
 });
 
-  const cards = document.querySelectorAll(".division-card");
+  const ekbaraTabs = document.querySelectorAll('.ekbara-divisions-tabs .tab');
 
-  cards.forEach(card => {
-    card.addEventListener("click", () => {
-      cards.forEach(c => {
-        if (c !== card) c.classList.remove("active");
-      });
-      card.classList.toggle("active");
-    });
+ekbaraTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    ekbaraTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
   });
+});
+
 
 
 

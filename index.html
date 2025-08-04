@@ -133,52 +133,76 @@
       color: #333;
     }
  
-    .divisions-horizontal {
+    .ekbara-divisions-tabs {
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 4rem 2rem;
-  background: #f9f9f9;
+  height: 100vh;
+  background: #f2f2f2;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
-.division-card {
-  flex: 0 0 280px;
-  background: white;
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border-left: 6px solid var(--color);
+.tabs {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: auto;
-  min-height: 120px;
-  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
-.card-header {
+.tab {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  background: #ccc;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
-  font-size: 1.2rem;
-  color: #111;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0 20px 20px 0;
+  min-width: 60px;
+  color: black;
+  flex-shrink: 0;
+}
+
+.tab.active {
+  min-width: 320px;
+  flex-grow: 1;
+  writing-mode: horizontal-tb;
+  transform: rotate(0);
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem;
+  color: black;
+  flex-direction: column;
+}
+
+.tab.active .tab-content {
+  display: block;
+}
+
+.tab-content {
+  display: none;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.tab h2 {
   margin-bottom: 0.5rem;
 }
 
-.card-body {
-  font-size: 0.95rem;
-  color: #333;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
+/* Cores personalizadas */
+.forma   { background: #00cfff; }
+.sounds  { background: #00695c; }
+.atelier { background: #ffa500; }
+.web     { background: #00c851; }
+.creative{ background: #ff4c4c; }
+
+.arrow {
+  margin-left: 1rem;
+  font-size: 1.5rem;
 }
 
-.division-card.active .card-body {
-  max-height: 200px;
-  opacity: 1;
-  margin-top: 0.5rem;
-}
 
   </style>
 </head>
@@ -233,26 +257,47 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-  <section class="divisions-horizontal">
-  <div class="division-card" style="--color: #cbfb04;">
-    <div class="card-header">1. Creative</div>
-    <div class="card-body">Agência de ideias, branding e campanhas criativas com direção de arte estratégica.</div>
-  </div>
-  <div class="division-card" style="--color: #ffbb33;">
-    <div class="card-header">2. Atelier</div>
-    <div class="card-body">Moda autoral e vestuário com identidade única, feita por mãos independentes.</div>
-  </div>
-  <div class="division-card" style="--color: #3edbff;">
-    <div class="card-header">3. Web</div>
-    <div class="card-body">Criação de sites, plataformas e experiências digitais inovadoras.</div>
-  </div>
-  <div class="division-card" style="--color: #e96fff;">
-    <div class="card-header">4. Sounds</div>
-    <div class="card-body">Produção musical, trilhas e identidade sonora artística e independente.</div>
-  </div>
-  <div class="division-card" style="--color: #ff6a6a;">
-    <div class="card-header">5. Forma</div>
-    <div class="card-body">Design gráfico e físico: da tela ao papel, da ideia ao objeto.</div>
+<section class="ekbara-divisions-tabs">
+  <div class="tabs">
+    <div class="tab forma active" data-tab="forma">
+      forma <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Forma</h2>
+        <p>Design gráfico e físico. Criamos objetos, impressos, embalagens e visuais com identidade própria e conceito.</p>
+      </div>
+    </div>
+
+    <div class="tab sounds" data-tab="sounds">
+      sounds <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Sounds</h2>
+        <p>Produção musical, trilhas, identidade sonora e beats originais que carregam emoção e estilo Ekbara.</p>
+      </div>
+    </div>
+
+    <div class="tab atelier" data-tab="atelier">
+      Atelier <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Atelier</h2>
+        <p>Moda autoral, costura criativa, collabs com artistas e desenvolvimento de peças únicas.</p>
+      </div>
+    </div>
+
+    <div class="tab web" data-tab="web">
+      Web <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Web</h2>
+        <p>Criação de sites, sistemas, lojas e experiências digitais personalizadas com tecnologia moderna.</p>
+      </div>
+    </div>
+
+    <div class="tab creative" data-tab="creative">
+      Creative <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Creative</h2>
+        <p>Agência criativa com foco em ideias, campanhas, direção de arte e soluções visuais ousadas.</p>
+      </div>
+    </div>
   </div>
 </section>
 
