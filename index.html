@@ -133,21 +133,85 @@
       color: #333;
     }
  
-.folder-card {
-  @apply cursor-pointer transition-all duration-500 ease-in-out bg-neutral-800 text-white p-6 rounded-2xl shadow-xl min-w-[220px] max-w-[220px] flex-shrink-0 flex flex-col justify-between h-[300px] hover:scale-105;
+.universe {
+  position: relative;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.folder-card.active {
-  @apply bg-neutral-700 scale-105 shadow-2xl;
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 3px 3px;
+  animation: twinkle 5s infinite;
+  z-index: 0;
+  opacity: 0.2;
 }
 
-.folder-title {
-  @apply text-2xl font-semibold mb-2;
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.4; }
 }
 
-.folder-desc {
-  @apply text-sm opacity-80;
+.sun {
+  position: relative;
+  z-index: 2;
+  background: radial-gradient(circle, #ffd700, #ff8c00);
+  color: #000;
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 30px;
+  border-radius: 50%;
+  box-shadow: 0 0 60px 20px #ffaa00;
+  text-align: center;
+  user-select: none;
 }
+
+.orbit {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  animation: rotate 60s linear infinite;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.planet {
+  position: absolute;
+  background: #444;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.3s ease, background 0.3s;
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.planet:hover {
+  transform: scale(1.2);
+  background: #0ff;
+  box-shadow: 0 0 20px #0ff;
+}
+
+/* Planet positions on orbit */
+.planet1 { top: 0; left: 50%; transform: translate(-50%, -50%); }
+.planet2 { top: 25%; right: 0; transform: translate(50%, -50%); }
+.planet3 { bottom: 0; left: 50%; transform: translate(-50%, 50%); }
+.planet4 { top: 75%; left: 0; transform: translate(-50%, -50%); }
+.planet5 { top: 50%; left: 50%; transform: translate(200px, -200px); }
 
 
   </style>
@@ -203,12 +267,19 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-<section id="divisoes-ekbara" class="w-full px-6 py-16 bg-neutral-950 text-white flex flex-col items-center">
-  <h2 class="text-4xl font-bold mb-12 text-center">Nossas Divisões</h2>
-  <div id="folderContainer" class="relative flex w-full max-w-5xl overflow-hidden gap-6">
-    <!-- Folders serão inseridos dinamicamente aqui -->
+  <section class="universe">
+  <div class="stars"></div>
+  <div class="sun">Ekbara</div>
+
+  <div class="orbit">
+    <a href="/creative" class="planet planet1">Creative</a>
+    <a href="/atelier" class="planet planet2">Atelier</a>
+    <a href="/web" class="planet planet3">Web</a>
+    <a href="/sounds" class="planet planet4">Sounds</a>
+    <a href="/forma" class="planet planet5">Forma</a>
   </div>
 </section>
+
 
   <script src="script.js"></script>
 </body>
