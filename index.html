@@ -135,46 +135,54 @@
  
     .ekbara-divisions-tabs {
   display: flex;
-  height: 100vh;
-  background: #f2f2f2;
-  overflow: hidden;
+  height: 60vh;
+  background: #f7f7f7;
   font-family: 'Poppins', sans-serif;
+  padding: 1rem 0;
 }
 
 .tabs {
   display: flex;
-  height: 100%;
+  flex-direction: row;
   width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .tab {
+  background: #e0e0e0;
+  min-width: 80px;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   transform: rotate(180deg);
-  background: #ccc;
-  padding: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  cursor: pointer;
+  color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 0 20px 20px 0;
-  min-width: 60px;
-  color: black;
-  flex-shrink: 0;
+  position: relative;
+}
+
+.tab:hover {
+  background: #d5d5d5;
 }
 
 .tab.active {
-  min-width: 320px;
+  background: #ffffff;
   flex-grow: 1;
   writing-mode: horizontal-tb;
   transform: rotate(0);
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 2rem;
-  color: black;
   flex-direction: column;
+  padding: 2rem;
+  color: #111;
 }
 
 .tab.active .tab-content {
@@ -183,26 +191,48 @@
 
 .tab-content {
   display: none;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .tab h2 {
   margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
-/* Cores personalizadas */
-.forma   { background: #00cfff; }
-.sounds  { background: #00695c; }
-.atelier { background: #ffa500; }
-.web     { background: #00c851; }
-.creative{ background: #ff4c4c; }
+/* Cores das abas fechadas */
+.forma   { background-color: #00cfff; color: #fff; }
+.sounds  { background-color: #00695c; color: #fff; }
+.atelier { background-color: #ffa500; color: #fff; }
+.web     { background-color: #00c851; color: #fff; }
+.creative{ background-color: #ff4c4c; color: #fff; }
 
+.tab.active.forma,
+.tab.active.sounds,
+.tab.active.atelier,
+.tab.active.web,
+.tab.active.creative {
+  background-color: #fff;
+  color: #111;
+}
+
+/* Setinha */
 .arrow {
-  margin-left: 1rem;
-  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  right: -12px;
+  transform: translateY(-50%) rotate(90deg);
+  font-size: 1rem;
+  color: #111;
+  opacity: 0.5;
+  transition: transform 0.3s;
 }
 
+.tab:hover .arrow {
+  transform: translateY(-50%) rotate(90deg) scale(1.1);
+}
 
   </style>
 </head>
