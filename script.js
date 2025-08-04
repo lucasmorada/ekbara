@@ -7,81 +7,62 @@ window.addEventListener('scroll', () => {
   }
 });
 
-  const data = [
-    {
-      name: "Dev",
-      color: "#1e3a8a",
-      title: "Ekb... Dev",
-      text: "Desenvolvemos soluções digitais sob medida para sua ideia ganhar vida com tecnologia de ponta."
-    },
-    {
-      name: "Creative",
-      color: "#7c3aed",
-      title: "Ekb... Creative",
-      text: "Criatividade em sua forma mais pura — design gráfico, direção de arte e experiências únicas."
-    },
-    {
-      name: "Atelier",
-      color: "#e11d48",
-      title: "Ekb... Atelier",
-      text: "Nosso espaço experimental onde ideias se transformam em realidade visual e artística."
-    },
-    {
-      name: "Sounds",
-      color: "#059669",
-      title: "Ekb... Sounds",
-      text: "Produção musical e sonora com identidade forte e marcante, pra fazer sua marca cantar."
-    },
-    {
-      name: "Forma",
-      color: "#d97706",
-      title: "Ekb... Forma",
-      text: "Formas que comunicam — arquitetura, produto e identidade espacial como expressão da marca."
-    }
-  ];
+  document.addEventListener('DOMContentLoaded', () => {
+    const areaSections = document.querySelectorAll('.area-section');
+    const imageItems = document.querySelectorAll('.image-item');
+    const progressBars = document.querySelectorAll('.progress-bar');
 
-  let currentIndex = 0;
+    const observerOptions = {
+        threshold: 0.6, // Quando 60% do elemento está visível
+        rootMargin: '-20% 0px -20% 0px' // Ajusta o viewport para o cálculo de intersecção
+    };
 
-  const carousel = document.getElementById("carousel");
-  const infoBox = document.getElementById("infoBox");
-  const infoTitle = document.getElementById("infoTitle");
-  const infoText = document.getElementById("infoText");
+    const updateActiveArea = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const activeId = entry.target.id;
 
-  function renderCards() {
-    carousel.innerHTML = "";
+                // Atualiza a imagem ativa
+                imageItems.forEach(item => {
+                    if (item.dataset.id === activeId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
 
-    const prev = (currentIndex - 1 + data.length) % data.length;
-    const next = (currentIndex + 1) % data.length;
+                // Atualiza a barra de progresso ativa
+                progressBars.forEach(bar => {
+                    if (bar.dataset.id === activeId) {
+                        bar.classList.add('active');
+                    } else {
+                        bar.classList.remove('active');
+                    }
+                });
+            }
+        });
+    };
 
-    const indices = [prev, currentIndex, next];
+    const observer = new IntersectionObserver(updateActiveArea, observerOptions);
 
-    indices.forEach((i, index) => {
-      const div = document.createElement("div");
-      div.className = "card " + (i === currentIndex ? "active" : "inactive");
-      div.style.backgroundColor = data[i].color;
-      div.textContent = data[i].name;
-      carousel.appendChild(div);
+    // Observa cada seção de texto
+    areaSections.forEach(section => {
+        observer.observe(section);
     });
 
-    updateInfoBox();
-  }
-
-  function updateInfoBox() {
-    const current = data[currentIndex];
-    infoBox.style.backgroundColor = current.color;
-    infoTitle.textContent = current.title;
-    infoText.textContent = current.text;
-  }
-
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + data.length) % data.length;
-    renderCards();
-  });
-
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % data.length;
-    renderCards();
-  });
-
-  renderCards();
+    // Define o estado ativo inicial para o primeiro item ao carregar a página
+    if (areaSections.length > 0) {
+        const firstId = areaSections[0].id;
+        imageItems.forEach(item => {
+            if (item.dataset.id === firstId) {
+                item.classList.add('active');
+            }
+        });
+        progressBars.forEach(bar => {
+            if (bar.dataset.id === firstId) {
+                bar.classList.add('active');
+            }
+        });
+    }
+});
 

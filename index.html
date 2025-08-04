@@ -132,30 +132,182 @@
       font-size: 1rem;
       color: #333;
     }
- 
-  .card {
-    width: 200px;
-    height: 300px;
-    border-radius: 1rem;
+
+    .interactive-areas-section {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Equivalente a flex-col */
+    min-height: 100vh;
+}
+
+@media (min-width: 1024px) { /* Equivalente a lg breakpoint */
+    .interactive-areas-section {
+        flex-direction: row; /* Equivalente a lg:flex-row */
+    }
+}
+
+/* Left Column - Text Content */
+.content-column {
+    flex: 1; /* Equivalente a lg:w-1/2 */
+    padding-right: 0; /* Reset para mobile */
+}
+
+@media (min-width: 1024px) {
+    .content-column {
+        width: 50%;
+        padding-right: 2rem; /* Equivalente a lg:pr-8 */
+    }
+}
+
+.area-section {
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    transition: all 0.5s ease;
-  }
+    padding: 1.5rem; /* Equivalente a px-6 */
+}
 
-  .card.inactive {
-    opacity: 0.3;
-    transform: scale(0.8);
-  }
+@media (min-width: 1024px) {
+    .area-section {
+        padding: 3rem; /* Equivalente a lg:px-12 */
+    }
+}
 
-  .card.active {
+.area-content {
+    max-width: 32rem; /* Equivalente a max-w-lg */
+}
+
+.area-content h2 {
+    font-size: 1.875rem; /* Equivalente a text-3xl */
+    font-weight: 700; /* Equivalente a font-bold */
+    color: #1a202c; /* Equivalente a text-gray-900 */
+    margin-bottom: 1.5rem; /* Equivalente a mb-6 */
+}
+
+@media (min-width: 768px) {
+    .area-content h2 {
+        font-size: 2.25rem; /* Equivalente a md:text-4xl */
+    }
+}
+
+.area-content p {
+    font-size: 1.125rem; /* Equivalente a text-lg */
+    color: #4a5568; /* Equivalente a text-gray-600 */
+    line-height: 1.625; /* Equivalente a leading-relaxed */
+}
+
+.area-content .button {
+    margin-top: 2rem; /* Equivalente a mt-8 */
+    background-color: #3b82f6; /* Equivalente a bg-blue-600 */
+    color: #fff; /* Equivalente a text-white */
+    padding: 0.75rem 2rem; /* Equivalente a px-8 py-3 */
+    border-radius: 0.5rem; /* Equivalente a rounded-lg */
+    font-weight: 600; /* Equivalente a font-semibold */
+    transition: background-color 0.2s ease-in-out; /* Equivalente a transition-colors duration-200 */
+    border: none;
+    cursor: pointer;
+}
+
+.area-content .button:hover {
+    background-color: #2563eb; /* Equivalente a hover:bg-blue-700 */
+}
+
+/* Right Column - Images */
+.image-column {
+    flex: 1; /* Equivalente a lg:w-1/2 */
+    position: relative;
+    height: 16rem; /* Equivalente a h-64 para mobile */
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .image-column {
+        width: 50%;
+        position: sticky; /* Equivalente a lg:sticky */
+        top: 0; /* Equivalente a lg:top-0 */
+        height: 100vh; /* Equivalente a lg:h-screen */
+    }
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.image-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; /* Equivalente a inset-0 */
+    transition: all 0.7s ease-in-out; /* Equivalente a transition-all duration-700 ease-in-out */
+    opacity: 0;
+    transform: translateY(1rem); /* Equivalente a transform translate-y-4 */
+}
+
+.image-item.active {
     opacity: 1;
-    transform: scale(1.1);
-  }
+    transform: translateY(0);
+}
 
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; /* Equivalente a inset-0 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent); /* Equivalente a bg-gradient-to-t from-black/20 to-transparent */
+}
+
+.image-overlay h3 {
+    position: absolute;
+    bottom: 2rem; /* Equivalente a bottom-8 */
+    left: 2rem; /* Equivalente a left-8 */
+    font-size: 1.5rem; /* Equivalente a text-2xl */
+    font-weight: 700; /* Equivalente a font-bold */
+    color: #fff; /* Equivalente a text-white */
+    margin-bottom: 0.5rem; /* Equivalente a mb-2 */
+}
+
+.image-overlay .underline {
+    position: absolute;
+    bottom: 1.5rem; /* Ajustado para ficar abaixo do h3 */
+    left: 2rem; /* Equivalente a left-8 */
+    width: 3rem; /* Equivalente a w-12 */
+    height: 0.25rem; /* Equivalente a h-1 */
+    background-color: #fff; /* Equivalente a bg-white */
+    border-radius: 0.25rem; /* Equivalente a rounded */
+}
+
+/* Progress Indicator */
+.progress-indicator {
+    position: absolute;
+    top: 2rem; /* Equivalente a top-8 */
+    right: 2rem; /* Equivalente a right-8 */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Equivalente a space-y-2 */
+}
+
+.progress-bar {
+    width: 0.25rem; /* Equivalente a w-1 */
+    height: 2rem; /* Equivalente a h-8 */
+    border-radius: 0.25rem; /* Equivalente a rounded */
+    background-color: rgba(255, 255, 255, 0.3); /* Equivalente a bg-white/30 */
+    transition: background-color 0.3s ease-in-out; /* Equivalente a transition-colors duration-300 */
+}
+
+.progress-bar.active {
+    background-color: #fff; /* Equivalente a bg-white */
+}
+ 
   </style>
 </head>
 <body>
@@ -209,25 +361,103 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-  <section class="w-full h-screen flex items-center justify-between px-10 bg-gray-100">
-  <!-- Cards Section -->
-  <div class="relative w-2/3 h-full flex items-center">
-    <button id="prevBtn" class="absolute left-0 z-10 text-4xl font-bold text-gray-400 hover:text-black transition">‹</button>
-    
-    <div id="carousel" class="flex items-center gap-6 transition-all duration-500 ease-in-out">
-      <!-- Cards serão inseridos aqui via JS -->
-    </div>
+  <section class="interactive-areas-section">
+        <div class="content-column">
+            <!-- Área 1: Creative -->
+            <div id="creative" class="area-section">
+                <div class="area-content">
+                    <h2>Creative</h2>
+                    <p>Nossa equipe criativa desenvolve conceitos inovadores e designs únicos que capturam a essência da sua marca. Trabalhamos com identidade visual, branding e campanhas publicitárias que fazem a diferença no mercado.</p>
+                    <button class="button">Saiba Mais</button>
+                </div>
+            </div>
+            <!-- Área 2: Web Development -->
+            <div id="web" class="area-section">
+                <div class="area-content">
+                    <h2>Web Development</h2>
+                    <p>Desenvolvemos websites e aplicações web modernas, responsivas e otimizadas. Nossa expertise inclui React, Next.js, e as mais recentes tecnologias para criar experiências digitais excepcionais.</p>
+                    <button class="button">Saiba Mais</button>
+                </div>
+            </div>
+            <!-- Área 3: Audio & Sounds -->
+            <div id="sounds" class="area-section">
+                <div class="area-content">
+                    <h2>Audio & Sounds</h2>
+                    <p>Nosso estúdio de áudio produz trilhas sonoras, jingles, podcasts e conteúdo sonoro de alta qualidade. Combinamos criatividade e tecnologia para criar experiências auditivas memoráveis.</p>
+                    <button class="button">Saiba Mais</button>
+                </div>
+            </div>
+            <!-- Área 4: Digital Marketing -->
+            <div id="marketing" class="area-section">
+                <div class="area-content">
+                    <h2>Digital Marketing</h2>
+                    <p>Estratégias de marketing digital personalizadas que aumentam sua presença online. Trabalhamos com SEO, redes sociais, campanhas pagas e análise de dados para maximizar seus resultados.</p>
+                    <button class="button">Saiba Mais</button>
+                </div>
+            </div>
+            <!-- Área 5: Business Consulting -->
+            <div id="consulting" class="area-section">
+                <div class="area-content">
+                    <h2>Business Consulting</h2>
+                    <p>Consultoria empresarial especializada em transformação digital e otimização de processos. Ajudamos empresas a crescer e se adaptar às demandas do mercado moderno.</p>
+                    <button class="button">Saiba Mais</button>
+                </div>
+            </div>
+        </div>
 
-    <button id="nextBtn" class="absolute right-0 z-10 text-4xl font-bold text-gray-400 hover:text-black transition">›</button>
-  </div>
-
-  <!-- Texto Dinâmico -->
-  <div id="infoBox" class="w-1/3 h-[80%] p-8 rounded-2xl text-white transition-all duration-500">
-    <h2 id="infoTitle" class="text-3xl font-bold mb-4">Ekb...</h2>
-    <p id="infoText" class="text-lg">Descrição da divisão...</p>
-  </div>
-</section>
-
+        <div class="image-column">
+            <div class="image-container">
+                <!-- Imagem 1: Creative -->
+                <div class="image-item active" data-id="creative">
+                    <img src="/placeholder.svg?height=600&width=800" alt="Creative">
+                    <div class="image-overlay">
+                        <h3>Creative</h3>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <!-- Imagem 2: Web Development -->
+                <div class="image-item" data-id="web">
+                    <img src="/placeholder.svg?height=600&width=800" alt="Web Development">
+                    <div class="image-overlay">
+                        <h3>Web Development</h3>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <!-- Imagem 3: Audio & Sounds -->
+                <div class="image-item" data-id="sounds">
+                    <img src="/placeholder.svg?height=600&width=800" alt="Audio & Sounds">
+                    <div class="image-overlay">
+                        <h3>Audio & Sounds</h3>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <!-- Imagem 4: Digital Marketing -->
+                <div class="image-item" data-id="marketing">
+                    <img src="/placeholder.svg?height=600&width=800" alt="Digital Marketing">
+                    <div class="image-overlay">
+                        <h3>Digital Marketing</h3>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <!-- Imagem 5: Business Consulting -->
+                <div class="image-item" data-id="consulting">
+                    <img src="/placeholder.svg?height=600&width=800" alt="Business Consulting">
+                    <div class="image-overlay">
+                        <h3>Business Consulting</h3>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Progress Indicator -->
+            <div class="progress-indicator">
+                <div class="progress-bar active" data-id="creative"></div>
+                <div class="progress-bar" data-id="web"></div>
+                <div class="progress-bar" data-id="sounds"></div>
+                <div class="progress-bar" data-id="marketing"></div>
+                <div class="progress-bar" data-id="consulting"></div>
+            </div>
+        </div>
+    </section>
 
   <script src="script.js"></script>
 </body>
