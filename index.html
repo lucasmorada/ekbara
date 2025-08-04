@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+boa chat, só mude algumas muitas coisas kkkk: 1- ta ao contrário, os folders ali tem que comecar na esquerda já sabe, e irem pra direita. 2- não precisa ter aquela animação de giro tudo, é só uma de deslisar suave sabe. 3- quando for o principal ali, vc ta deixando ele branco kkk, é pra deixar da cor que ele é mesmo. 4- melhore o design disso, o titulo ali tem que ser grande centralizado, branco, e os textinhos maiores em baixo tbm centralizados. 5- a seta ta entre os folders, é pra ser uma seta fixa sabe, quando for o ultimo dos cantos e nao der pra pular, aí ela some. vou mandar meu código todo dnv pra vc trocar: <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -13,11 +13,8 @@
     }
 
     body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #f4f4f4;
-}
+      font-family: 'Poppins', sans-serif;
+    }
 
     /* HEADER FIXO */
     header {
@@ -138,85 +135,103 @@
  
     .ekbara-divisions-tabs {
   display: flex;
-  align-items: center;
-  position: relative;
-  background-color: #111;
-  padding: 2rem 1rem;
-  overflow: hidden;
+  height: 60vh;
+  background: #f7f7f7;
+  font-family: 'Poppins', sans-serif;
+  padding: 1rem 0;
 }
 
-.tabs-container {
+.tabs {
   display: flex;
-  transition: transform 0.3s ease;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  gap: 1rem;
-  padding: 0 2rem;
+  flex-direction: row;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .tab {
-  flex: 0 0 300px;
-  border-radius: 1rem;
-  padding: 2rem;
-  color: white;
-  transition: all 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background: #e0e0e0;
+  min-width: 80px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 1rem 0.5rem;
   text-align: center;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.tab h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.tab p {
-  font-size: 1.1rem;
-  line-height: 1.6;
+.tab:hover {
+  background: #d5d5d5;
 }
 
 .tab.active {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  background: #ffffff;
+  flex-grow: 1;
+  writing-mode: horizontal-tb;
+  transform: rotate(0);
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 2rem;
+  color: #111;
 }
 
-.creative { background: #ff4c4c; }
-.web      { background: #00c851; }
-.atelier  { background: #ffa500; }
-.sounds   { background: #00695c; }
-.forma    { background: #00cfff; }
-
-.nav-arrow {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  font-size: 2rem;
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-  z-index: 10;
+.tab.active .tab-content {
+  display: block;
 }
 
-.nav-arrow:hover {
-  background: rgba(255, 255, 255, 0.4);
+.tab-content {
+  display: none;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.nav-arrow.left {
+.tab h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Cores das abas fechadas */
+.forma   { background-color: #00cfff; color: #fff; }
+.sounds  { background-color: #00695c; color: #fff; }
+.atelier { background-color: #ffa500; color: #fff; }
+.web     { background-color: #00c851; color: #fff; }
+.creative{ background-color: #ff4c4c; color: #fff; }
+
+.tab.active.forma,
+.tab.active.sounds,
+.tab.active.atelier,
+.tab.active.web,
+.tab.active.creative {
+  background-color: #fff;
+  color: #111;
+}
+
+/* Setinha */
+.arrow {
   position: absolute;
-  left: 0.5rem;
+  top: 50%;
+  right: -12px;
+  transform: translateY(-50%) rotate(90deg);
+  font-size: 1rem;
+  color: #111;
+  opacity: 0.5;
+  transition: transform 0.3s;
 }
 
-.nav-arrow.right {
-  position: absolute;
-  right: 0.5rem;
-}
-
-.nav-arrow.hidden {
-  opacity: 0;
-  pointer-events: none;
+.tab:hover .arrow {
+  transform: translateY(-50%) rotate(90deg) scale(1.1);
 }
 
   </style>
@@ -272,32 +287,49 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-section class="ekbara-divisions-tabs">
-    <button class="nav-arrow left" id="arrow-left">⬅</button>
-    <div class="tabs-container">
-      <div class="tab creative active" data-tab="creative">
-        <h2>Creative</h2>
-        <p>Agência criativa com foco em ideias, campanhas, direção de arte e soluções visuais ousadas.</p>
-      </div>
-      <div class="tab web" data-tab="web">
-        <h2>Web</h2>
-        <p>Criação de sites, sistemas, lojas e experiências digitais personalizadas com tecnologia moderna.</p>
-      </div>
-      <div class="tab atelier" data-tab="atelier">
-        <h2>Atelier</h2>
-        <p>Moda autoral, costura criativa, collabs com artistas e desenvolvimento de peças únicas.</p>
-      </div>
-      <div class="tab sounds" data-tab="sounds">
-        <h2>Sounds</h2>
-        <p>Produção musical, trilhas, identidade sonora e beats originais que carregam emoção e estilo Ekbara.</p>
-      </div>
-      <div class="tab forma" data-tab="forma">
+<section class="ekbara-divisions-tabs">
+  <div class="tabs">
+    <div class="tab forma active" data-tab="forma">
+      forma <span class="arrow">➜</span>
+      <div class="tab-content">
         <h2>Forma</h2>
         <p>Design gráfico e físico. Criamos objetos, impressos, embalagens e visuais com identidade própria e conceito.</p>
       </div>
     </div>
-    <button class="nav-arrow right" id="arrow-right">➡</button>
-  </section>
+
+    <div class="tab sounds" data-tab="sounds">
+      sounds <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Sounds</h2>
+        <p>Produção musical, trilhas, identidade sonora e beats originais que carregam emoção e estilo Ekbara.</p>
+      </div>
+    </div>
+
+    <div class="tab atelier" data-tab="atelier">
+      Atelier <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Atelier</h2>
+        <p>Moda autoral, costura criativa, collabs com artistas e desenvolvimento de peças únicas.</p>
+      </div>
+    </div>
+
+    <div class="tab web" data-tab="web">
+      Web <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Web</h2>
+        <p>Criação de sites, sistemas, lojas e experiências digitais personalizadas com tecnologia moderna.</p>
+      </div>
+    </div>
+
+    <div class="tab creative" data-tab="creative">
+      Creative <span class="arrow">➜</span>
+      <div class="tab-content">
+        <h2>Creative</h2>
+        <p>Agência criativa com foco em ideias, campanhas, direção de arte e soluções visuais ousadas.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
   <script src="script.js"></script>
 </body>
