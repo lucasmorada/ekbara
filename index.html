@@ -133,100 +133,28 @@
       color: #333;
     }
  
-.orbit-carousel {
-  background: #000;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
+  .card {
+    width: 200px;
+    height: 300px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    transition: all 0.5s ease;
+  }
 
-.center-sun {
-  background: white;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 60px white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+  .card.inactive {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
 
-.center-sun img {
-  width: 60%;
-  height: auto;
-}
-
-.carousel {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  position: relative;
-  z-index: 1;
-}
-
-.nav {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  font-size: 2rem;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: background 0.3s;
-}
-
-.nav:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.planets {
-  display: flex;
-  gap: 60px;
-  align-items: center;
-  justify-content: center;
-  min-width: 600px;
-  transition: transform 0.6s ease;
-}
-
-.planet-card {
-  background: #111;
-  color: white;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 1rem;
-  text-align: center;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-.planet-card.active {
-  transform: scale(1.3);
-  opacity: 1;
-  background: #00f0ff;
-  box-shadow: 0 0 20px #00f0ff;
-}
-
-.planet-card.inactive {
-  opacity: 0.3;
-  transform: scale(1);
-}
-
+  .card.active {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 
   </style>
 </head>
@@ -281,21 +209,25 @@ Produtos como o "Dom Pelo" são, geralmente, cosméticos ou fitoterápicos, que 
 Se você busca um tratamento clinicamente comprovado para crescimento capilar, o minoxidil (registrado na Anvisa) ainda é a principal indicação, mas esse tipo de produto pode ser útil como suporte ou alternativa natural.</p>
   </section>
 
-  <section class="orbit-carousel">
-  <div class="center-sun">
-    <img src="sua-logo.png" alt="Ekbara Logo" />
-  </div>
-
-  <div class="carousel">
-    <button class="nav left">&#8592;</button>
+  <section class="w-full h-screen flex items-center justify-between px-10 bg-gray-100">
+  <!-- Cards Section -->
+  <div class="relative w-2/3 h-full flex items-center">
+    <button id="prevBtn" class="absolute left-0 z-10 text-4xl font-bold text-gray-400 hover:text-black transition">‹</button>
     
-    <div class="planets">
-      <!-- Os nomes das áreas são inseridos dinamicamente via JS -->
+    <div id="carousel" class="flex items-center gap-6 transition-all duration-500 ease-in-out">
+      <!-- Cards serão inseridos aqui via JS -->
     </div>
 
-    <button class="nav right">&#8594;</button>
+    <button id="nextBtn" class="absolute right-0 z-10 text-4xl font-bold text-gray-400 hover:text-black transition">›</button>
+  </div>
+
+  <!-- Texto Dinâmico -->
+  <div id="infoBox" class="w-1/3 h-[80%] p-8 rounded-2xl text-white transition-all duration-500">
+    <h2 id="infoTitle" class="text-3xl font-bold mb-4">Ekb...</h2>
+    <p id="infoText" class="text-lg">Descrição da divisão...</p>
   </div>
 </section>
+
 
   <script src="script.js"></script>
 </body>
