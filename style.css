@@ -94,7 +94,7 @@
     /* BANNER */
     .banner {
       height: 100vh;
-      background: linear-gradient(#1d1d1d, #111);
+      background: url('breath.png');
       display: flex;
       justify-content: center;
       align-items: center;
