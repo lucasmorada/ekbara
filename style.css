@@ -132,6 +132,7 @@
   font-weight: 700;
   color: #1a202c; /* cinza escuro elegante */
   margin-bottom: 3rem; /* espaço abaixo do título */
+  text-align: center;
 }
 
 .area-content {
@@ -153,8 +154,13 @@
 }
 
 .area-content.creative {
-  background-color: #ec4899; /* Rosa */
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: rgb(209, 39, 39);
 }
+
 
 .area-content.forma {
   background-color: #10b981; /* Verde */
