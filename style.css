@@ -125,10 +125,16 @@
       color: #333;
     }
 
+    /*areas da ekbara*/
+    .interactive-areas-section {
+  background-color: #383838; /* Exemplo: cinza claro */
+  padding: 4rem 2rem; /* espaço interno */
+}
+
 .areas-title {
   font-size: 3rem; 
   font-weight: 700;
-  color: #1a202c; 
+  color: #ffffff; 
   margin-bottom: 3rem; 
   text-align: center;
 }
@@ -159,7 +165,7 @@
 }
 
 .area-content.sounds {
-  background-color: #f7b139; /* Amarelo alaranjado */
+  background-color: #b37407; /* Amarelo alaranjado */
 }
 
 .area-content.atelier {
@@ -226,7 +232,7 @@
 
 .area-content p {
     font-size: 1.125rem; /* Equivalente a text-lg */
-    color: #4a5568; /* Equivalente a text-gray-600 */
+    color: #ffffff; /* Equivalente a text-gray-600 */
     line-height: 1.625; /* Equivalente a leading-relaxed */
 }
 
