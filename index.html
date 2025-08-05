@@ -5,310 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ekbara</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-
-    /* HEADER FIXO */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      background: transparent;
-      transition: background-color 0.3s ease;
-    }
-
-    /* Header com fundo ao rolar a página */
-    header.scrolled {
-      background-color: #e2f0ab;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    }
-
-    .logo {
-      height: 80px;
-    }
-
-    /* NAVBAR */
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #ffffff;
-      font-weight: 900;
-      position: relative;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      left: 0;
-      bottom: -4px;
-      background: rgb(255, 255, 255);
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* DROPDOWN */
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 120%;
-      left: 0;
-      background: rgb(255, 255, 255);
-      display: none;
-      flex-direction: column;
-      padding: 0.5rem 0;
-      box-shadow: 0 4px 8px #333;
-      border-radius: 6px;
-      z-index: 99;
-    }
-
-    .dropdown:hover .dropdown-menu {
-      display: flex;
-    }
-
-    .dropdown-menu li a {
-      padding: 0.5rem 1rem;
-      white-space: nowrap;
-      display: block;
-      color: black;
-    }
-
-    /* BANNER */
-    .banner {
-      height: 100vh;
-      background: linear-gradient(#1d1d1d, #111);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .banner h1 {
-      font-size: 3rem;
-      color: #ffffff;
-    }
-
-    /* PRÓXIMA SEÇÃO */
-    .section-content {
-      background: white;
-      padding: 4rem 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .section-content h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .section-content p {
-      font-size: 1rem;
-      color: #333;
-    }
-
-    .interactive-areas-section {
-    position: relative;
-    display: flex;
-    flex-direction: column; /* Equivalente a flex-col */
-    min-height: 100vh;
-}
-
-@media (min-width: 1024px) { /* Equivalente a lg breakpoint */
-    .interactive-areas-section {
-        flex-direction: row; /* Equivalente a lg:flex-row */
-    }
-}
-
-/* Left Column - Text Content */
-.content-column {
-    flex: 1; /* Equivalente a lg:w-1/2 */
-    padding-right: 0; /* Reset para mobile */
-}
-
-@media (min-width: 1024px) {
-    .content-column {
-        width: 50%;
-        padding-right: 2rem; /* Equivalente a lg:pr-8 */
-    }
-}
-
-.area-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem; /* Equivalente a px-6 */
-}
-
-@media (min-width: 1024px) {
-    .area-section {
-        padding: 3rem; /* Equivalente a lg:px-12 */
-    }
-}
-
-.area-content {
-    max-width: 32rem; /* Equivalente a max-w-lg */
-}
-
-.area-content h2 {
-    font-size: 1.875rem; /* Equivalente a text-3xl */
-    font-weight: 700; /* Equivalente a font-bold */
-    color: #1a202c; /* Equivalente a text-gray-900 */
-    margin-bottom: 1.5rem; /* Equivalente a mb-6 */
-}
-
-@media (min-width: 768px) {
-    .area-content h2 {
-        font-size: 2.25rem; /* Equivalente a md:text-4xl */
-    }
-}
-
-.area-content p {
-    font-size: 1.125rem; /* Equivalente a text-lg */
-    color: #4a5568; /* Equivalente a text-gray-600 */
-    line-height: 1.625; /* Equivalente a leading-relaxed */
-}
-
-.area-content .button {
-    margin-top: 2rem; /* Equivalente a mt-8 */
-    background-color: #3b82f6; /* Equivalente a bg-blue-600 */
-    color: #fff; /* Equivalente a text-white */
-    padding: 0.75rem 2rem; /* Equivalente a px-8 py-3 */
-    border-radius: 0.5rem; /* Equivalente a rounded-lg */
-    font-weight: 600; /* Equivalente a font-semibold */
-    transition: background-color 0.2s ease-in-out; /* Equivalente a transition-colors duration-200 */
-    border: none;
-    cursor: pointer;
-}
-
-.area-content .button:hover {
-    background-color: #2563eb; /* Equivalente a hover:bg-blue-700 */
-}
-
-/* Right Column - Images */
-.image-column {
-    flex: 1; /* Equivalente a lg:w-1/2 */
-    position: relative;
-    height: 16rem; /* Equivalente a h-64 para mobile */
-    overflow: hidden;
-}
-
-@media (min-width: 1024px) {
-    .image-column {
-        width: 50%;
-        position: sticky; /* Equivalente a lg:sticky */
-        top: 0; /* Equivalente a lg:top-0 */
-        height: 100vh; /* Equivalente a lg:h-screen */
-    }
-}
-
-.image-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.image-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0; /* Equivalente a inset-0 */
-    transition: all 0.7s ease-in-out; /* Equivalente a transition-all duration-700 ease-in-out */
-    opacity: 0;
-    transform: translateY(1rem); /* Equivalente a transform translate-y-4 */
-}
-
-.image-item.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.image-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0; /* Equivalente a inset-0 */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent); /* Equivalente a bg-gradient-to-t from-black/20 to-transparent */
-}
-
-.image-overlay h3 {
-    position: absolute;
-    bottom: 2rem; /* Equivalente a bottom-8 */
-    left: 2rem; /* Equivalente a left-8 */
-    font-size: 1.5rem; /* Equivalente a text-2xl */
-    font-weight: 700; /* Equivalente a font-bold */
-    color: #fff; /* Equivalente a text-white */
-    margin-bottom: 0.5rem; /* Equivalente a mb-2 */
-}
-
-.image-overlay .underline {
-    position: absolute;
-    bottom: 1.5rem; /* Ajustado para ficar abaixo do h3 */
-    left: 2rem; /* Equivalente a left-8 */
-    width: 3rem; /* Equivalente a w-12 */
-    height: 0.25rem; /* Equivalente a h-1 */
-    background-color: #fff; /* Equivalente a bg-white */
-    border-radius: 0.25rem; /* Equivalente a rounded */
-}
-
-/* Progress Indicator */
-.progress-indicator {
-    position: absolute;
-    top: 2rem; /* Equivalente a top-8 */
-    right: 2rem; /* Equivalente a right-8 */
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem; /* Equivalente a space-y-2 */
-}
-
-.progress-bar {
-    width: 0.25rem; /* Equivalente a w-1 */
-    height: 2rem; /* Equivalente a h-8 */
-    border-radius: 0.25rem; /* Equivalente a rounded */
-    background-color: rgba(255, 255, 255, 0.3); /* Equivalente a bg-white/30 */
-    transition: background-color 0.3s ease-in-out; /* Equivalente a transition-colors duration-300 */
-}
-
-.progress-bar.active {
-    background-color: #fff; /* Equivalente a bg-white */
-}
- 
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -363,10 +60,11 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
 
   <section class="interactive-areas-section">
         <div class="content-column">
+          <h1 class="areas-title">Ekbara's div</h1>
             <!-- Área 1: Creative -->
             <div id="creative" class="area-section">
-                <div class="area-content">
-                    <h2>Creative</h2>
+                <div class="area-content.creative">
+                    <h2>Ekbara Creative</h2>
                     <p>Nossa equipe criativa desenvolve conceitos inovadores e designs únicos que capturam a essência da sua marca. Trabalhamos com identidade visual, branding e campanhas publicitárias que fazem a diferença no mercado.</p>
                     <button class="button">Saiba Mais</button>
                 </div>
@@ -374,7 +72,7 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
             <!-- Área 2: Web Development -->
             <div id="web" class="area-section">
                 <div class="area-content">
-                    <h2>Web Development</h2>
+                    <h2>Ekbara Web</h2>
                     <p>Desenvolvemos websites e aplicações web modernas, responsivas e otimizadas. Nossa expertise inclui React, Next.js, e as mais recentes tecnologias para criar experiências digitais excepcionais.</p>
                     <button class="button">Saiba Mais</button>
                 </div>
@@ -382,7 +80,7 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
             <!-- Área 3: Audio & Sounds -->
             <div id="sounds" class="area-section">
                 <div class="area-content">
-                    <h2>Audio & Sounds</h2>
+                    <h2>Ekbara Sounds</h2>
                     <p>Nosso estúdio de áudio produz trilhas sonoras, jingles, podcasts e conteúdo sonoro de alta qualidade. Combinamos criatividade e tecnologia para criar experiências auditivas memoráveis.</p>
                     <button class="button">Saiba Mais</button>
                 </div>
@@ -390,7 +88,7 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
             <!-- Área 4: Digital Marketing -->
             <div id="marketing" class="area-section">
                 <div class="area-content">
-                    <h2>Digital Marketing</h2>
+                    <h2>Ekbara Forma</h2>
                     <p>Estratégias de marketing digital personalizadas que aumentam sua presença online. Trabalhamos com SEO, redes sociais, campanhas pagas e análise de dados para maximizar seus resultados.</p>
                     <button class="button">Saiba Mais</button>
                 </div>
@@ -398,7 +96,7 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
             <!-- Área 5: Business Consulting -->
             <div id="consulting" class="area-section">
                 <div class="area-content">
-                    <h2>Business Consulting</h2>
+                    <h2>Ekbara Atelier</h2>
                     <p>Consultoria empresarial especializada em transformação digital e otimização de processos. Ajudamos empresas a crescer e se adaptar às demandas do mercado moderno.</p>
                     <button class="button">Saiba Mais</button>
                 </div>
