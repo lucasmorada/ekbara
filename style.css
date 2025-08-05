@@ -126,10 +126,10 @@
     }
 
 .areas-title {
-  font-size: 3rem; /* Bem grande */
+  font-size: 3rem; 
   font-weight: 700;
-  color: #1a202c; /* cinza escuro elegante */
-  margin-bottom: 3rem; /* espaço abaixo do título */
+  color: #1a202c; 
+  margin-bottom: 3rem; 
   text-align: center;
 }
 
@@ -147,32 +147,23 @@
 }
 
 .area-content.web {
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: rgb(23, 65, 205);
+  background-color:  rgb(52, 90, 213);
 }
 
 .area-content.creative {
-  border-radius: 1rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: rgb(209, 39, 39);
+ background-color: #e55424;
 }
 
-
 .area-content.forma {
-  background-color: #10b981; /* Verde */
+  background-color: #4d3d9e; /* Verde */
 }
 
 .area-content.sounds {
-  background-color: #f59e0b; /* Amarelo alaranjado */
+  background-color: #f7b139; /* Amarelo alaranjado */
 }
 
 .area-content.atelier {
-  background-color: #8b5cf6; /* Roxo */
+  background-color: #ec57da; /* Roxo */
 }
 
 
@@ -241,8 +232,8 @@
 
 .area-content .button {
     margin-top: 2rem; /* Equivalente a mt-8 */
-    background-color: #3b82f6; /* Equivalente a bg-blue-600 */
-    color: #fff; /* Equivalente a text-white */
+    background-color: #ffffff; /* Equivalente a bg-blue-600 */
+    color: #262525; /* Equivalente a text-white */
     padding: 0.75rem 2rem; /* Equivalente a px-8 py-3 */
     border-radius: 0.5rem; /* Equivalente a rounded-lg */
     font-weight: 600; /* Equivalente a font-semibold */
