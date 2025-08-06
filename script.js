@@ -66,73 +66,75 @@ window.addEventListener('scroll', () => {
     }
 });
 
-  const container = document.getElementById('teamContainer');
-  const nextBtn = document.getElementById('next');
-  const prevBtn = document.getElementById('prev');
-
-  nextBtn.addEventListener('click', () => {
-    container.scrollBy({ left: 300, behavior: 'smooth' });
-  });
-
-  prevBtn.addEventListener('click', () => {
-    container.scrollBy({ left: -300, behavior: 'smooth' });
-  });
-
-  const teamMembers = [
-    {
-      name: "João Silva",
-      title: "CEO & Fundador",
-      image: "/placeholder.svg?height=400&width=400",
-      gradient: "linear-gradient(to top, rgba(219,39,119,0.5) 0%, rgba(147,51,234,0.5) 100%)"
-    },
-    {
-      name: "Maria Oliveira",
-      title: "Diretora de Marketing",
-      image: "/placeholder.svg?height=400&width=400",
-      gradient: "linear-gradient(to top, rgba(249,115,22,0.5) 0%, rgba(34,197,94,0.5) 100%)"
-    },
-    {
-      name: "Pedro Costa",
-      title: "Líder de Desenvolvimento",
-      image: "/placeholder.svg?height=400&width=400",
-      gradient: "linear-gradient(to top, rgba(59,130,246,0.5) 0%, rgba(6,182,212,0.5) 100%)"
-    },
-    {
-      name: "Ana Santos",
-      title: "Gerente de Projetos",
-      image: "/placeholder.svg?height=400&width=400",
-      gradient: "linear-gradient(to top, rgba(239,68,68,0.5) 0%, rgba(250,204,21,0.5) 100%)"
-    },
-    {
-      name: "Lucas Pereira",
-      title: "Designer UX/UI",
-      image: "/placeholder.svg?height=400&width=400",
-      gradient: "linear-gradient(to top, rgba(20,184,166,0.5) 0%, rgba(99,102,241,0.5) 100%)"
-    },
-    {
-      name: "Sofia Mendes",
-      title: "Especialista em Dados",
-      image: "/placeholder.svg?height=400&width=400",
-      gradient: "linear-gradient(to top, rgba(168,85,247,0.5) 0%, rgba(236,72,153,0.5) 100%)"
-    },
-  ];
-
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const carouselTrack = document.getElementById('carouselTrack');
-    teamMembers.forEach(member => {
-      const card = document.createElement('div');
-      card.classList.add('team-card');
-      card.innerHTML = `
-        <div class="team-card-image-wrapper">
-          <img src="${member.image}" alt="Foto de ${member.name}" class="team-card-image">
-          <div class="team-card-gradient" style="background: ${member.gradient};"></div>
-          <div class="team-card-content">
-            <h3 class="team-card-name">${member.name}</h3>
-            <p class="team-card-title">${member.title}</p>
-          </div>
-        </div>`;
-      carouselTrack.appendChild(card);
+    const prevButton = document.querySelector('.prev-button');
+    const nextButton = document.querySelector('.next-button');
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Lógica para arrastar com o mouse
+    carouselTrack.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carouselTrack.classList.add('active');
+        startX = e.pageX - carouselTrack.offsetLeft;
+        scrollLeft = carouselTrack.scrollLeft;
     });
-  });
+
+    carouselTrack.addEventListener('mouseleave', () => {
+        isDown = false;
+        carouselTrack.classList.remove('active');
+    });
+
+    carouselTrack.addEventListener('mouseup', () => {
+        isDown = false;
+        carouselTrack.classList.remove('active');
+    });
+
+    carouselTrack.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carouselTrack.offsetLeft;
+        const walk = (x - startX) * 2; // Multiplicador para sensibilidade
+        carouselTrack.scrollLeft = scrollLeft - walk;
+    });
+
+    // Lógica para botões de navegação
+    const scrollAmount = 340; // Largura do cartão + margem (320px + 20px)
+
+    prevButton.addEventListener('click', () => {
+        carouselTrack.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    nextButton.addEventListener('click', () => {
+        carouselTrack.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    // Lógica para "loop infinito" (simulado) nos botões de navegação
+    // Quando chega ao final, volta para o início e vice-versa
+    carouselTrack.addEventListener('scroll', () => {
+        // Se rolou para o final, volta para o início
+        if (carouselTrack.scrollLeft + carouselTrack.clientWidth >= carouselTrack.scrollWidth - 1) {
+            // Adiciona um pequeno atraso para a transição suave antes de pular
+            setTimeout(() => {
+                carouselTrack.scrollLeft = 0;
+            }, 300); // Tempo da transição smooth
+        }
+        // Se rolou para o início, e não é o primeiro scroll, vai para o final
+        else if (carouselTrack.scrollLeft <= 1) {
+             setTimeout(() => {
+                carouselTrack.scrollLeft = carouselTrack.scrollWidth;
+            }, 300);
+        }
+    });
+});
 
 
