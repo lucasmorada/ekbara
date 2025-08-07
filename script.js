@@ -93,4 +93,40 @@ window.addEventListener('scroll', () => {
     carouselEl.scrollLeft = scrollLeft - walk;
   });
 
+const carousel = document.getElementById('brandsCarousel');
+const track = carousel.querySelector('.carousel-track');
 
+let isDragging = false;
+let startX;
+let scrollLeft;
+let animationPaused = false;
+
+carousel.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX - carousel.offsetLeft;
+  scrollLeft = carousel.scrollLeft;
+  track.style.animationPlayState = 'paused';
+  carousel.style.cursor = 'grabbing';
+});
+
+carousel.addEventListener('mouseleave', () => {
+  if (isDragging) resumeScroll();
+});
+
+carousel.addEventListener('mouseup', () => {
+  if (isDragging) resumeScroll();
+});
+
+carousel.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - carousel.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  carousel.scrollLeft = scrollLeft - walk;
+});
+
+function resumeScroll() {
+  isDragging = false;
+  track.style.animationPlayState = 'running';
+  carousel.style.cursor = 'grab';
+}
