@@ -170,7 +170,6 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
   </div>
 
   <div class="carousel-wrapper">
-    <button class="arrow left-arrow">❮</button>
    <div class="carousel">
     <div class="carousel">
       <div class="card">
@@ -272,29 +271,7 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
           </div>
         </div>
       </div>
-
-    </div>
-
-    <button class="arrow right-arrow">❯</button>
-  </div>
 </section>
-
-<script>
-  const carousel = document.querySelector('.carousel');
-  const leftArrow = document.querySelector('.left-arrow');
-  const rightArrow = document.querySelector('.right-arrow');
-
-  const scrollAmount = 300;
-
-  rightArrow.addEventListener('click', () => {
-    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  leftArrow.addEventListener('click', () => {
-    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-</script>
-
 
   <script src="script.js"></script>
 </body>

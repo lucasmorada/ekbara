@@ -80,6 +80,32 @@ window.addEventListener('scroll', () => {
     carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
   });
 
+const carouselEl = document.querySelector('.carousel');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+carouselEl.addEventListener('mousedown', (e) => {
+  isDown = true;
+  carouselEl.classList.add('active');
+  startX = e.pageX - carouselEl.offsetLeft;
+  scrollLeft = carouselEl.scrollLeft;
+});
+carouselEl.addEventListener('mouseleave', () => {
+  isDown = false;
+  carouselEl.classList.remove('active');
+});
+carouselEl.addEventListener('mouseup', () => {
+  isDown = false;
+  carouselEl.classList.remove('active');
+});
+carouselEl.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - carouselEl.offsetLeft;
+  const walk = (x - startX) * 2; // Velocidade
+  carouselEl.scrollLeft = scrollLeft - walk;
+});
 
 
 
