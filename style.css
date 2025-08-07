@@ -353,13 +353,61 @@
   padding: 60px 30px;
   background-color: #f9fafb;
   overflow: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
-.testimonials-section h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
+/* Container com os dois lados */
+.testimonials-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Lado esquerdo (texto principal) */
+.testimonials-header .left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.main-title {
+  font-size: 48px;
   color: #111827;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Lado direito (texto complementar) */
+.testimonials-header .right {
+  flex: 1;
+  min-width: 280px;
+  color: #374151;
+  font-size: 18px;
+  line-height: 1.6;
+  font-family: 'Inter', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 36px;
+  }
+  .testimonials-header {
+    flex-direction: column;
+  }
 }
 
 .carousel {
