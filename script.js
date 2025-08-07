@@ -66,75 +66,74 @@ window.addEventListener('scroll', () => {
     }
 });
 
-  const carouselEl = document.querySelector('.carousel');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+  const genericCarousel = document.querySelector('.carousel');
+if (genericCarousel) {
+  let isDraggingGeneric = false;
+  let startXGeneric;
+  let scrollLeftGeneric;
 
-  carouselEl.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - carouselEl.offsetLeft;
-    scrollLeft = carouselEl.scrollLeft;
+  genericCarousel.addEventListener('mousedown', (e) => {
+    isDraggingGeneric = true;
+    startXGeneric = e.pageX - genericCarousel.offsetLeft;
+    scrollLeftGeneric = genericCarousel.scrollLeft;
+    genericCarousel.style.cursor = 'grabbing';
   });
 
-  carouselEl.addEventListener('mouseleave', () => {
-    isDown = false;
+  genericCarousel.addEventListener('mouseleave', () => {
+    isDraggingGeneric = false;
+    genericCarousel.style.cursor = 'grab';
   });
 
   document.addEventListener('mouseup', () => {
-  isDown = false;
-});
-
-  carouselEl.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - carouselEl.offsetLeft;
-    const walk = (x - startX) * 2; // Velocidade
-    carouselEl.scrollLeft = scrollLeft - walk;
+    isDraggingGeneric = false;
+    genericCarousel.style.cursor = 'grab';
   });
 
-
-  const carousel = document.getElementById('brandsCarousel');
-
-let isDragging = false;
-let startX;
-let scrollLeft;
-
-carousel.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startX = e.pageX - carousel.offsetLeft;
-  scrollLeft = carousel.scrollLeft;
-  carousel.style.cursor = 'grabbing';
-});
-
-carousel.addEventListener('mouseleave', () => {
-  isDragging = false;
-  carousel.style.cursor = 'grab';
-});
-
-carousel.addEventListener('mouseup', () => {
-  isDragging = false;
-  carousel.style.cursor = 'grab';
-});
-
-carousel.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const x = e.pageX - carousel.offsetLeft;
-  const walk = (x - startX) * 1.5; // velocidade do arrasto
-  carousel.scrollLeft = scrollLeft - walk;
-});
-
-// Scroll automático infinito
-function autoScroll() {
-  carousel.scrollLeft += 1;
-  if (
-    carousel.scrollLeft >=
-    carousel.scrollWidth - carousel.clientWidth
-  ) {
-    carousel.scrollLeft = 0;
-  }
-  requestAnimationFrame(autoScroll);
+  genericCarousel.addEventListener('mousemove', (e) => {
+    if (!isDraggingGeneric) return;
+    e.preventDefault();
+    const x = e.pageX - genericCarousel.offsetLeft;
+    const walk = (x - startXGeneric) * 2; // Velocidade do arrasto
+    genericCarousel.scrollLeft = scrollLeftGeneric - walk;
+  });
 }
 
-autoScroll();
+// Carrossel de marcas (id #brandsCarousel)
+const brandsCarousel = document.getElementById('brandsCarousel');
+if (brandsCarousel) {
+  const track = brandsCarousel.querySelector('.carousel-track');
+
+  let isDraggingBrands = false;
+  let startXBrands;
+  let scrollLeftBrands;
+
+  brandsCarousel.addEventListener('mousedown', (e) => {
+    isDraggingBrands = true;
+    startXBrands = e.pageX - brandsCarousel.offsetLeft;
+    scrollLeftBrands = brandsCarousel.scrollLeft;
+    if (track) track.style.animationPlayState = 'paused';
+    brandsCarousel.style.cursor = 'grabbing';
+  });
+
+  brandsCarousel.addEventListener('mouseleave', () => {
+    if (isDraggingBrands) resumeBrandsScroll();
+  });
+
+  brandsCarousel.addEventListener('mouseup', () => {
+    if (isDraggingBrands) resumeBrandsScroll();
+  });
+
+  brandsCarousel.addEventListener('mousemove', (e) => {
+    if (!isDraggingBrands) return;
+    e.preventDefault();
+    const x = e.pageX - brandsCarousel.offsetLeft;
+    const walk = (x - startXBrands) * 1.5;
+    brandsCarousel.scrollLeft = scrollLeftBrands - walk;
+  });
+
+  function resumeBrandsScroll() {
+    isDraggingBrands = false;
+    if (track) track.style.animationPlayState = 'running';
+    brandsCarousel.style.cursor = 'grab';
+  }
+}
