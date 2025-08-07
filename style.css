@@ -411,14 +411,6 @@ body {
   background: #e5e7eb;
 }
 
-.carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 20px;
-}
-
 .card {
   position: relative;
   flex: 0 0 260px;
@@ -480,6 +472,21 @@ body {
 
 .carousel-wrapper {
   position: relative;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+}
+
+.carousel::-webkit-scrollbar {
+  display: none; /* Chrome */
 }
 
 .arrow {
@@ -487,24 +494,27 @@ body {
   top: 50%;
   transform: translateY(-50%);
   font-size: 24px;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.1);
   border: none;
   cursor: pointer;
   z-index: 5;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 50%;
-  transition: background 0.3s ease;
+  color: #111;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .arrow:hover {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .left-arrow {
-  left: -10px;
+  left: 10px;
 }
 
 .right-arrow {
-  right: -10px;
+  right: 10px;
 }
+
 
