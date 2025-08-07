@@ -66,74 +66,40 @@ window.addEventListener('scroll', () => {
     }
 });
 
-  const genericCarousel = document.querySelector('.carousel');
-if (genericCarousel) {
-  let isDraggingGeneric = false;
-  let startXGeneric;
-  let scrollLeftGeneric;
+  const carousel = document.getElementById('brandsCarousel');
+const track = carousel.querySelector('.carousel-track');
 
-  genericCarousel.addEventListener('mousedown', (e) => {
-    isDraggingGeneric = true;
-    startXGeneric = e.pageX - genericCarousel.offsetLeft;
-    scrollLeftGeneric = genericCarousel.scrollLeft;
-    genericCarousel.style.cursor = 'grabbing';
-  });
+let isDragging = false;
+let startX;
+let scrollLeft;
+let animationPaused = false;
 
-  genericCarousel.addEventListener('mouseleave', () => {
-    isDraggingGeneric = false;
-    genericCarousel.style.cursor = 'grab';
-  });
+carousel.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX - carousel.offsetLeft;
+  scrollLeft = carousel.scrollLeft;
+  track.style.animationPlayState = 'paused';
+  carousel.style.cursor = 'grabbing';
+});
 
-  document.addEventListener('mouseup', () => {
-    isDraggingGeneric = false;
-    genericCarousel.style.cursor = 'grab';
-  });
+carousel.addEventListener('mouseleave', () => {
+  if (isDragging) resumeScroll();
+});
 
-  genericCarousel.addEventListener('mousemove', (e) => {
-    if (!isDraggingGeneric) return;
-    e.preventDefault();
-    const x = e.pageX - genericCarousel.offsetLeft;
-    const walk = (x - startXGeneric) * 2; // Velocidade do arrasto
-    genericCarousel.scrollLeft = scrollLeftGeneric - walk;
-  });
-}
+carousel.addEventListener('mouseup', () => {
+  if (isDragging) resumeScroll();
+});
 
-// Carrossel de marcas (id #brandsCarousel)
-const brandsCarousel = document.getElementById('brandsCarousel');
-if (brandsCarousel) {
-  const track = brandsCarousel.querySelector('.carousel-track');
+carousel.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - carousel.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  carousel.scrollLeft = scrollLeft - walk;
+});
 
-  let isDraggingBrands = false;
-  let startXBrands;
-  let scrollLeftBrands;
-
-  brandsCarousel.addEventListener('mousedown', (e) => {
-    isDraggingBrands = true;
-    startXBrands = e.pageX - brandsCarousel.offsetLeft;
-    scrollLeftBrands = brandsCarousel.scrollLeft;
-    if (track) track.style.animationPlayState = 'paused';
-    brandsCarousel.style.cursor = 'grabbing';
-  });
-
-  brandsCarousel.addEventListener('mouseleave', () => {
-    if (isDraggingBrands) resumeBrandsScroll();
-  });
-
-  brandsCarousel.addEventListener('mouseup', () => {
-    if (isDraggingBrands) resumeBrandsScroll();
-  });
-
-  brandsCarousel.addEventListener('mousemove', (e) => {
-    if (!isDraggingBrands) return;
-    e.preventDefault();
-    const x = e.pageX - brandsCarousel.offsetLeft;
-    const walk = (x - startXBrands) * 1.5;
-    brandsCarousel.scrollLeft = scrollLeftBrands - walk;
-  });
-
-  function resumeBrandsScroll() {
-    isDraggingBrands = false;
-    if (track) track.style.animationPlayState = 'running';
-    brandsCarousel.style.cursor = 'grab';
-  }
+function resumeScroll() {
+  isDragging = false;
+  track.style.animationPlayState = 'running';
+  carousel.style.cursor = 'grab';
 }
