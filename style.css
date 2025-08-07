@@ -520,22 +520,27 @@
 }
 
 .brands-carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
   cursor: grab;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 .carousel-track {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
   gap: 60px;
-  animation: scrollBrands 30s linear infinite;
-  will-change: transform;
+  padding-left: 30px;
 }
 
 .carousel-track img {
   height: 60px;
   object-fit: contain;
+  pointer-events: none;
+  user-drag: none;
+  user-select: none;
   flex-shrink: 0;
   opacity: 0.8;
   transition: opacity 0.3s;

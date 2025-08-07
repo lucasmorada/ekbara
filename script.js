@@ -93,40 +93,48 @@ window.addEventListener('scroll', () => {
     carouselEl.scrollLeft = scrollLeft - walk;
   });
 
-const carousel = document.getElementById('brandsCarousel');
-const track = carousel.querySelector('.carousel-track');
+
+  const carousel = document.getElementById('brandsCarousel');
 
 let isDragging = false;
 let startX;
 let scrollLeft;
-let animationPaused = false;
 
 carousel.addEventListener('mousedown', (e) => {
   isDragging = true;
   startX = e.pageX - carousel.offsetLeft;
   scrollLeft = carousel.scrollLeft;
-  track.style.animationPlayState = 'paused';
   carousel.style.cursor = 'grabbing';
 });
 
 carousel.addEventListener('mouseleave', () => {
-  if (isDragging) resumeScroll();
+  isDragging = false;
+  carousel.style.cursor = 'grab';
 });
 
 carousel.addEventListener('mouseup', () => {
-  if (isDragging) resumeScroll();
+  isDragging = false;
+  carousel.style.cursor = 'grab';
 });
 
 carousel.addEventListener('mousemove', (e) => {
   if (!isDragging) return;
   e.preventDefault();
   const x = e.pageX - carousel.offsetLeft;
-  const walk = (x - startX) * 1.5;
+  const walk = (x - startX) * 1.5; // velocidade do arrasto
   carousel.scrollLeft = scrollLeft - walk;
 });
 
-function resumeScroll() {
-  isDragging = false;
-  track.style.animationPlayState = 'running';
-  carousel.style.cursor = 'grab';
+// Scroll automático infinito
+function autoScroll() {
+  carousel.scrollLeft += 1;
+  if (
+    carousel.scrollLeft >=
+    carousel.scrollWidth - carousel.clientWidth
+  ) {
+    carousel.scrollLeft = 0;
+  }
+  requestAnimationFrame(autoScroll);
 }
+
+autoScroll();
