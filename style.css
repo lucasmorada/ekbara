@@ -348,108 +348,92 @@
     background-color: #fff; /* Equivalente a bg-white */
 }
 
-.team-section {
+.testimonials-section {
+  padding: 60px 40px;
   background-color: #f9fafb;
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.team-header h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
   color: #111827;
 }
 
-.team-header p {
-  font-size: 1rem;
-  color: #6b7280;
-  margin-bottom: 2rem;
-}
-
-.team-carousel {
-  overflow: hidden;
-  position: relative;
-}
-
-.carousel-track {
+.testimonials-header {
   display: flex;
-  gap: 1.5rem;
-  animation: scroll-carousel 30s linear infinite;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
-@keyframes scroll-carousel {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.badge {
+  background: #f1f5f9;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  cursor: default;
 }
 
-/* Duplicação dos cards para o loop infinito */
-.carousel-track::after {
-  content: '';
+.testimonials-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.testimonials-right {
+  max-width: 400px;
+  text-align: right;
+}
+
+.testimonials-right p {
+  margin-bottom: 12px;
+  color: #4b5563;
+}
+
+.get-started-btn {
+  background: white;
+  border: 1px solid #d1d5db;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.get-started-btn:hover {
+  background: #e5e7eb;
+}
+
+.testimonials-cards {
   display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
 }
 
-.team-card {
-  min-width: 300px;
-  background-color: white;
+.card {
+  flex: 0 0 260px;
+  background: #fff;
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 2rem 1rem;
+  padding: 20px;
   text-align: center;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.team-card:hover {
-  transform: scale(1.05);
-}
-
-.team-card img {
+.card img {
   width: 100%;
-  height: 300px;
-  object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
+  object-fit: cover;
+  height: 240px;
 }
 
-.team-card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.25rem;
-  color: #111827;
+.card p {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #1f2937;
 }
 
-.team-card p {
-  font-size: 0.9rem;
+.card .info {
+  font-size: 14px;
   color: #6b7280;
-  margin-bottom: 0.75rem;
 }
-
-.team-card span {
-  font-style: italic;
-  font-size: 0.85rem;
-  color: #374151;
-  display: block;
-}
-
-.carousel-container {
-    max-width: 1200px;
-    margin: 3rem auto 5rem auto;
-    padding: 0 1rem;
-  }
-  h2 {
-    font-weight: 800;
-    font-size: 2.5rem;
-    max-width: 600px;
-    color: #111827;
-  }
-  .sub-text {
-    font-size: 1rem;
-    color: #374151;
-}
-    .carousel-arrows {
-      right: 0.5rem;
-    }
-  
