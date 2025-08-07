@@ -371,10 +371,11 @@
   -webkit-overflow-scrolling: touch;
   user-select: none;
   cursor: grab;
-
-  /* Exibir barra de rolagem no Firefox */
   scrollbar-width: thin;
   scrollbar-color: #999 #f1f1f1;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
 }
 
 .carousel:active {
