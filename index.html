@@ -279,6 +279,23 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
   </div>
 </section>
 
+<script>
+  const carousel = document.querySelector('.carousel');
+  const leftArrow = document.querySelector('.left-arrow');
+  const rightArrow = document.querySelector('.right-arrow');
+
+  const scrollAmount = 300;
+
+  rightArrow.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  leftArrow.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+</script>
+
+
   <script src="script.js"></script>
 </body>
 </html>
