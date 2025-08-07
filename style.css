@@ -348,144 +348,47 @@
     background-color: #fff; /* Equivalente a bg-white */
 }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9fafb;
-  color: #111827;
-}
-
 .testimonials-section {
-  padding: 60px 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  padding: 60px 30px;
+  background-color: #f9fafb;
+  overflow: hidden;
 }
 
-.testimonials-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 20px;
+.testimonials-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
   margin-bottom: 40px;
-}
-
-.testimonials-header .badge {
-  background: #f1f5f9;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 14px;
-  margin-bottom: 12px;
-  cursor: default;
-}
-
-.testimonials-header h2 {
-  font-size: 45px;
-  font-weight: 800;
-  margin: 0;
-}
-
-.testimonials-header .right {
-  max-width: 400px;
-  text-align: right;
-}
-
-.testimonials-header .right p {
-  color: #4b5563;
-  margin-bottom: 12px;
-}
-
-.get-started {
-  background: white;
-  border: 1px solid #d1d5db;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s ease;
-}
-
-.get-started:hover {
-  background: #e5e7eb;
-}
-
-.card {
-  flex: 0 0 300px; /* aumente aqui se quiser */
-  height: 400px;
-  border-radius: 20px;
-  scroll-snap-align: start;
-  position: relative;
-  overflow: hidden;
-}
-
-.card img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 55px; 
-  background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-  backdrop-filter: blur(1.5px); /* blur mais sutil */
-  z-index: 2;
-}
-
-.card-content {
-  position: absolute;
-  bottom: 0;
-  padding: 20px;
-  z-index: 3;
-}
-
-.card-content p {
-  font-size: 21px;
-  margin-bottom: 10px;
-  color: #ffffff;
-}
-
-.card-content .info {
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
-  line-height: 1.3;
-}
-
-.card-content .info span {
-  font-size: 15px;
-  font-weight: 500;
-  display: block;
-  opacity: 0.9;
-}
-
-.carousel-wrapper {
-  position: relative;
-  overflow: hidden;
+  color: #111827;
 }
 
 .carousel {
   display: flex;
   gap: 20px;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 20px;
   scroll-snap-type: x mandatory;
+  padding-bottom: 20px;
   scrollbar-width: none; /* Firefox */
   -webkit-overflow-scrolling: touch;
 }
 
 .carousel::-webkit-scrollbar {
   display: none;
+}
+
+.card {
+  flex: 0 0 300px;
+  height: 400px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
 }
 
 
