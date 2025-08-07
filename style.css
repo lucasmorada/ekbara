@@ -368,12 +368,31 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 20px;
-  scrollbar-width: none; /* Firefox */
   -webkit-overflow-scrolling: touch;
+  user-select: none;
+  cursor: grab;
+
+  /* Exibir barra de rolagem no Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #999 #f1f1f1;
 }
 
+.carousel:active {
+  cursor: grabbing;
+}
+
+/* Estilo da barra de rolagem no Chrome, Edge e Safari */
 .carousel::-webkit-scrollbar {
-  display: none;
+  height: 8px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
 .card {

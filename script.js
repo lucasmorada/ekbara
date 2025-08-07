@@ -81,9 +81,9 @@ window.addEventListener('scroll', () => {
     isDown = false;
   });
 
-  carouselEl.addEventListener('mouseup', () => {
-    isDown = false;
-  });
+  document.addEventListener('mouseup', () => {
+  isDown = false;
+});
 
   carouselEl.addEventListener('mousemove', (e) => {
     if (!isDown) return;
