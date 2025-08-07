@@ -539,6 +539,9 @@
   flex-shrink: 0;
   opacity: 0.8;
   transition: opacity 0.3s;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .carousel-track img:hover {
