@@ -505,6 +505,69 @@
   opacity: 0.9;
 }
 
+/*feedback*/
+.feedbacks-section {
+  padding: 60px 30px;
+  background-color: #f9fafb;
+}
+
+.feedbacks-title {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: 2rem;
+  color: #111827;
+  margin-bottom: 40px;
+}
+
+.feedbacks-carousel {
+  overflow: hidden;
+  cursor: grab;
+}
+
+.feedbacks-track {
+  display: flex;
+  gap: 20px;
+  animation: scrollFeedbacks 50s linear infinite;
+  will-change: transform;
+}
+
+.feedback-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  width: 300px;
+  flex-shrink: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #374151;
+  transition: transform 0.3s;
+}
+
+.feedback-card:hover {
+  transform: scale(1.03);
+}
+
+.feedback-card p {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.feedback-card span {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+@keyframes scrollFeedbacks {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/*pratocinadores*/
 .brands-section {
   padding: 60px 30px;
   background-color: #ffffff;
