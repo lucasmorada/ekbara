@@ -478,19 +478,22 @@ body {
   opacity: 0.9;
 }
 
-/* Setas do carrossel */
+.carousel-wrapper {
+  position: relative;
+}
+
 .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 2rem;
+  font-size: 24px;
   background: rgba(0, 0, 0, 0.05);
   border: none;
   cursor: pointer;
-  z-index: 10;
-  padding: 10px;
+  z-index: 5;
+  padding: 10px 14px;
   border-radius: 50%;
-  transition: background 0.2s;
+  transition: background 0.3s ease;
 }
 
 .arrow:hover {
@@ -498,14 +501,10 @@ body {
 }
 
 .left-arrow {
-  left: 0;
+  left: -10px;
 }
 
 .right-arrow {
-  right: 0;
+  right: -10px;
 }
 
-/* Container com posição relativa para posicionar as setas */
-.carousel-wrapper {
-  position: relative;
-}
