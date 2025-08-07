@@ -66,19 +66,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-  const carousel = document.querySelector('.carousel');
-  const leftArrow = document.querySelector('.left-arrow');
-  const rightArrow = document.querySelector('.right-arrow');
-
-  const scrollAmount = 280;
-
-  rightArrow.addEventListener('click', () => {
-    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  leftArrow.addEventListener('click', () => {
-    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
 
 const carouselEl = document.querySelector('.carousel');
 let isDown = false;
