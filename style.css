@@ -507,7 +507,7 @@
 
 /*feedback*/
 .feedbacks-section {
-  padding: 60px 30px;
+  padding: 80px 30px;
   background-color: #f9fafb;
   text-align: center;
 }
@@ -516,41 +516,57 @@
   font-family: 'Poppins', sans-serif;
   font-size: 2rem;
   color: #111827;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 .feedbacks-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .feedback-card {
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  padding: 30px 20px;
+  max-width: 300px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feedback-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feedback-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.feedback-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.feedback-role {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 15px;
 }
 
 .feedback-text {
-  font-size: 1rem;
-  color: #374151;
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.feedback-author {
-  font-weight: 600;
-  color: #111827;
   font-size: 0.95rem;
+  color: #374151;
+  font-style: italic;
+  line-height: 1.6;
 }
 
 /*pratocinadores*/
