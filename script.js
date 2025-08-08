@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
   const observer = new IntersectionObserver(updateActiveArea, observerOptions);
   areaSections.forEach(section => observer.observe(section));
 
@@ -91,4 +90,4 @@ document.addEventListener('DOMContentLoaded', () => {
       if (track) track.style.animationPlayState = 'running';
       brandsCarousel.style.cursor = 'grab';
     }
-}});
+    }});
