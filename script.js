@@ -116,5 +116,4 @@ document.addEventListener('DOMContentLoaded', () => {
       if (track) track.style.animationPlayState = 'running';
       brandsCarousel.style.cursor = 'grab';
     }
-  }
 });
