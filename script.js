@@ -48,34 +48,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // === CARROSSEL DA EQUIPE (DRAG HORIZONTAL) ===
-  const carouselEl = document.querySelector('.carousel');
-  if (carouselEl) {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+  const carousel = document.querySelector('.carousel');
+let isDown = false;
+let startX;
+let scrollLeft;
 
-    carouselEl.addEventListener('mousedown', (e) => {
-      isDown = true;
-      startX = e.pageX - carouselEl.offsetLeft;
-      scrollLeft = carouselEl.scrollLeft;
-    });
+carousel.addEventListener('mousedown', (e) => {
+  isDown = true;
+  carousel.classList.add('active');
+  startX = e.pageX - carousel.offsetLeft;
+  scrollLeft = carousel.scrollLeft;
+});
 
-    carouselEl.addEventListener('mouseleave', () => {
-      isDown = false;
-    });
+carousel.addEventListener('mouseleave', () => {
+  isDown = false;
+  carousel.classList.remove('active');
+});
 
-    document.addEventListener('mouseup', () => {
-      isDown = false;
-    });
+carousel.addEventListener('mouseup', () => {
+  isDown = false;
+  carousel.classList.remove('active');
+});
 
-    carouselEl.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - carouselEl.offsetLeft;
-      const walk = (x - startX) * 2;
-      carouselEl.scrollLeft = scrollLeft - walk;
-    });
-  }
+carousel.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - carousel.offsetLeft;
+  const walk = (x - startX) * 1; // sensibilidade do arrasto
+  carousel.scrollLeft = scrollLeft - walk;
+});
+
 
   // === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
   const carousel = document.getElementById('brandsCarousel');
