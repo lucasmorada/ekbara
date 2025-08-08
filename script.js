@@ -116,4 +116,4 @@ if (brandsCarousel) {
     if (track) track.style.animationPlayState = 'running';
     brandsCarousel.style.cursor = 'grab';
   }
-}
+});
