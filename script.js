@@ -1,3 +1,25 @@
+// === ELEMENTOS PARA O SISTEMA DE ÁREA ATIVA ===
+const areaSections = document.querySelectorAll('.area-section');
+const imageItems = document.querySelectorAll('.image-item');
+const progressBars = document.querySelectorAll('.progress-bar');
+
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.6 // porcentagem visível para considerar ativo
+};
+
+// Função chamada quando uma área entra na tela
+function updateActiveArea(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      imageItems.forEach(item => item.classList.toggle('active', item.dataset.id === id));
+      progressBars.forEach(bar => bar.classList.toggle('active', bar.dataset.id === id));
+    }
+  });
+}
+
 // === HEADER AO SCROLL ===
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
@@ -8,6 +30,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// === OBSERVADOR DE SEÇÕES ===
 const observer = new IntersectionObserver(updateActiveArea, observerOptions);
 areaSections.forEach(section => observer.observe(section));
 
@@ -20,34 +43,36 @@ if (areaSections.length > 0) {
 
 // === CARROSSEL DA EQUIPE (DRAG HORIZONTAL) ===
 const teamCarousel = document.querySelector('.carousel');
-let isDown = false;
-let startX;
-let scrollLeft;
+if (teamCarousel) {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
 
-teamCarousel.addEventListener('mousedown', (e) => {
-  isDown = true;
-  teamCarousel.classList.add('active');
-  startX = e.pageX - teamCarousel.offsetLeft;
-  scrollLeft = teamCarousel.scrollLeft;
-});
+  teamCarousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    teamCarousel.classList.add('active');
+    startX = e.pageX - teamCarousel.offsetLeft;
+    scrollLeft = teamCarousel.scrollLeft;
+  });
 
-teamCarousel.addEventListener('mouseleave', () => {
-  isDown = false;
-  teamCarousel.classList.remove('active');
-});
+  teamCarousel.addEventListener('mouseleave', () => {
+    isDown = false;
+    teamCarousel.classList.remove('active');
+  });
 
-teamCarousel.addEventListener('mouseup', () => {
-  isDown = false;
-  teamCarousel.classList.remove('active');
-});
+  teamCarousel.addEventListener('mouseup', () => {
+    isDown = false;
+    teamCarousel.classList.remove('active');
+  });
 
-teamCarousel.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - teamCarousel.offsetLeft;
-  const walk = (x - startX) * 1;
-  teamCarousel.scrollLeft = scrollLeft - walk;
-});
+  teamCarousel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - teamCarousel.offsetLeft;
+    const walk = (x - startX) * 1; // sensibilidade
+    teamCarousel.scrollLeft = scrollLeft - walk;
+  });
+}
 
 // === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
 const brandsCarousel = document.getElementById('brandsCarousel');
