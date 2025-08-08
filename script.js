@@ -48,73 +48,72 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // === CARROSSEL DA EQUIPE (DRAG HORIZONTAL) ===
-  const carousel = document.querySelector('.carousel');
+const teamCarousel = document.querySelector('.carousel');
 let isDown = false;
 let startX;
 let scrollLeft;
 
-carousel.addEventListener('mousedown', (e) => {
+teamCarousel.addEventListener('mousedown', (e) => {
   isDown = true;
-  carousel.classList.add('active');
-  startX = e.pageX - carousel.offsetLeft;
-  scrollLeft = carousel.scrollLeft;
+  teamCarousel.classList.add('active');
+  startX = e.pageX - teamCarousel.offsetLeft;
+  scrollLeft = teamCarousel.scrollLeft;
 });
 
-carousel.addEventListener('mouseleave', () => {
+teamCarousel.addEventListener('mouseleave', () => {
   isDown = false;
-  carousel.classList.remove('active');
+  teamCarousel.classList.remove('active');
 });
 
-carousel.addEventListener('mouseup', () => {
+teamCarousel.addEventListener('mouseup', () => {
   isDown = false;
-  carousel.classList.remove('active');
+  teamCarousel.classList.remove('active');
 });
 
-carousel.addEventListener('mousemove', (e) => {
+teamCarousel.addEventListener('mousemove', (e) => {
   if (!isDown) return;
   e.preventDefault();
-  const x = e.pageX - carousel.offsetLeft;
+  const x = e.pageX - teamCarousel.offsetLeft;
   const walk = (x - startX) * 1; // sensibilidade do arrasto
-  carousel.scrollLeft = scrollLeft - walk;
+  teamCarousel.scrollLeft = scrollLeft - walk;
 });
 
 
-  // === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
-  const carousel = document.getElementById('brandsCarousel');
-  if (carousel) {
-    const track = carousel.querySelector('.carousel-track');
-    let isDragging = false;
-    let startXBrands;
-    let scrollLeftBrands;
+// === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
+const brandsCarousel = document.getElementById('brandsCarousel');
+if (brandsCarousel) {
+  const track = brandsCarousel.querySelector('.carousel-track');
+  let isDragging = false;
+  let startXBrands;
+  let scrollLeftBrands;
 
-    carousel.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startXBrands = e.pageX - carousel.offsetLeft;
-      scrollLeftBrands = carousel.scrollLeft;
-      if (track) track.style.animationPlayState = 'paused';
-      carousel.style.cursor = 'grabbing';
-    });
+  brandsCarousel.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startXBrands = e.pageX - brandsCarousel.offsetLeft;
+    scrollLeftBrands = brandsCarousel.scrollLeft;
+    if (track) track.style.animationPlayState = 'paused';
+    brandsCarousel.style.cursor = 'grabbing';
+  });
 
-    carousel.addEventListener('mouseleave', () => {
-      if (isDragging) resumeScroll();
-    });
+  brandsCarousel.addEventListener('mouseleave', () => {
+    if (isDragging) resumeScroll();
+  });
 
-    carousel.addEventListener('mouseup', () => {
-      if (isDragging) resumeScroll();
-    });
+  brandsCarousel.addEventListener('mouseup', () => {
+    if (isDragging) resumeScroll();
+  });
 
-    carousel.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const x = e.pageX - carousel.offsetLeft;
-      const walk = (x - startXBrands) * 1.5;
-      carousel.scrollLeft = scrollLeftBrands - walk;
-    });
+  brandsCarousel.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - brandsCarousel.offsetLeft;
+    const walk = (x - startXBrands) * 1.5;
+    brandsCarousel.scrollLeft = scrollLeftBrands - walk;
+  });
 
-    function resumeScroll() {
-      isDragging = false;
-      if (track) track.style.animationPlayState = 'running';
-      carousel.style.cursor = 'grab';
-    }
+  function resumeScroll() {
+    isDragging = false;
+    if (track) track.style.animationPlayState = 'running';
+    brandsCarousel.style.cursor = 'grab';
   }
-});
+}
