@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Maria Silva</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-image {
+    position: relative;
+}
+
+.profile-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.status-dot {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: #4ade80;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 5px;
+}
+
+.profession {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.quote {
+    font-size: 1rem;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Filter Section */
+.filter-section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 25px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    grid-auto-rows: 10px;
+}
+
+.portfolio-item {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.item-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.item-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .item-image img {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .overlay {
+    transform: translateY(0);
+}
+
+.overlay h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.overlay p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    backdrop-filter: blur(10px);
+}
+
+/* Masonry Layout */
+.portfolio-item:nth-child(1) { grid-row-end: span 30; }
+.portfolio-item:nth-child(2) { grid-row-end: span 40; }
+.portfolio-item:nth-child(3) { grid-row-end: span 25; }
+.portfolio-item:nth-child(4) { grid-row-end: span 35; }
+.portfolio-item:nth-child(5) { grid-row-end: span 28; }
+.portfolio-item:nth-child(6) { grid-row-end: span 32; }
+.portfolio-item:nth-child(7) { grid-row-end: span 29; }
+.portfolio-item:nth-child(8) { grid-row-end: span 36; }
+.portfolio-item:nth-child(9) { grid-row-end: span 27; }
+.portfolio-item:nth-child(10) { grid-row-end: span 33; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .name {
+        font-size: 2rem;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    
+    .filter-section {
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        padding: 20px;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-image img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .name {
+        font-size: 1.8rem;
+    }
+}
+
+/* Animation for filtered items */
+.portfolio-item.hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.portfolio-item.visible {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+</style>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="/placeholder.svg?height=120&width=120" alt="Maria Silva">
+                    <div class="status-dot"></div>
+                </div>
+                <div class="profile-info">
+                    <h1 class="name">Maria Silva</h1>
+                    <p class="profession">UI/UX Designer & Ilustradora</p>
+                    <p class="quote">"Transformando ideias em experiências visuais incríveis ✨"</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-dribbble"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Filter Buttons -->
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="design">Design</button>
+            <button class="filter-btn" data-filter="illustration">Ilustração</button>
+            <button class="filter-btn" data-filter="branding">Branding</button>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid" id="portfolioGrid">
+            <div class="portfolio-item" data-category="design">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=300&width=250" alt="App Design">
+                    <div class="overlay">
+                        <h3>App de Delivery</h3>
+                        <p>UI/UX Design</p>
+                        <div class="tags">
+                            <span class="tag">Mobile</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="illustration">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=400&width=250" alt="Ilustração">
+                    <div class="overlay">
+                        <h3>Ilustração Digital</h3>
+                        <p>Character Design</p>
+                        <div class="tags">
+                            <span class="tag">Digital Art</span>
+                            <span class="tag">Character</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="branding">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=250&width=250" alt="Branding">
+                    <div class="overlay">
+                        <h3>Identidade Visual</h3>
+                        <p>Branding</p>
+                        <div class="tags">
+                            <span class="tag">Logo</span>
+                            <span class="tag">Branding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="design">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=350&width=250" alt="Website">
+                    <div class="overlay">
+                        <h3>Landing Page</h3>
+                        <p>Web Design</p>
+                        <div class="tags">
+                            <span class="tag">Web</span>
+                            <span class="tag">Landing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="illustration">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=280&width=250" alt="Arte Abstrata">
+                    <div class="overlay">
+                        <h3>Arte Abstrata</h3>
+                        <p>Ilustração</p>
+                        <div class="tags">
+                            <span class="tag">Abstract</span>
+                            <span class="tag">Geometric</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="branding">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=320&width=250" alt="Packaging">
+                    <div class="overlay">
+                        <h3>Design de Embalagem</h3>
+                        <p>Product Design</p>
+                        <div class="tags">
+                            <span class="tag">Packaging</span>
+                            <span class="tag">Product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="design">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=290&width=250" alt="Dashboard">
+                    <div class="overlay">
+                        <h3>Dashboard Analytics</h3>
+                        <p>Interface Design</p>
+                        <div class="tags">
+                            <span class="tag">Dashboard</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="illustration">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=360&width=250" alt="Paisagem">
+                    <div class="overlay">
+                        <h3>Paisagem Digital</h3>
+                        <p>Digital Painting</p>
+                        <div class="tags">
+                            <span class="tag">Nature</span>
+                            <span class="tag">Painting</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="branding">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=270&width=250" alt="Cartão de Visita">
+                    <div class="overlay">
+                        <h3>Cartão de Visita</h3>
+                        <p>Print Design</p>
+                        <div class="tags">
+                            <span class="tag">Print</span>
+                            <span class="tag">Minimal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="design">
+                <div class="item-image">
+                    <img src="/placeholder.svg?height=330&width=250" alt="E-commerce">
+                    <div class="overlay">
+                        <h3>E-commerce Site</h3>
+                        <p>Web Design</p>
+                        <div class="tags">
+                            <span class="tag">E-commerce</span>
+                            <span class="tag">Shopping</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    // Filter functionality
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+
+            const filterValue = button.getAttribute('data-filter');
+
+            portfolioItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                
+                if (filterValue === 'all' || itemCategory === filterValue) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.classList.remove('hidden');
+                        item.classList.add('visible');
+                    }, 10);
+                } else {
+                    item.classList.remove('visible');
+                    item.classList.add('hidden');
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+
+    // Smooth scroll animation for portfolio items
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Initially hide items for animation
+    portfolioItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        observer.observe(item);
+    });
+
+    // Add click event to portfolio items for modal (optional enhancement)
+    portfolioItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // You can add modal functionality here
+            console.log('Portfolio item clicked:', item.querySelector('h3').textContent);
+        });
+    });
+
+    // Parallax effect for header
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const header = document.querySelector('.header');
+        const rate = scrolled * -0.5;
+        
+        if (header) {
+            header.style.transform = `translateY(${rate}px)`;
+        }
+    });
+
+    // Dynamic grid adjustment
+    function adjustGrid() {
+        const grid = document.querySelector('.portfolio-grid');
+        const items = document.querySelectorAll('.portfolio-item');
+        
+        items.forEach((item, index) => {
+            const img = item.querySelector('img');
+            if (img.complete) {
+                const height = img.naturalHeight;
+                const spans = Math.ceil(height / 10);
+                item.style.gridRowEnd = `span ${spans}`;
+            } else {
+                img.addEventListener('load', () => {
+                    const height = img.naturalHeight;
+                    const spans = Math.ceil(height / 10);
+                    item.style.gridRowEnd = `span ${spans}`;
+                });
+            }
+        });
+    }
+
+    // Call adjust grid after images load
+    setTimeout(adjustGrid, 1000);
+});
+
+    </script>
+</body>
+</html>
