@@ -66,6 +66,33 @@ window.addEventListener('scroll', () => {
     }
 });
 
+  const carouselEl = document.querySelector('.carousel');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  carouselEl.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - carouselEl.offsetLeft;
+    scrollLeft = carouselEl.scrollLeft;
+  });
+
+  carouselEl.addEventListener('mouseleave', () => {
+    isDown = false;
+  });
+
+  document.addEventListener('mouseup', () => {
+  isDown = false;
+});
+
+  carouselEl.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carouselEl.offsetLeft;
+    const walk = (x - startX) * 2; // Velocidade
+    carouselEl.scrollLeft = scrollLeft - walk;
+  });
+
   const carousel = document.getElementById('brandsCarousel');
 const track = carousel.querySelector('.carousel-track');
 
