@@ -11,31 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // === ÁREAS INTERATIVAS COM IMAGENS E PROGRESSO ===
-  const areaSections = document.querySelectorAll('.area-section');
-  const imageItems = document.querySelectorAll('.image-item');
-  const progressBars = document.querySelectorAll('.progress-bar');
-
-  const observerOptions = {
-    threshold: 0.6,
-    rootMargin: '-20% 0px -20% 0px'
-  };
-
-  const updateActiveArea = (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const activeId = entry.target.id;
-
-        imageItems.forEach(item => {
-          item.classList.toggle('active', item.dataset.id === activeId);
-        });
-
-        progressBars.forEach(bar => {
-          bar.classList.toggle('active', bar.dataset.id === activeId);
-        });
-      }
-    });
-  };
 
   const observer = new IntersectionObserver(updateActiveArea, observerOptions);
   areaSections.forEach(section => observer.observe(section));
@@ -116,4 +91,4 @@ document.addEventListener('DOMContentLoaded', () => {
       if (track) track.style.animationPlayState = 'running';
       brandsCarousel.style.cursor = 'grab';
     }
-});
+}});
