@@ -48,72 +48,73 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // === CARROSSEL DA EQUIPE (DRAG HORIZONTAL) ===
-const teamCarousel = document.querySelector('.carousel');
-let isDown = false;
-let startX;
-let scrollLeft;
+  const teamCarousel = document.querySelector('.carousel');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
 
-teamCarousel.addEventListener('mousedown', (e) => {
-  isDown = true;
-  teamCarousel.classList.add('active');
-  startX = e.pageX - teamCarousel.offsetLeft;
-  scrollLeft = teamCarousel.scrollLeft;
-});
-
-teamCarousel.addEventListener('mouseleave', () => {
-  isDown = false;
-  teamCarousel.classList.remove('active');
-});
-
-teamCarousel.addEventListener('mouseup', () => {
-  isDown = false;
-  teamCarousel.classList.remove('active');
-});
-
-teamCarousel.addEventListener('mousemove', (e) => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - teamCarousel.offsetLeft;
-  const walk = (x - startX) * 1; // sensibilidade do arrasto
-  teamCarousel.scrollLeft = scrollLeft - walk;
-});
-
-
-// === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
-const brandsCarousel = document.getElementById('brandsCarousel');
-if (brandsCarousel) {
-  const track = brandsCarousel.querySelector('.carousel-track');
-  let isDragging = false;
-  let startXBrands;
-  let scrollLeftBrands;
-
-  brandsCarousel.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    startXBrands = e.pageX - brandsCarousel.offsetLeft;
-    scrollLeftBrands = brandsCarousel.scrollLeft;
-    if (track) track.style.animationPlayState = 'paused';
-    brandsCarousel.style.cursor = 'grabbing';
+  teamCarousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    teamCarousel.classList.add('active');
+    startX = e.pageX - teamCarousel.offsetLeft;
+    scrollLeft = teamCarousel.scrollLeft;
   });
 
-  brandsCarousel.addEventListener('mouseleave', () => {
-    if (isDragging) resumeScroll();
+  teamCarousel.addEventListener('mouseleave', () => {
+    isDown = false;
+    teamCarousel.classList.remove('active');
   });
 
-  brandsCarousel.addEventListener('mouseup', () => {
-    if (isDragging) resumeScroll();
+  teamCarousel.addEventListener('mouseup', () => {
+    isDown = false;
+    teamCarousel.classList.remove('active');
   });
 
-  brandsCarousel.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
+  teamCarousel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - brandsCarousel.offsetLeft;
-    const walk = (x - startXBrands) * 1.5;
-    brandsCarousel.scrollLeft = scrollLeftBrands - walk;
+    const x = e.pageX - teamCarousel.offsetLeft;
+    const walk = (x - startX) * 1; // sensibilidade do arrasto
+    teamCarousel.scrollLeft = scrollLeft - walk;
   });
 
-  function resumeScroll() {
-    isDragging = false;
-    if (track) track.style.animationPlayState = 'running';
-    brandsCarousel.style.cursor = 'grab';
+
+  // === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
+  const brandsCarousel = document.getElementById('brandsCarousel');
+  if (brandsCarousel) {
+    const track = brandsCarousel.querySelector('.carousel-track');
+    let isDragging = false;
+    let startXBrands;
+    let scrollLeftBrands;
+
+    brandsCarousel.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startXBrands = e.pageX - brandsCarousel.offsetLeft;
+      scrollLeftBrands = brandsCarousel.scrollLeft;
+      if (track) track.style.animationPlayState = 'paused';
+      brandsCarousel.style.cursor = 'grabbing';
+    });
+
+    brandsCarousel.addEventListener('mouseleave', () => {
+      if (isDragging) resumeScroll();
+    });
+
+    brandsCarousel.addEventListener('mouseup', () => {
+      if (isDragging) resumeScroll();
+    });
+
+    brandsCarousel.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - brandsCarousel.offsetLeft;
+      const walk = (x - startXBrands) * 1.5;
+      brandsCarousel.scrollLeft = scrollLeftBrands - walk;
+    });
+
+    function resumeScroll() {
+      isDragging = false;
+      if (track) track.style.animationPlayState = 'running';
+      brandsCarousel.style.cursor = 'grab';
+    }
   }
 });
