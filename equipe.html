@@ -51,91 +51,89 @@
 }
 
 .lightbox-content {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 12px;
-  overflow: visible;
-}
-
-.lightbox-content img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 12px;
-  user-select: none;
-  pointer-events: none;
-  display: block;
-}
-
-/* Arrow buttons */
-.nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #fff;
-  background: rgba(0,0,0,0.35);
-  border: none;
-  padding: 12px 16px;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.2s ease;
-  z-index: 20;
-}
-
-.nav-arrow:hover {
-  background: rgba(0,0,0,0.65);
-}
-
-.nav-arrow:focus {
-  outline: 2px solid #fff;
-}
-
-.nav-left {
-  left: -50px;
-}
-
-.nav-right {
-  right: -50px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
+  .lightbox-content img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 12px;
+    user-select: none;
+    pointer-events: auto; /* antes estava 'none', agora pode clicar na imagem */
+    display: block;
+  }
+
+  /* Arrow buttons - corrigido */
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    background: rgba(0,0,0,0.45);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-arrow:hover {
+    background: rgba(0,0,0,0.65);
+  }
+
   .nav-left {
-    left: 10px;
+    left: -60px;
   }
-  .nav-right {
-    right: 10px;
-  }
-}
 
-@media (max-width: 640px) {
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .nav-left,
   .nav-right {
-    display: none;
+    right: -60px;
   }
-  .lightbox-content {
-    max-width: 95vw;
-    max-height: 95vh;
+
+  @media (max-width: 1024px) {
+    .nav-left { left: 10px; }
+    .nav-right { right: 10px; }
   }
-}
+
+  @media (max-width: 640px) {
+    .nav-left, .nav-right { display: none; }
+    .lightbox-content { max-width: 95vw; max-height: 95vh; }
+  }
   
 </style>
 </head>
 <body class="text-gray-900">
 
-<header class="max-w-6xl mx-auto px-6 py-12 text-center">
-  <h1 class="text-5xl font-extrabold mb-6">Olá, eu sou <span class="text-indigo-600">João Silva</span></h1>
-  <p class="max-w-3xl mx-auto text-lg leading-relaxed text-gray-700">
-    Sou um apaixonado por design visual e fotografia. Gosto de capturar momentos únicos e expressar criatividade através das imagens. Neste portfólio, você encontrará uma seleção de alguns dos meus trabalhos favoritos, todos capturados com atenção aos detalhes e paixão pela arte.
-  </p>
+<header class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center md:items-center gap-8">
+  <!-- Foto à esquerda -->
+  <div class="flex-shrink-0 w-48 h-48 md:w-64 md:h-64">
+    <img src="eu.jpeg" alt="João Silva" class="w-full h-full object-cover rounded-lg shadow-lg">
+  </div>
+
+  <!-- Texto alinhado à direita -->
+  <div class="text-center md:text-right">
+    <h1 class="text-5xl font-extrabold mb-6">
+      Olá, eu sou <span class="text-indigo-600">João Silva</span>
+    </h1>
+    <p class="max-w-3xl text-lg leading-relaxed text-gray-700">
+      Sou um apaixonado por design visual e fotografia. 
+      Gosto de capturar momentos únicos e expressar criatividade através das imagens. 
+      Neste portfólio, você encontrará uma seleção de alguns dos meus trabalhos favoritos, todos capturados com atenção aos detalhes e paixão pela arte.
+    </p>
+  </div>
 </header>
 
 <main class="max-w-7xl mx-auto pb-16">
@@ -172,83 +170,55 @@
 
     let currentIndex = 0;
 
-   function openLightbox(index){
-  currentIndex = index;
-  const img = images[currentIndex];
-  lightboxImage.src = img.src;
-  lightboxImage.alt = img.alt;
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden'; // Prevent background scroll
-  btnPrev.focus();
-}
+    function openLightbox(index){
+      currentIndex = index;
+      const img = images[currentIndex];
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      btnPrev.focus();
+    }
 
-function showPrev(){
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  const img = images[currentIndex];
-  lightboxImage.src = img.src;
-  lightboxImage.alt = img.alt;
-}
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
 
-function showNext(){
-  currentIndex = (currentIndex + 1) % images.length;
-  const img = images[currentIndex];
-  lightboxImage.src = img.src;
-  lightboxImage.alt = img.alt;
-}
+    function showPrev(){
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      const img = images[currentIndex];
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+    }
 
-    // Open lightbox on image click
+    function showNext(){
+      currentIndex = (currentIndex + 1) % images.length;
+      const img = images[currentIndex];
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+    }
+
     images.forEach((img, index) => {
       img.addEventListener('click', () => openLightbox(index));
-      img.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openLightbox(index);
-        }
-      });
       img.tabIndex = 0;
-      img.setAttribute('role', 'button');
-      img.setAttribute('aria-pressed', 'false');
     });
 
-    // Close lightbox if clicking outside of image
+    // Fecha clicando fora da imagem
     lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target === btnPrev || e.target === btnNext) return; // Don't close clicking on controls or image
-      closeLightbox();
+      if (e.target === lightbox) closeLightbox();
     });
 
-    // Close on Escape key
+    // Teclado
     window.addEventListener('keydown', (e) => {
       if(!lightbox.classList.contains('open')) return;
-
-      if(e.key === 'Escape'){
-        closeLightbox();
-      } else if(e.key === 'ArrowLeft'){
-        showPrev();
-      } else if(e.key === 'ArrowRight'){
-        showNext();
-      }
+      if(e.key === 'Escape') closeLightbox();
+      else if(e.key === 'ArrowLeft') showPrev();
+      else if(e.key === 'ArrowRight') showNext();
     });
 
     btnPrev.addEventListener('click', showPrev);
     btnNext.addEventListener('click', showNext);
-
-    // Accessibility: trap focus within lightbox when open
-    lightbox.addEventListener('keydown', (e) => {
-      if(e.key === 'Tab'){
-        const focusable = [btnPrev, btnNext];
-        if(e.shiftKey){
-          if(document.activeElement === focusable[0]){
-            e.preventDefault();
-            focusable[1].focus();
-          }
-        } else {
-          if(document.activeElement === focusable[1]){
-            e.preventDefault();
-            focusable[0].focus();
-          }
-        }
-      }
-    });
   })();
 </script>
 
