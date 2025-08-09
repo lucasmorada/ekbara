@@ -113,17 +113,6 @@
     .nav-left, .nav-right { display: none; }
     .lightbox-content { max-width: 95vw; max-height: 95vh; }
   }
-  
-  .code-snippet {
-  display: inline-block;
-  background: var(--muted);
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--muted-foreground);
-  margin-bottom: 1rem;
-}
 
 </style>
 </head>
@@ -146,14 +135,10 @@
   <!-- Texto + Ícones -->
   <div class="flex flex-col items-start text-left w-full">
     <!-- Título + Ícones lado a lado -->
-   <div class="flex flex-col items-start w-full mb-6">
-  <div class="code-snippet">
-    <span>&gt; console.log("Hello World!")</span>
-  </div>
-  <h1 class="text-5xl font-extrabold mt-2">
-    Olá, eu sou <span class="text-indigo-600">Lucas Dias</span>
-  </h1>
-</div>
+    <div class="flex items-center justify-between w-full mb-6">
+      <h1 class="text-5xl font-extrabold">
+        Olá, eu sou <span class="text-indigo-600">Lucas Dias</span>
+      </h1>
 
       <!-- Ícones redes sociais -->
       <div class="flex items-center gap-4">
@@ -259,30 +244,6 @@
     btnPrev.addEventListener('click', showPrev);
     btnNext.addEventListener('click', showNext);
   })();
-
-  const codeSnippet = document.querySelector(".code-snippet span")
-const originalText = codeSnippet.textContent
-let i = 0
-
-function typeWriter() {
-  if (i < originalText.length) {
-    codeSnippet.textContent = originalText.substring(0, i + 1) + "|"
-    i++
-    setTimeout(typeWriter, 100)
-  } else {
-    codeSnippet.textContent = originalText
-    setTimeout(() => {
-      i = 0
-      codeSnippet.textContent = ""
-      typeWriter()
-    }, 3000)
-  }
-}
-
-// Start typing effect after page load
-window.addEventListener("load", () => {
-  setTimeout(typeWriter, 1000)
-})
 
 </script>
 
