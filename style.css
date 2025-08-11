@@ -394,6 +394,69 @@
     box-shadow: 0 8px 16px rgba(0,0,0,0.25);
   }
 
+  /*melhores sites*/
+
+  .best-sites-section {
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  min-height: 100vh;
+}
+
+.vscode-window {
+  background: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  max-width: 900px;
+  width: 100%;
+}
+
+.vscode-topbar {
+  background: #2d2d2d;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vscode-topbar .circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.circle.red { background: #ff5f56; }
+.circle.yellow { background: #ffbd2e; }
+.circle.green { background: #27c93f; }
+
+.vscode-topbar .title {
+  color: #ccc;
+  font-size: 14px;
+  margin-left: auto;
+  font-family: monospace;
+}
+
+.code-area {
+  color: #fff;
+  padding: 20px;
+  font-size: 16px;
+  font-family: 'Fira Code', monospace;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* Cores para simular código */
+.token-tag { color: #569cd6; }
+.token-attr { color: #9cdcfe; }
+.token-value { color: #ce9178; }
+.token-func { color: #dcdcaa; }
+.token-key { color: #c586c0; }
+.token-comment { color: #6a9955; }
+
 /*feedback*/
 .feedbacks-section {
   padding: 80px 30px;

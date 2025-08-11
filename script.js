@@ -112,3 +112,43 @@ if (brandsCarousel) {
     brandsCarousel.style.cursor = 'grab';
   }
 }
+
+
+// Código para aparecer como se estivesse sendo digitado
+const codeLines = [
+  `<span class="token-comment">// Melhores sites que criamos</span>`,
+  `<span class="token-key">const</span> <span class="token-func">melhoresSites</span> = [`,
+  `  { <span class="token-attr">nome</span>: <span class="token-value">'Site Corporativo Premium'</span>, <span class="token-attr">link</span>: <span class="token-value">'https://exemplo1.com'</span> },`,
+  `  { <span class="token-attr">nome</span>: <span class="token-value">'Plataforma Interativa'</span>, <span class="token-attr">link</span>: <span class="token-value">'https://exemplo2.com'</span> },`,
+  `  { <span class="token-attr">nome</span>: <span class="token-value">'Loja Virtual Ultra Rápida'</span>, <span class="token-attr">link</span>: <span class="token-value">'https://exemplo3.com'</span> }`,
+  `];`,
+  ``,
+  `<span class="token-func">mostrarSites</span>(melhoresSites);`,
+  ``,
+  `<span class="token-key">function</span> <span class="token-func">mostrarSites</span>(<span class="token-attr">lista</span>) {`,
+  `  lista.<span class="token-func">forEach</span>(site => {`,
+  `    console.<span class="token-func">log</span>(<span class="token-value">\`🔥 ${site.nome} → ${site.link}\`</span>);`,
+  `  });`,
+  `}`
+];
+
+let index = 0;
+let charIndex = 0;
+let codeArea = document.getElementById("codeArea");
+
+function typeCode() {
+  if (index < codeLines.length) {
+    if (charIndex < codeLines[index].length) {
+      codeArea.innerHTML += codeLines[index].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeCode, 15);
+    } else {
+      codeArea.innerHTML += "\n";
+      index++;
+      charIndex = 0;
+      setTimeout(typeCode, 200);
+    }
+  }
+}
+
+typeCode();
