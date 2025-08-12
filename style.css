@@ -162,7 +162,7 @@
 /* Cores diferentes para cada área */
 .creative { background: linear-gradient(135deg, #ff6b6b, #ff3b3b); }
 .atelier  { background: linear-gradient(135deg, #ffb347, #ff7b00); }
-.web      { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.web      { background: linear-gradient(135deg, #0f2027, #18323a, #233c43); }     
 .sounds   { background: linear-gradient(135deg, #43e97b, #38f9d7); }
 .forma    { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
 
@@ -394,7 +394,7 @@
     box-shadow: 0 8px 16px rgba(0,0,0,0.25);
   }
 
-  /*melhores sites*/
+/*melhores sites*/
 .best-sites-section {
   background: linear-gradient(120deg, #0f2027, #18323a, #233c43);
   padding: 70px 20px;
@@ -412,7 +412,7 @@
 
 .section-title {
   color: #ffffff;
-  font-size: clamp(1.6rem, 2.5vw, 2.6rem);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
   margin: 0 0 28px;
   text-align: center;
   font-family: 'Poppins', system-ui, sans-serif;
@@ -530,10 +530,10 @@
   min-height: 70px;
 }
 
-.token-comment { color: #57c225; }
-.token-key { color: #d62b15; }
-.token-func { color: #eeee36; }
-.token-value { color: #e46b3a; }
+.token-comment { color: #96de74; }
+.token-key { color: #e26857; }
+.token-func { color: #eadd66; }
+.token-value { color: #e7845d; }
 
 
 @media (max-width: 600px) {
