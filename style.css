@@ -410,7 +410,6 @@
   align-items: center;
 }
 
-/* título centralizado em cima do terminal */
 .section-title {
   color: #ffffff;
   font-size: clamp(1.6rem, 2.5vw, 2.6rem);
@@ -421,7 +420,7 @@
   letter-spacing: -0.02em;
 }
 
-/* janela estilo VS Code */
+
 .vscode-window.big {
   width: 100%;
   background: #151515;
@@ -431,7 +430,7 @@
   border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* topbar (as bolinhas e título do arquivo) */
+
 .vscode-topbar {
   background: linear-gradient(#222, #2c2c2c);
   padding: 10px 14px;
@@ -452,7 +451,6 @@
   font-size: 13px;
 }
 
-/* conteúdo do terminal: coluna para garantir footer abaixo dos cards */
 .vscode-content {
   padding: 26px;
   display: flex;
@@ -460,7 +458,6 @@
   gap: 22px;
 }
 
-/* grid responsivo de cards quadrados */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -468,7 +465,6 @@
   width: 100%;
 }
 
-/* cada card é um link (quadrado) */
 .site-card {
   display: flex;
   flex-direction: column;
@@ -479,13 +475,12 @@
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.03);
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-  aspect-ratio: 1 / 1; /* garante quadrado */
+  aspect-ratio: 1 / 1;
   cursor: pointer;
 }
 
-/* área da imagem ocupa a parte superior (visual) */
 .card-media {
-  flex: 0 0 62%; /* 62% do card para imagem (aprox.) */
+  flex: 0 0 62%; 
   background: #111;
 }
 .card-media img {
@@ -495,7 +490,6 @@
   display: block;
 }
 
-/* corpo do card com título e descrição */
 .card-body {
   padding: 12px 14px;
   display: flex;
@@ -506,8 +500,8 @@
 }
 .card-title {
   margin: 0;
-  font-size: 1.05rem;
-  color: #63aef8;
+  font-size: 1.10rem;
+  color: #ffffff;
   font-weight: 700;
   font-family: 'Inter', system-ui, sans-serif;
 }
@@ -518,33 +512,30 @@
   line-height: 1.25;
 }
 
-/* hover */
 .site-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 18px 40px rgba(35, 120, 220, 0.12);
+  box-shadow: 0 18px 40px rgba(255, 255, 255, 0.12);
   border-color: rgba(99,174,248,0.18);
 }
 
-/* footer de código (sempre abaixo) */
 .code-footer {
   background: #131313;
   border-radius: 8px;
   padding: 16px;
   font-family: 'Fira Code', ui-monospace, SFMono-Regular, monospace;
-  font-size: 13px;
+  font-size: 18px;
   color: #d0d6db;
   border: 1px solid rgba(255,255,255,0.02);
   white-space: pre-wrap;
   min-height: 70px;
 }
 
-/* cores sintaxe */
-.token-comment { color: #6a9955; }
-.token-key { color: #c586c0; }
-.token-func { color: #dcdcaa; }
-.token-value { color: #ce9178; }
+.token-comment { color: #57c225; }
+.token-key { color: #d62b15; }
+.token-func { color: #eeee36; }
+.token-value { color: #e46b3a; }
 
-/* responsividade: reduzir paddings */
+
 @media (max-width: 600px) {
   .vscode-content { padding: 16px; gap: 16px; }
   .card-media { flex: 0 0 58%; }
