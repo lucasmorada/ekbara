@@ -114,40 +114,49 @@ if (brandsCarousel) {
 }
 
 
+
 (function(){
   const el = document.getElementById('codeFooter');
   const raw = el.getAttribute('data-raw') || '';
-  el.textContent = ''; // start empty
 
-  let i = 0;
-  function typeChar() {
-    if (i < raw.length) {
-      el.textContent += raw[i++];
-      // small pause for newlines to feel natural
-      const delay = raw[i-1] === '\n' ? 40 : 22;
-      setTimeout(typeChar, delay);
-    } else {
-      // after typing, wait and then replace with colored HTML
-      setTimeout(() => {
-        el.innerHTML = highlight(raw);
-      }, 400);
+  // Função que executa a animação de digitação
+  function startTyping(){
+    el.textContent = ''; // começa vazio
+    let i = 0;
+    function typeChar() {
+      if (i < raw.length) {
+        el.textContent += raw[i++];
+        const delay = raw[i-1] === '\n' ? 40 : 22;
+        setTimeout(typeChar, delay);
+      } else {
+        setTimeout(() => {
+          el.innerHTML = highlight(raw);
+        }, 400);
+      }
     }
+    typeChar();
   }
-  typeChar();
 
-  // simple highlighter (works for this small footer)
+  // Função de highlight (mesma que você já tinha)
   function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function highlight(s){
     let t = escapeHtml(s);
-    // comments
     t = t.replace(/(\/\/.*)/g, '<span class="token-comment">$1</span>');
-    // strings
     t = t.replace(/('[^']*'|"[^"]*")/g, '<span class="token-value">$1</span>');
-    // keywords
     t = t.replace(/\b(const|let|var|function|return|=>)\b/g, '<span class="token-key">$1</span>');
-    // funcs / console / nomes
     t = t.replace(/\b(console|log|fazerSite)\b/g, '<span class="token-func">$1</span>');
-    // keep line breaks
     return t;
   }
+
+  // Observador para iniciar a animação ao aparecer na tela
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        startTyping();
+        obs.unobserve(entry.target); // roda só uma vez
+      }
+    });
+  }, { threshold: 0.4 }); // 0.4 = 40% do elemento visível
+
+  observer.observe(el);
 })();
