@@ -160,11 +160,11 @@
 }
 
 /* Cores diferentes para cada área */
-.creative { background: linear-gradient(135deg, #ff6b6b, #ff3b3b); }
-.atelier  { background: linear-gradient(135deg, #ffb347, #ff7b00); }
+.creative { background: linear-gradient(135deg, #ff3b3b, #dd4c2b); }
+.atelier  { background: linear-gradient(135deg, #ff7b00, #ef8624, #f09131); }
 .web      { background: linear-gradient(135deg, #0f2027, #18323a, #233c43); }     
-.sounds   { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-.forma    { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.sounds   { background: linear-gradient(135deg, #0a8934, #26a34c); }
+.forma    { background: linear-gradient(135deg, #544579, #8b699b); }
 
 .area-card h3 {
   font-size: 1.5rem;
