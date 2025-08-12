@@ -237,48 +237,56 @@ Se você busca um tratamento clinicamente comprovado para crescimento capilar, o
 </section>
 
 <section class="best-sites-section">
-  <!-- Título fora do terminal -->
-  <h2 class="section-title">🚀 Nossos Melhores Sites</h2>
+  <div class="container">
+    <!-- TÍTULO CENTRALIZADO -->
+    <h2 class="section-title">🚀 Nossos Melhores Sites</h2>
 
-  <div class="vscode-window big">
-    <!-- Barra superior -->
-    <div class="vscode-topbar">
-      <span class="circle red"></span>
-      <span class="circle yellow"></span>
-      <span class="circle green"></span>
-      <span class="title">melhores-sites.js</span>
-    </div>
-
-    <div class="vscode-content">
-      <!-- Cards -->
-      <div class="cards-grid">
-        <div class="site-card" onclick="window.open('https://exemplo1.com', '_blank')">
-          <img src="https://via.placeholder.com/400x200" alt="Site 1">
-          <div class="card-title">Site Corporativo Premium</div>
-          <div class="card-desc">Rápido, elegante e otimizado para conversão.</div>
-        </div>
-
-        <div class="site-card" onclick="window.open('https://exemplo2.com', '_blank')">
-          <img src="https://via.placeholder.com/400x200" alt="Site 2">
-          <div class="card-title">Plataforma Interativa</div>
-          <div class="card-desc">Experiência dinâmica e recursos modernos.</div>
-        </div>
-
-        <div class="site-card" onclick="window.open('https://exemplo3.com', '_blank')">
-          <img src="https://via.placeholder.com/400x200" alt="Site 3">
-          <div class="card-title">Loja Virtual Ultra Rápida</div>
-          <div class="card-desc">Venda mais com velocidade e design incrível.</div>
-        </div>
+    <!-- TERMINAL VS CODE -->
+    <div class="vscode-window big">
+      <div class="vscode-topbar">
+        <span class="circle red"></span>
+        <span class="circle yellow"></span>
+        <span class="circle green"></span>
+        <span class="title">melhores-sites.js</span>
       </div>
 
-      <!-- Mensagem final como código -->
-      <pre class="code-footer">
-<span class="token-comment">// Quer criar um site incrível?</span>
-<span class="token-key">const</span> <span class="token-func">fazerSite</span> = () => {
-  <span class="token-func">console</span>.<span class="token-func">log</span>(<span class="token-value">'🚀 Entre em contato e vamos criar algo insano juntos!'</span>);
+      <div class="vscode-content">
+        <!-- GRID DE CARDS (quadrados) -->
+        <div class="cards-grid">
+          <a class="site-card" href="https://exemplo1.com" target="_blank" rel="noopener">
+            <div class="card-media"><img src="https://via.placeholder.com/800x800?text=Site+1" alt="Site 1"></div>
+            <div class="card-body">
+              <h3 class="card-title">Site Corporativo Premium</h3>
+              <p class="card-desc">Rápido, elegante e otimizado para conversão.</p>
+            </div>
+          </a>
+
+          <a class="site-card" href="https://exemplo2.com" target="_blank" rel="noopener">
+            <div class="card-media"><img src="https://via.placeholder.com/800x800?text=Site+2" alt="Site 2"></div>
+            <div class="card-body">
+              <h3 class="card-title">Plataforma Interativa</h3>
+              <p class="card-desc">Experiência dinâmica e recursos modernos.</p>
+            </div>
+          </a>
+
+          <a class="site-card" href="https://exemplo3.com" target="_blank" rel="noopener">
+            <div class="card-media"><img src="https://via.placeholder.com/800x800?text=Site+3" alt="Site 3"></div>
+            <div class="card-body">
+              <h3 class="card-title">Loja Virtual Ultra Rápida</h3>
+              <p class="card-desc">Venda mais com velocidade e design incrível.</p>
+            </div>
+          </a>
+
+          <!-- adicione mais cards aqui se quiser -->
+        </div>
+
+        <!-- FOOTER COM CÓDIGO (sempre abaixo dos cards) -->
+        <pre id="codeFooter" class="code-footer" data-raw="// Quer criar um site incrível?
+const fazerSite = () => {
+  console.log('🚀 Entre em contato e vamos criar algo insano juntos!');
 }
-<span class="token-func">fazerSite</span>();
-      </pre>
+fazerSite();"></pre>
+      </div>
     </div>
   </div>
 </section>

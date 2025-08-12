@@ -114,41 +114,40 @@ if (brandsCarousel) {
 }
 
 
-// Código para aparecer como se estivesse sendo digitado
-const codeLines = [
-  `<span class="token-comment">// Melhores sites que criamos</span>`,
-  `<span class="token-key">const</span> <span class="token-func">melhoresSites</span> = [`,
-  `  { <span class="token-attr">nome</span>: <span class="token-value">'Site Corporativo Premium'</span>, <span class="token-attr">link</span>: <span class="token-value">'https://exemplo1.com'</span> },`,
-  `  { <span class="token-attr">nome</span>: <span class="token-value">'Plataforma Interativa'</span>, <span class="token-attr">link</span>: <span class="token-value">'https://exemplo2.com'</span> },`,
-  `  { <span class="token-attr">nome</span>: <span class="token-value">'Loja Virtual Ultra Rápida'</span>, <span class="token-attr">link</span>: <span class="token-value">'https://exemplo3.com'</span> }`,
-  `];`,
-  ``,
-  `<span class="token-func">mostrarSites</span>(melhoresSites);`,
-  ``,
-  `<span class="token-key">function</span> <span class="token-func">mostrarSites</span>(<span class="token-attr">lista</span>) {`,
-  `  lista.<span class="token-func">forEach</span>(site => {`,
-  `    console.<span class="token-func">log</span>(<span class="token-value">\`🔥 ${site.nome} → ${site.link}\`</span>);`,
-  `  });`,
-  `}`
-];
+(function(){
+  const el = document.getElementById('codeFooter');
+  const raw = el.getAttribute('data-raw') || '';
+  el.textContent = ''; // start empty
 
-let index = 0;
-let charIndex = 0;
-let codeArea = document.getElementById("codeArea");
-
-function typeCode() {
-  if (index < codeLines.length) {
-    if (charIndex < codeLines[index].length) {
-      codeArea.innerHTML += codeLines[index].charAt(charIndex);
-      charIndex++;
-      setTimeout(typeCode, 15);
+  let i = 0;
+  function typeChar() {
+    if (i < raw.length) {
+      el.textContent += raw[i++];
+      // small pause for newlines to feel natural
+      const delay = raw[i-1] === '\n' ? 40 : 22;
+      setTimeout(typeChar, delay);
     } else {
-      codeArea.innerHTML += "\n";
-      index++;
-      charIndex = 0;
-      setTimeout(typeCode, 200);
+      // after typing, wait and then replace with colored HTML
+      setTimeout(() => {
+        el.innerHTML = highlight(raw);
+      }, 400);
     }
   }
-}
+  typeChar();
 
-typeCode();
+  // simple highlighter (works for this small footer)
+  function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function highlight(s){
+    let t = escapeHtml(s);
+    // comments
+    t = t.replace(/(\/\/.*)/g, '<span class="token-comment">$1</span>');
+    // strings
+    t = t.replace(/('[^']*'|"[^"]*")/g, '<span class="token-value">$1</span>');
+    // keywords
+    t = t.replace(/\b(const|let|var|function|return|=>)\b/g, '<span class="token-key">$1</span>');
+    // funcs / console / nomes
+    t = t.replace(/\b(console|log|fazerSite)\b/g, '<span class="token-func">$1</span>');
+    // keep line breaks
+    return t;
+  }
+})();
