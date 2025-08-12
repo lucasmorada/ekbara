@@ -410,7 +410,7 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  max-width: 900px;
+  max-width: 1100px;
   width: 100%;
 }
 
@@ -440,22 +440,50 @@
   font-family: monospace;
 }
 
-.code-area {
-  color: #fff;
+/* Conteúdo interno */
+.vscode-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
   padding: 20px;
-  font-size: 16px;
-  font-family: 'Fira Code', monospace;
-  line-height: 1.5;
-  white-space: pre-wrap;
 }
 
-/* Cores para simular código */
-.token-tag { color: #569cd6; }
-.token-attr { color: #9cdcfe; }
-.token-value { color: #ce9178; }
-.token-func { color: #dcdcaa; }
-.token-key { color: #c586c0; }
-.token-comment { color: #6a9955; }
+/* Estilo dos cards */
+.site-card {
+  background: #252526;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.site-card:hover {
+  transform: translateY(-5px);
+  border-color: #569cd6;
+  box-shadow: 0 0 15px rgba(86, 156, 214, 0.5);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #569cd6;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: #ccc;
+}
 
 /*feedback*/
 .feedbacks-section {
