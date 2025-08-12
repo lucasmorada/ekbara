@@ -399,18 +399,27 @@
   .best-sites-section {
   background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   padding: 60px 20px;
   min-height: 100vh;
 }
 
-.vscode-window {
+/* Título da seção */
+.section-title {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.vscode-window.big {
   background: #1e1e1e;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  max-width: 1100px;
+  max-width: 1200px;
   width: 100%;
 }
 
@@ -426,7 +435,6 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  display: inline-block;
 }
 
 .circle.red { background: #ff5f56; }
@@ -440,26 +448,31 @@
   font-family: monospace;
 }
 
-/* Conteúdo interno */
 .vscode-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  padding: 30px;
 }
 
-/* Estilo dos cards */
+/* Grid dos cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
 .site-card {
   background: #252526;
+  border-radius: 10px;
+  overflow: hidden;
   border: 1px solid #333;
-  border-radius: 8px;
-  padding: 20px;
-  cursor: pointer;
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  cursor: pointer;
+}
+
+.site-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .site-card:hover {
@@ -468,22 +481,33 @@
   box-shadow: 0 0 15px rgba(86, 156, 214, 0.5);
 }
 
-.card-icon {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
 .card-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 8px;
   color: #569cd6;
+  padding: 15px 15px 5px;
 }
 
 .card-desc {
-  font-size: 14px;
   color: #ccc;
+  padding: 0 15px 15px;
+  font-size: 14px;
 }
+
+/* Código colorido */
+.code-footer {
+  font-family: 'Fira Code', monospace;
+  background: #1e1e1e;
+  padding: 20px;
+  border-top: 1px solid #333;
+  font-size: 14px;
+  color: white;
+}
+
+.token-comment { color: #6a9955; }
+.token-key { color: #c586c0; }
+.token-func { color: #dcdcaa; }
+.token-value { color: #ce9178; }
 
 /*feedback*/
 .feedbacks-section {
