@@ -422,31 +422,40 @@
     <script>
         // FAQ Data
         const faqs = [
-            {
-                question: "Como começar um novo projeto?",
-                answer: "Começar é fácil! Simplesmente agende uma consulta gratuita através do nosso site, e discutiremos os requisitos do seu projeto, cronograma e orçamento. Nossa equipe criará uma proposta personalizada para suas necessidades."
-            },
-            {
-                question: "Qual é o cronograma típico de um projeto?",
-                answer: "Os cronogramas variam dependendo da complexidade e escopo. Sites simples geralmente levam 2-4 semanas, enquanto aplicações complexas podem levar 8-16 semanas. Forneceremos um cronograma detalhado durante sua consulta."
-            },
-            {
-                question: "Vocês oferecem suporte e manutenção contínuos?",
-                answer: "Sim! Oferecemos pacotes de suporte abrangentes incluindo atualizações regulares, monitoramento de segurança, otimização de performance e suporte técnico. Nossos planos de manutenção começam em R$ 299/mês."
-            },
-            {
-                question: "Podem trabalhar com minha equipe existente?",
-                answer: "Adoramos colaborar com equipes internas. Podemos nos integrar perfeitamente aos seus fluxos de trabalho existentes, fornecer treinamento e trabalhar junto com seus desenvolvedores e designers."
-            },
-            {
-                question: "Em quais tecnologias vocês se especializam?",
-                answer: "Nos especializamos em tecnologias web modernas incluindo React, Next.js, Node.js, Python e plataformas em nuvem como AWS e Vercel. Também trabalhamos com tecnologias móveis como React Native e Flutter."
-            },
-            {
-                question: "Como vocês lidam com a comunicação do projeto?",
-                answer: "Usamos uma combinação de Slack, email e chamadas de vídeo regulares para mantê-lo atualizado. Você terá acesso a um painel do projeto onde pode acompanhar o progresso, visualizar entregas e se comunicar com a equipe."
-            }
-        ];
+        {
+            question: "Como começar um novo projeto?",
+            answer: "Basta agendar uma consulta gratuita pelo nosso site. Discutiremos requisitos, prazos e orçamento, e criaremos uma proposta personalizada para você."
+        },
+        {
+            question: "Qual é o cronograma típico de um projeto?",
+            answer: "Depende da complexidade: sites simples 2-4 semanas, sistemas mais avançados 8-16 semanas. Você receberá um cronograma detalhado na proposta."
+        },
+        {
+            question: "Vocês oferecem suporte e manutenção contínuos?",
+            answer: "Sim! Inclui atualizações, monitoramento de segurança, otimização e suporte técnico, a partir de R$ 299/mês."
+        },
+        {
+            question: "Podem trabalhar com minha equipe existente?",
+            answer: "Sim, podemos integrar aos fluxos existentes, treinar sua equipe e colaborar no desenvolvimento."
+        },
+        {
+            question: "Em quais tecnologias vocês se especializam?",
+            answer: "React, Next.js, Node.js, Python, AWS, Vercel, além de mobile com React Native e Flutter."
+        },
+        {
+            question: "Como vocês lidam com a comunicação do projeto?",
+            answer: "Usamos Slack, e-mail, chamadas de vídeo e um painel de acompanhamento com todas as entregas."
+        },
+        {
+            question: "Vocês oferecem design de interface (UI/UX)?",
+            answer: "Sim, criamos interfaces modernas, responsivas e com foco em experiência do usuário."
+        },
+        {
+            question: "Posso pedir mudanças depois que o projeto começar?",
+            answer: "Sim, trabalhamos com revisões. Alterações grandes podem ajustar o prazo e custo."
+        }
+    ];
+
 
         // Chat functionality
         let isTyping = false;
@@ -456,26 +465,30 @@
 
         // Bot responses
         function getBotResponse(message) {
-            const lowerMessage = message.toLowerCase();
+        const lower = message.toLowerCase();
 
-            if (lowerMessage.includes('preço') || lowerMessage.includes('custo') || lowerMessage.includes('orçamento')) {
-                return "Nossos preços variam baseados no escopo e complexidade do projeto. Para um orçamento detalhado, recomendo agendar uma consulta gratuita onde podemos discutir suas necessidades específicas. Gostaria que eu ajudasse a agendar uma?";
+        const respostas = [
+            { keywords: ["olá", "oi", "tudo bem", "dúvida", "pergunta"], text: "Olá, Tudo bem? Como posso ajudar?" },
+            { keywords: ["preço", "custo", "orçamento", "valor"], text: "Nossos preços variam conforme o escopo. Projetos simples a partir de R$ 1.500. Quer um orçamento rápido?" },
+            { keywords: ["prazo", "cronograma", "tempo"], text: "Depende do projeto: sites 2-4 semanas, sistemas 8-16 semanas. Você já tem uma data de entrega em mente?" },
+            { keywords: ["consulta", "reunião", "contato"], text: "Podemos agendar uma reunião gratuita pelo nosso site ou WhatsApp. Qual prefere?" },
+            { keywords: ["suporte", "manutenção"], text: "Temos planos a partir de R$ 299/mês com atualizações, segurança e suporte técnico." },
+            { keywords: ["tecnologia", "linguagem", "framework"], text: "Trabalhamos com React, Next.js, Node.js, Python, AWS e muito mais. Quer saber se usamos alguma específica?" },
+            { keywords: ["design", "interface", "ux", "ui"], text: "Sim, fazemos UI/UX com foco em usabilidade e aparência profissional." },
+            { keywords: ["mudança", "alteração", "revisão"], text: "Sim, aceitamos revisões. Mudanças grandes podem alterar prazo e custo." },
+            { keywords: ["pagamento", "forma de pagamento"], text: "Aceitamos PIX, cartão e boleto. Parcelamos em até 6x sem juros." },
+            { keywords: ["trabalho remoto", "presencial"], text: "Trabalhamos 100% online, mas podemos agendar encontros presenciais em casos específicos." },
+        ];
+
+        for (let r of respostas) {
+            if (r.keywords.some(k => lower.includes(k))) {
+                return r.text;
             }
-
-            if (lowerMessage.includes('cronograma') || lowerMessage.includes('quanto tempo')) {
-                return "Os cronogramas dos projetos dependem da complexidade e escopo. Sites simples geralmente levam 2-4 semanas, enquanto aplicações complexas podem levar 8-16 semanas. Que tipo de projeto você está considerando?";
-            }
-
-            if (lowerMessage.includes('consulta') || lowerMessage.includes('reunião')) {
-                return "Ficaria feliz em ajudar você a agendar uma consulta gratuita! Você pode agendar diretamente através da nossa página de consulta, ou posso conectá-lo com nossa equipe. O que funciona melhor para você?";
-            }
-
-            if (lowerMessage.includes('suporte') || lowerMessage.includes('manutenção')) {
-                return "Oferecemos pacotes de suporte abrangentes incluindo atualizações, monitoramento de segurança e suporte técnico a partir de R$ 299/mês. Gostaria de saber mais sobre nossas opções de suporte?";
-            }
-
-            return "Essa é uma ótima pergunta! Ficaria feliz em conectá-lo com um de nossos especialistas que pode fornecer informações detalhadas. Gostaria que eu agendasse uma ligação, ou tem outras perguntas que posso ajudar agora mesmo?";
         }
+
+        // Resposta padrão se não encontrar
+        return "Entendi sua pergunta! Vou anotar para um especialista responder com mais detalhes. Quer que eu registre seu contato?";
+    }
 
         // Add message to chat
         function addMessage(text, sender) {
