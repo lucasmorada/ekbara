@@ -115,48 +115,57 @@ if (brandsCarousel) {
 
 
 
-(function(){
+(function () {
   const el = document.getElementById('codeFooter');
   const raw = el.getAttribute('data-raw') || '';
 
-  // Função que executa a animação de digitação
-  function startTyping(){
-    el.textContent = ''; // começa vazio
+  function startTyping() {
     let i = 0;
     function typeChar() {
       if (i < raw.length) {
-        el.textContent += raw[i++];
-        const delay = raw[i-1] === '\n' ? 40 : 22;
+        const partial = raw.slice(0, i + 1);
+        el.innerHTML = highlight(partial); // já aplica cor
+        i++;
+        const delay = raw[i - 1] === '\n' ? 40 : 22;
         setTimeout(typeChar, delay);
-      } else {
-        setTimeout(() => {
-          el.innerHTML = highlight(raw);
-        }, 400);
       }
     }
     typeChar();
   }
 
-  // Função de highlight (mesma que você já tinha)
-  function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function highlight(s){
+  function escapeHtml(s) {
+    return s
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function highlight(s) {
     let t = escapeHtml(s);
     t = t.replace(/(\/\/.*)/g, '<span class="token-comment">$1</span>');
     t = t.replace(/('[^']*'|"[^"]*")/g, '<span class="token-value">$1</span>');
-    t = t.replace(/\b(const|let|var|function|return|=>)\b/g, '<span class="token-key">$1</span>');
-    t = t.replace(/\b(console|log|fazerSite)\b/g, '<span class="token-func">$1</span>');
+    t = t.replace(
+      /\b(const|let|var|function|return|=>)\b/g,
+      '<span class="token-key">$1</span>'
+    );
+    t = t.replace(
+      /\b(console|log|fazerSite)\b/g,
+      '<span class="token-func">$1</span>'
+    );
     return t;
   }
 
-  // Observador para iniciar a animação ao aparecer na tela
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        startTyping();
-        obs.unobserve(entry.target); // roda só uma vez
-      }
-    });
-  }, { threshold: 0.4 }); // 0.4 = 40% do elemento visível
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startTyping();
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
 
   observer.observe(el);
 })();
