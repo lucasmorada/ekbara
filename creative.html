@@ -3,439 +3,707 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EKBARA Creative</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ekbara Creative - Design Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600&display=swap');
-        
-        :root {
-            --adobe-dark: #2D2D2D;
-            --adobe-panel: #363636;
-            --adobe-highlight: #535353;
-            --adobe-accent: #3478F6;
-            --adobe-text: #F0F0F0;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Roboto Mono', monospace;
-            background-color: #1E1E1E;
-            color: var(--adobe-text);
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background: #1e1e1e;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
         }
-        
-        .adobe-panel {
-            background-color: var(--adobe-panel);
-            border: 1px solid #1E1E1E;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+
+        /* Menu Bar */
+        .menu-bar {
+            background: #2d2d2d;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            border-bottom: 1px solid #404040;
         }
-        
-        .tool-icon {
-            width: 40px;
-            height: 40px;
+
+        .menu-item {
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #404040;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 30px);
+        }
+
+        /* Toolbar */
+        .toolbar {
+            width: 60px;
+            background: #323232;
+            border-right: 1px solid #404040;
+            display: flex;
+            flex-direction: column;
+            padding: 10px 5px;
+        }
+
+        .tool {
+            width: 50px;
+            height: 50px;
+            background: #404040;
+            margin-bottom: 5px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 3px;
             cursor: pointer;
-        }
-        
-        .tool-icon:hover {
-            background-color: var(--adobe-highlight);
-        }
-        
-        .tool-icon.active {
-            background-color: var(--adobe-accent);
-        }
-        
-        .project-thumbnail {
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-        
-        .project-thumbnail:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        .timeline-track {
-            height: 4px;
-            background-color: var(--adobe-highlight);
-        }
-        
-        .timeline-marker {
-            width: 12px;
-            height: 12px;
-            background-color: var(--adobe-accent);
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        
-        .tab {
-            padding: 8px 15px;
-            cursor: pointer;
-            border-radius: 3px 3px 0 0;
-        }
-        
-        .tab:hover {
-            background-color: var(--adobe-highlight);
-        }
-        
-        .tab.active {
-            background-color: var(--adobe-panel);
-        }
-        
-        .layer-item {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        
-        .layer-item:hover {
-            background-color: var(--adobe-highlight);
-        }
-        
-        .color-swatch {
-            width: 20px;
-            height: 20px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        
-        .document-tab {
-            padding: 8px 15px;
-            background-color: var(--adobe-panel);
-            border-radius: 4px 4px 0 0;
-            cursor: pointer;
+            transition: all 0.2s;
             position: relative;
         }
-        
-        .document-tab:after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background-color: var(--adobe-accent);
-            opacity: 0;
+
+        .tool:hover {
+            background: #505050;
+            transform: scale(1.05);
         }
-        
-        .document-tab.active:after {
+
+        .tool.active {
+            background: #0066cc;
+        }
+
+        .tool::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: #ffffff;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        .tool.selection::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 2h20v20H2z' fill='none' stroke='currentColor'/%3E%3C/svg%3E"); }
+        .tool.brush::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='currentColor'/%3E%3C/svg%3E"); }
+        .tool.text::before { mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 4h14v2H5zM7 8h10v2H7zM9 12h6v2H9z' fill='currentColor'/%3E%3C/svg%3E"); }
+
+        /* Canvas Area */
+        .canvas-area {
+            flex: 1;
+            background: #2d2d2d;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .canvas {
+            width: 800px;
+            height: 600px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Content Sections */
+        .content-section {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            padding: 40px;
+            color: #333;
+        }
+
+        .content-section.active {
             opacity: 1;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .services-section {
+            background: #f8f9fa;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            align-items: center;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .service-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Right Panel */
+        .right-panel {
+            width: 300px;
+            background: #323232;
+            border-left: 1px solid #404040;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-section {
+            border-bottom: 1px solid #404040;
+        }
+
+        .panel-header {
+            background: #2d2d2d;
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .panel-content {
+            padding: 15px;
+        }
+
+        /* Layers Panel */
+        .layer {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin-bottom: 2px;
+            background: #404040;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .layer:hover {
+            background: #505050;
+        }
+
+        .layer.active {
+            background: #0066cc;
+        }
+
+        .layer-icon {
+            width: 16px;
+            height: 16px;
+            background: #ffffff;
+            margin-right: 10px;
+            border-radius: 2px;
+        }
+
+        .layer-name {
+            font-size: 12px;
+        }
+
+        /* Color Palette */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .color-swatch:hover {
+            border-color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .color-swatch.active {
+            border-color: #0066cc;
+        }
+
+        /* Properties Panel */
+        .property {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .property-label {
+            font-size: 12px;
+            color: #cccccc;
+        }
+
+        .property-value {
+            background: #404040;
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            width: 60px;
+            text-align: center;
+        }
+
+        /* Navigation Dots */
+        .nav-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: #0066cc;
+            transform: scale(1.2);
+        }
+
+        /* Floating Panels */
+        .floating-panel {
+            position: absolute;
+            background: #323232;
+            border: 1px solid #404040;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            min-width: 200px;
+        }
+
+        .floating-panel.hidden {
+            display: none;
+        }
+
+        .panel-title-bar {
+            background: #2d2d2d;
+            padding: 8px 12px;
+            border-bottom: 1px solid #404040;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: move;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .about-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: white;
+            opacity: 0.9;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            background: #1a1a1a;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .portfolio-item {
+            background: #333;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+
+        .portfolio-icon {
+            width: 60px;
+            height: 60px;
+            background: #0066cc;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+        }
+
+        .portfolio-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-desc {
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .toolbar {
+                width: 100%;
+                height: 60px;
+                flex-direction: row;
+                overflow-x: auto;
+            }
+            
+            .right-panel {
+                width: 100%;
+                height: 200px;
+                flex-direction: row;
+                overflow-x: auto;
+            }
+            
+            .canvas {
+                width: 100%;
+                height: 400px;
+            }
         }
     </style>
 </head>
-<body class="h-screen flex flex-col">
-    <!-- Top Menu Bar -->
-    <div class="bg-[#1A1A1A] p-2 flex justify-between items-center border-b border-black">
-        <div class="flex space-x-4">
-            <span class="text-gray-400">EKBARA</span>
-            <span class="text-white font-semibold">Creative</span>
-        </div>
-        <div class="flex space-x-4 text-sm">
-            <span class="text-gray-400">Arquivo</span>
-            <span class="text-gray-400">Editar</span>
-            <span class="text-gray-400">Imagem</span>
-            <span class="text-gray-400">Camada</span>
-            <span class="text-gray-400">Tipo</span>
-            <span class="text-gray-400">Selecionar</span>
-            <span class="text-gray-400">Filtro</span>
-            <span class="text-gray-400">Visualizar</span>
-            <span class="text-gray-400">Janela</span>
-            <span class="text-gray-400">Ajuda</span>
-        </div>
+<body>
+    <!-- Menu Bar -->
+    <div class="menu-bar">
+        <div class="menu-item">Arquivo</div>
+        <div class="menu-item">Editar</div>
+        <div class="menu-item">Objeto</div>
+        <div class="menu-item">Texto</div>
+        <div class="menu-item">Selecionar</div>
+        <div class="menu-item">Efeito</div>
+        <div class="menu-item">Visualizar</div>
+        <div class="menu-item">Janela</div>
+        <div class="menu-item">Ajuda</div>
     </div>
-    
-    <!-- Main Workspace -->
-    <div class="flex flex-1 overflow-hidden">
-        <!-- Tools Panel -->
-        <div class="adobe-panel w-16 p-2 flex flex-col space-y-3">
-            <div class="tool-icon active">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
-                    <line x1="16" y1="8" x2="2" y2="22"></line>
-                    <line x1="17.5" y1="15" x2="9" y2="15"></line>
-                </svg>
-            </div>
-            <div class="tool-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                </svg>
-            </div>
-            <div class="tool-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-            </div>
-            <div class="tool-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                </svg>
-            </div>
-            <div class="tool-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <path d="M22 6l-10 7L2 6"></path>
-                </svg>
-            </div>
-            <div class="tool-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
-            </div>
-            <div class="border-t border-gray-600 my-2"></div>
-            <div class="tool-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 3h18v18H3z"></path>
-                    <path d="M21 9H3"></path>
-                    <path d="M21 15H3"></path>
-                </svg>
-            </div>
-            <div class="tool-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-            </div>
+
+    <div class="main-container">
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="tool selection active" data-section="0" title="Home"></div>
+            <div class="tool brush" data-section="1" title="Serviços"></div>
+            <div class="tool text" data-section="2" title="Sobre"></div>
+            <div class="tool" data-section="3" title="Portfolio"></div>
         </div>
-        
-        <!-- Document Area -->
-        <div class="flex-1 bg-[#252525] p-4 overflow-auto">
-            <div class="flex justify-between items-center mb-2">
-                <div class="flex space-x-2">
-                    <div class="document-tab active">Projeto1.psd</div>
-                    <div class="document-tab">Motion.ai</div>
-                    <div class="document-tab">Branding.eps</div>
+
+        <!-- Canvas Area -->
+        <div class="canvas-area">
+            <div class="canvas">
+                <!-- Hero Section -->
+                <div class="content-section hero-section active" data-section="0">
+                    <h1 class="hero-title">EKBARA CREATIVE</h1>
+                    <p class="hero-subtitle">Transformando ideias em experiências visuais extraordinárias</p>
                 </div>
-                <div class="flex space-x-2 text-xs">
-                    <span class="text-gray-400">100%</span>
-                    <span class="text-gray-400">RGB/8</span>
-                </div>
-            </div>
-            
-            <!-- Canvas Area -->
-            <div class="relative bg-[#343434] border border-[#1E1E1E] mx-auto" style="width: 800px; height: 500px;">
-                <!-- Placeholder for main design -->
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/de4a75d9-a2de-46e0-9bee-36f248ba22b9.png" alt="Mockup de projeto criativo mostrando interface de usuário avançada com elementos de design e tipografia moderna" class="opacity-70" />
-                
-                <!-- Rulers -->
-                <div class="absolute top-0 left-0 right-0 h-6 bg-[#2D2D2D] border-b border-[#1E1E1E]">
-                    <div class="h-full flex">
-                        <div class="w-6 border-r border-[#1E1E1E]"></div>
-                        <div class="flex-1 relative">
-                            <div class="absolute top-0 left-0 right-0 bottom-0 flex">
-                                <div class="h-full border-r border-gray-600" style="width: 100px;"></div>
-                                <div class="h-full border-r border-gray-600" style="width: 100px;"></div>
-                                <div class="h-full border-r border-gray-600" style="width: 100px;"></div>
-                            </div>
-                        </div>
+
+                <!-- Services Section -->
+                <div class="content-section services-section" data-section="1">
+                    <div class="service-card">
+                        <h3 class="service-title">Design Gráfico</h3>
+                        <p class="service-desc">Criação de identidades visuais, logotipos e materiais gráficos que comunicam a essência da sua marca.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3 class="service-title">UI/UX Design</h3>
+                        <p class="service-desc">Interfaces intuitivas e experiências digitais que conectam usuários aos seus produtos de forma natural.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3 class="service-title">Branding</h3>
+                        <p class="service-desc">Desenvolvimento completo de marca, desde conceito até implementação em todos os pontos de contato.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3 class="service-title">Motion Graphics</h3>
+                        <p class="service-desc">Animações e vídeos que dão vida às suas ideias e engajam seu público de forma única.</p>
                     </div>
                 </div>
-                <div class="absolute top-6 left-0 bottom-0 w-6 bg-[#2D2D2D] border-r border-[#1E1E1E]">
-                    <div class="w-full h-full">
-                        <div class="w-full border-b border-gray-600" style="height: 100px;"></div>
-                        <div class="w-full border-b border-gray-600" style="height: 100px;"></div>
-                        <div class="w-full border-b border-gray-600" style="height: 100px;"></div>
+
+                <!-- About Section -->
+                <div class="content-section about-section" data-section="2">
+                    <h2 class="about-title">Sobre a Ekbara Creative</h2>
+                    <p class="about-text">Somos um estúdio criativo especializado em transformar conceitos em realidades visuais impactantes. Nossa equipe combina criatividade, estratégia e tecnologia para entregar soluções que não apenas impressionam, mas também geram resultados reais para nossos clientes.</p>
+                </div>
+
+                <!-- Portfolio Section -->
+                <div class="content-section portfolio-section" data-section="3">
+                    <div class="portfolio-item">
+                        <div class="portfolio-icon"></div>
+                        <h4 class="portfolio-title">Identidade Visual</h4>
+                        <p class="portfolio-desc">Projetos de branding completos</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-icon"></div>
+                        <h4 class="portfolio-title">Web Design</h4>
+                        <p class="portfolio-desc">Sites e aplicações web</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-icon"></div>
+                        <h4 class="portfolio-title">Print Design</h4>
+                        <p class="portfolio-desc">Materiais impressos</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-icon"></div>
+                        <h4 class="portfolio-title">Packaging</h4>
+                        <p class="portfolio-desc">Design de embalagens</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-icon"></div>
+                        <h4 class="portfolio-title">Digital Art</h4>
+                        <p class="portfolio-desc">Arte digital e ilustrações</p>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-icon"></div>
+                        <h4 class="portfolio-title">Animation</h4>
+                        <p class="portfolio-desc">Motion graphics e vídeos</p>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Recent Projects -->
-            <div class="mt-8">
-                <h3 class="text-lg font-medium mb-4">Projetos Recentes</h3>
-                <div class="grid grid-cols-4 gap-4">
-                    <div class="project-thumbnail adobe-panel p-2">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/95260b86-8d09-4c93-aaf9-3a29eeb82201.png" alt="Projeto de identidade visual para marca de café gourmet com tons terrosos" class="w-full" />
-                        <div class="mt-2 text-xs">
-                            <div>Cafe Branding</div>
-                            <div class="text-gray-400">12/05/2023</div>
-                        </div>
-                    </div>
-                    <div class="project-thumbnail adobe-panel p-2">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b01b5196-0d47-4897-93d4-2da92564b045.png" alt="Vídeo promocional para lançamento de aplicativo com animações fluidas" class="w-full" />
-                        <div class="mt-2 text-xs">
-                            <div>App Launch Video</div>
-                            <div class="text-gray-400">27/04/2023</div>
-                        </div>
-                    </div>
-                    <div class="project-thumbnail adobe-panel p-2">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0d5f2cd2-8d9d-409f-be66-4583a1f6e6c3.png" alt="Pacote de ícones minimalistas em estilo linear para interface digital" class="w-full" />
-                        <div class="mt-2 text-xs">
-                            <div>UI Icons Pack</div>
-                            <div class="text-gray-400">15/04/2023</div>
-                        </div>
-                    </div>
-                    <div class="project-thumbnail adobe-panel p-2">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e45683af-08a7-454b-a8c9-31109064cbe8.png" alt="Motion graphics para abertura de série documental com elementos geométricos" class="w-full" />
-                        <div class="mt-2 text-xs">
-                            <div>Docu-Series Intro</div>
-                            <div class="text-gray-400">02/04/2023</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Team Activity -->
-            <div class="mt-8">
-                <h3 class="text-lg font-medium mb-4">Atividade da Equipe</h3>
-                <div class="adobe-panel p-4">
-                    <div class="flex items-center space-x-4 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center">JD</div>
-                        <div class="flex-1">
-                            <div class="font-medium">João Dias</div>
-                            <div class="text-sm text-gray-400">Editando "Projeto1.psd"</div>
-                        </div>
-                        <div class="text-xs text-gray-400">2 min atrás</div>
-                    </div>
-                    <div class="flex items-center space-x-4 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center">MF</div>
-                        <div class="flex-1">
-                            <div class="font-medium">Maria Fernanda</div>
-                            <div class="text-sm text-gray-400">Renderizando "Motion.ai"</div>
-                        </div>
-                        <div class="text-xs text-gray-400">15 min atrás</div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">CR</div>
-                        <div class="flex-1">
-                            <div class="font-medium">Carlos Rocha</div>
-                            <div class="text-sm text-gray-400">Compartilhou "Branding.eps"</div>
-                        </div>
-                        <div class="text-xs text-gray-400">1 hora atrás</div>
-                    </div>
+
+                <!-- Navigation Dots -->
+                <div class="nav-dots">
+                    <div class="nav-dot active" data-section="0"></div>
+                    <div class="nav-dot" data-section="1"></div>
+                    <div class="nav-dot" data-section="2"></div>
+                    <div class="nav-dot" data-section="3"></div>
                 </div>
             </div>
         </div>
-        
-        <!-- Right Panels -->
-        <div class="w-64 flex flex-col border-l border-black">
+
+        <!-- Right Panel -->
+        <div class="right-panel">
             <!-- Layers Panel -->
-            <div class="adobe-panel flex-1 p-3">
-                <div class="flex space-x-2 mb-3">
-                    <div class="tab active">Camadas</div>
-                    <div class="tab">Canais</div>
-                    <div class="tab">Caminhos</div>
-                </div>
-                
-                <div class="space-y-1">
-                    <div class="layer-item flex items-center">
-                        <input type="checkbox" checked class="mr-2">
-                        <span>Background</span>
+            <div class="panel-section">
+                <div class="panel-header">Camadas</div>
+                <div class="panel-content">
+                    <div class="layer active">
+                        <div class="layer-icon"></div>
+                        <span class="layer-name">Hero Section</span>
                     </div>
-                    <div class="layer-item flex items-center">
-                        <input type="checkbox" checked class="mr-2">
-                        <span>Logo</span>
+                    <div class="layer">
+                        <div class="layer-icon"></div>
+                        <span class="layer-name">Services Grid</span>
                     </div>
-                    <div class="layer-item flex items-center">
-                        <input type="checkbox" checked class="mr-2">
-                        <span class="text-gray-400">Text Layer</span>
+                    <div class="layer">
+                        <div class="layer-icon"></div>
+                        <span class="layer-name">About Content</span>
                     </div>
-                    <div class="layer-item flex items-center">
-                        <input type="checkbox" class="mr-2">
-                        <span class="text-gray-400">Effects</span>
-                    </div>
-                    <div class="layer-item flex items-center">
-                        <input type="checkbox" checked class="mr-2">
-                        <span>Shapes</span>
+                    <div class="layer">
+                        <div class="layer-icon"></div>
+                        <span class="layer-name">Portfolio Gallery</span>
                     </div>
                 </div>
             </div>
-            
-            <!-- Color Panel -->
-            <div class="adobe-panel p-3">
-                <h4 class="mb-2">Cores</h4>
-                <div class="grid grid-cols-6 gap-2 mb-4">
-                    <div class="color-swatch bg-red-500"></div>
-                    <div class="color-swatch bg-blue-500"></div>
-                    <div class="color-swatch bg-green-500"></div>
-                    <div class="color-swatch bg-yellow-500"></div>
-                    <div class="color-swatch bg-purple-500"></div>
-                    <div class="color-swatch bg-pink-500"></div>
-                    <div class="color-swatch bg-indigo-500"></div>
-                    <div class="color-swatch bg-teal-500"></div>
-                    <div class="color-swatch bg-gray-500"></div>
-                    <div class="color-swatch bg-black"></div>
-                    <div class="color-swatch bg-white"></div>
-                    <div class="color-swatch" style="background-color: #FF9900;"></div>
-                </div>
-                
-                <div class="flex space-x-2">
-                    <div class="h-8 flex-1 bg-gradient-to-r from-black to-white"></div>
-                    <div class="h-8 w-8 bg-[#3478F6]"></div>
-                </div>
-                
-                <div class="mt-2 text-xs">
-                    <div>R: 52 G: 120 B: 246</div>
-                    <div>#3478F6</div>
+
+            <!-- Color Palette -->
+            <div class="panel-section">
+                <div class="panel-header">Paleta de Cores</div>
+                <div class="panel-content">
+                    <div class="color-palette">
+                        <div class="color-swatch active" style="background: #667eea;"></div>
+                        <div class="color-swatch" style="background: #764ba2;"></div>
+                        <div class="color-swatch" style="background: #ff6b6b;"></div>
+                        <div class="color-swatch" style="background: #feca57;"></div>
+                        <div class="color-swatch" style="background: #0066cc;"></div>
+                        <div class="color-swatch" style="background: #333333;"></div>
+                        <div class="color-swatch" style="background: #ffffff;"></div>
+                        <div class="color-swatch" style="background: #1a1a1a;"></div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Timeline Panel -->
-            <div class="adobe-panel p-3">
-                <h4 class="mb-2">Linha do Tempo</h4>
-                <div class="timeline-track relative my-4">
-                    <div class="timeline-marker absolute" style="left: 25%;"></div>
-                    <div class="timeline-marker absolute" style="left: 50%;"></div>
-                    <div class="timeline-marker absolute" style="left: 75%;"></div>
-                </div>
-                
-                <div class="text-xs mb-2">
-                    <span>00:00:05:12</span>
-                    <span class="float-right">00:00:30:00</span>
-                </div>
-                
-                <div class="flex space-x-2 text-xs">
-                    <button class="bg-[#3A3A3A] px-2 py-1 rounded">Play</button>
-                    <button class="bg-[#3A3A3A] px-2 py-1 rounded">Stop</button>
-                    <button class="bg-[#3A3A3A] px-2 py-1 rounded">Render</button>
+
+            <!-- Properties Panel -->
+            <div class="panel-section">
+                <div class="panel-header">Propriedades</div>
+                <div class="panel-content">
+                    <div class="property">
+                        <span class="property-label">X:</span>
+                        <input type="text" class="property-value" value="400">
+                    </div>
+                    <div class="property">
+                        <span class="property-label">Y:</span>
+                        <input type="text" class="property-value" value="300">
+                    </div>
+                    <div class="property">
+                        <span class="property-label">W:</span>
+                        <input type="text" class="property-value" value="800">
+                    </div>
+                    <div class="property">
+                        <span class="property-label">H:</span>
+                        <input type="text" class="property-value" value="600">
+                    </div>
+                    <div class="property">
+                        <span class="property-label">Opacidade:</span>
+                        <input type="text" class="property-value" value="100%">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <!-- Status Bar -->
-    <div class="bg-[#1A1A1A] p-2 text-xs flex justify-between items-center">
-        <div>RGB/8</div>
-        <div>Documento: 800x500 px</div>
-        <div>Memória: 1.2GB</div>
-        <div>Zoom: 100%</div>
-    </div>
-    
+
     <script>
-        // Simulate tool selection
-        document.querySelectorAll('.tool-icon').forEach(icon => {
-            icon.addEventListener('click', () => {
-                document.querySelectorAll('.tool-icon').forEach(i => i.classList.remove('active'));
-                icon.classList.add('active');
+        // Navigation functionality
+        const tools = document.querySelectorAll('.tool');
+        const sections = document.querySelectorAll('.content-section');
+        const navDots = document.querySelectorAll('.nav-dot');
+        const layers = document.querySelectorAll('.layer');
+
+        function showSection(sectionIndex) {
+            // Hide all sections
+            sections.forEach(section => section.classList.remove('active'));
+            tools.forEach(tool => tool.classList.remove('active'));
+            navDots.forEach(dot => dot.classList.remove('active'));
+            layers.forEach(layer => layer.classList.remove('active'));
+
+            // Show selected section
+            sections[sectionIndex].classList.add('active');
+            tools[sectionIndex].classList.add('active');
+            navDots[sectionIndex].classList.add('active');
+            layers[sectionIndex].classList.add('active');
+        }
+
+        // Tool clicks
+        tools.forEach((tool, index) => {
+            tool.addEventListener('click', () => {
+                showSection(index);
             });
         });
-        
-        // Simulate tab switching
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
+
+        // Navigation dots clicks
+        navDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSection(index);
             });
         });
-        
-        // Simulate document tab switching
-        document.querySelectorAll('.document-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.document-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
+
+        // Layer clicks
+        layers.forEach((layer, index) => {
+            layer.addEventListener('click', () => {
+                showSection(index);
             });
         });
-        
-        // Project thumbnail hover effect
-        document.querySelectorAll('.project-thumbnail').forEach(thumb => {
-            thumb.addEventListener('mouseenter', () => {
-                thumb.querySelector('img').style.opacity = '1';
+
+        // Color swatch functionality
+        const colorSwatches = document.querySelectorAll('.color-swatch');
+        colorSwatches.forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                colorSwatches.forEach(s => s.classList.remove('active'));
+                swatch.classList.add('active');
             });
-            thumb.addEventListener('mouseleave', () => {
-                thumb.querySelector('img').style.opacity = '0.7';
+        });
+
+        // Auto-rotate sections (optional)
+        let currentSection = 0;
+        setInterval(() => {
+            currentSection = (currentSection + 1) % sections.length;
+            showSection(currentSection);
+        }, 8000);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '1' && e.key <= '4') {
+                const sectionIndex = parseInt(e.key) - 1;
+                showSection(sectionIndex);
+            }
+        });
+
+        // Simulate design software interactions
+        const canvas = document.querySelector('.canvas');
+        let isDragging = false;
+        let startX, startY;
+
+        canvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            canvas.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const deltaX = e.clientX - startX;
+                const deltaY = e.clientY - startY;
+                // Simulate canvas movement (visual feedback only)
+                canvas.style.transform = `translate(${deltaX * 0.1}px, ${deltaY * 0.1}px)`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            canvas.style.cursor = 'default';
+            canvas.style.transform = 'translate(0, 0)';
+        });
+
+        // Menu interactions
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Simulate menu functionality
+                console.log(`Menu clicked: ${item.textContent}`);
             });
         });
     </script>
 </body>
 </html>
-

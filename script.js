@@ -124,7 +124,7 @@ if (brandsCarousel) {
     function typeChar() {
       if (i < raw.length) {
         const partial = raw.slice(0, i + 1);
-        el.innerHTML = highlight(partial); // já aplica cor
+        el.innerHTML = highlight(escapeHtml(partial)); // garante que tags só aparecem completas
         i++;
         const delay = raw[i - 1] === '\n' ? 40 : 22;
         setTimeout(typeChar, delay);
@@ -140,8 +140,7 @@ if (brandsCarousel) {
       .replace(/>/g, '&gt;');
   }
 
-  function highlight(s) {
-    let t = escapeHtml(s);
+  function highlight(t) {
     t = t.replace(/(\/\/.*)/g, '<span class="token-comment">$1</span>');
     t = t.replace(/('[^']*'|"[^"]*")/g, '<span class="token-value">$1</span>');
     t = t.replace(
