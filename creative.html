@@ -3,1659 +3,1263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ekbara Creative Studio - Design Professional</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #1e1e1e;
-            color: #ffffff;
-            overflow: hidden;
-            height: 100vh;
-            user-select: none;
-        }
-
-        /* Menu Bar */
-        .menu-bar {
-            background: #2d2d2d;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-            font-size: 12px;
-            border-bottom: 1px solid #404040;
-            position: relative;
-            z-index: 1000;
-        }
-
-        .menu-item {
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: background 0.2s;
-            position: relative;
-        }
-
-        .menu-item:hover {
-            background: #404040;
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: #2d2d2d;
-            border: 1px solid #404040;
-            border-radius: 4px;
-            min-width: 150px;
-            display: none;
-            z-index: 1001;
-        }
-
-        .dropdown-item {
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 11px;
-        }
-
-        .dropdown-item:hover {
-            background: #404040;
-        }
-
-        /* Main Container */
-        .main-container {
-            display: flex;
-            height: calc(100vh - 30px);
-        }
-
-        /* Toolbar */
-        .toolbar {
-            width: 60px;
-            background: #323232;
-            border-right: 1px solid #404040;
-            display: flex;
-            flex-direction: column;
-            padding: 10px 5px;
-        }
-
-        .tool {
-            width: 50px;
-            height: 50px;
-            background: #404040;
-            margin-bottom: 5px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-            font-size: 20px;
-        }
-
-        .tool:hover {
-            background: #505050;
-            transform: scale(1.05);
-        }
-
-        .tool.active {
-            background: #0066cc;
-        }
-
-        /* Canvas Area */
-        .canvas-area {
-            flex: 1;
-            background: #2d2d2d;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .canvas-container {
-            position: relative;
-            transform-origin: center;
-            transition: transform 0.3s ease;
-        }
-
-        .canvas {
-            width: 1000px;
-            height: 700px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-            cursor: crosshair;
-        }
-
-        /* Canvas Elements */
-        .canvas-element {
-            position: absolute;
-            cursor: move;
-            border: 2px solid transparent;
-            transition: border-color 0.2s;
-        }
-
-        .canvas-element.selected {
-            border-color: #0066cc;
-        }
-
-        .canvas-element:hover {
-            border-color: #66ccff;
-        }
-
-        .resize-handle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #0066cc;
-            border: 1px solid white;
-            cursor: nw-resize;
-        }
-
-        .resize-handle.nw { top: -4px; left: -4px; }
-        .resize-handle.ne { top: -4px; right: -4px; cursor: ne-resize; }
-        .resize-handle.sw { bottom: -4px; left: -4px; cursor: sw-resize; }
-        .resize-handle.se { bottom: -4px; right: -4px; cursor: se-resize; }
-
-        /* Content Sections */
-        .content-section {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            padding: 60px;
-            color: #333;
-            overflow-y: auto;
-        }
-
-        .content-section.active {
-            opacity: 1;
-        }
-
-        .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 64px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            letter-spacing: -2px;
-        }
-
-        .hero-subtitle {
-            font-size: 24px;
-            font-weight: 300;
-            opacity: 0.9;
-            max-width: 600px;
-            line-height: 1.4;
-        }
-
-        .hero-cta {
-            margin-top: 40px;
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid white;
-            color: white;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .hero-cta:hover {
-            background: white;
-            color: #667eea;
-        }
-
-        /* Services Section */
-        .services-section {
-            background: #f8f9fa;
-            padding: 80px 60px;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 60px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .service-card {
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: white;
-        }
-
-        .service-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .service-desc {
-            color: #666;
-            line-height: 1.7;
-            font-size: 16px;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 20px;
-            text-align: left;
-        }
-
-        .service-features li {
-            padding: 5px 0;
-            color: #555;
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .service-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        /* About Section */
-        .about-section {
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 80px;
-            text-align: center;
-        }
-
-        .about-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: white;
-        }
-
-        .about-text {
-            font-size: 20px;
-            line-height: 1.7;
-            color: white;
-            opacity: 0.95;
-            max-width: 800px;
-            margin: 0 auto 40px;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 700;
-            color: white;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 16px;
-            color: white;
-            opacity: 0.8;
-            margin-top: 10px;
-        }
-
-        /* Portfolio Section */
-        .portfolio-section {
-            background: #1a1a1a;
-            color: white;
-            padding: 80px 60px;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .portfolio-item {
-            background: #333;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .portfolio-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
-
-        .portfolio-item:hover {
-            transform: scale(1.05);
-            background: #404040;
-        }
-
-        .portfolio-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-        }
-
-        .portfolio-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .portfolio-desc {
-            font-size: 14px;
-            color: #ccc;
-            line-height: 1.6;
-        }
-
-        /* Team Section */
-        .team-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 60px;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .team-member {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 40px 30px;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-        }
-
-        .member-avatar {
-            width: 100px;
-            height: 100px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-        }
-
-        .member-name {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .member-role {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-bottom: 15px;
-        }
-
-        .member-bio {
-            font-size: 14px;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
-
-        /* Right Panel */
-        .right-panel {
-            width: 320px;
-            background: #323232;
-            border-left: 1px solid #404040;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-
-        .panel-section {
-            border-bottom: 1px solid #404040;
-            flex-shrink: 0;
-        }
-
-        .panel-header {
-            background: #2d2d2d;
-            padding: 12px 15px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .panel-header:hover {
-            background: #404040;
-        }
-
-        .panel-content {
-            padding: 15px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        .panel-content.collapsed {
-            display: none;
-        }
-
-        /* Layers Panel */
-        .layer {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            margin-bottom: 2px;
-            background: #404040;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .layer:hover {
-            background: #505050;
-        }
-
-        .layer.active {
-            background: #0066cc;
-        }
-
-        .layer-visibility {
-            width: 16px;
-            height: 16px;
-            margin-right: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-
-        .layer-icon {
-            width: 20px;
-            height: 20px;
-            background: #ffffff;
-            margin-right: 10px;
-            border-radius: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #333;
-        }
-
-        .layer-name {
-            font-size: 12px;
-            flex: 1;
-        }
-
-        .layer-lock {
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
-            font-size: 10px;
-        }
-
-        /* Color Palette */
-        .color-palette {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
-
-        .color-swatch {
-            width: 50px;
-            height: 50px;
-            border-radius: 6px;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .color-swatch:hover {
-            border-color: #ffffff;
-            transform: scale(1.1);
-        }
-
-        .color-swatch.active {
-            border-color: #0066cc;
-            transform: scale(1.1);
-        }
-
-        .color-info {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 10px;
-            background: #2d2d2d;
-            padding: 2px 6px;
-            border-radius: 3px;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-
-        .color-swatch:hover .color-info {
-            opacity: 1;
-        }
-
-        /* Properties Panel */
-        .property {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .property-label {
-            font-size: 12px;
-            color: #cccccc;
-            min-width: 60px;
-        }
-
-        .property-value {
-            background: #404040;
-            border: 1px solid #555;
-            color: white;
-            padding: 6px 10px;
-            border-radius: 4px;
-            width: 80px;
-            text-align: center;
-            font-size: 12px;
-        }
-
-        .property-value:focus {
-            border-color: #0066cc;
-            outline: none;
-        }
-
-        .property-slider {
-            flex: 1;
-            margin: 0 10px;
-        }
-
-        /* Tools Panel */
-        .tools-panel {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-
-        .tool-button {
-            padding: 10px;
-            background: #404040;
-            border: none;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background 0.2s;
-        }
-
-        .tool-button:hover {
-            background: #505050;
-        }
-
-        .tool-button.active {
-            background: #0066cc;
-        }
-
-        /* Navigation Dots */
-        .nav-dots {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 10;
-        }
-
-        .nav-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-        }
-
-        .nav-dot.active {
-            background: #0066cc;
-            transform: scale(1.3);
-            border-color: white;
-        }
-
-        .nav-dot:hover {
-            background: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Zoom Controls */
-        .zoom-controls {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            gap: 5px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .zoom-btn {
-            width: 30px;
-            height: 30px;
-            background: #404040;
-            border: none;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .zoom-btn:hover {
-            background: #505050;
-        }
-
-        .zoom-level {
-            color: white;
-            font-size: 12px;
-            padding: 0 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Status Bar */
-        .status-bar {
-            height: 25px;
-            background: #2d2d2d;
-            border-top: 1px solid #404040;
-            display: flex;
-            align-items: center;
-            padding: 0 15px;
-            font-size: 11px;
-            color: #ccc;
-        }
-
-        .status-item {
-            margin-right: 20px;
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .right-panel {
-                width: 280px;
-            }
-            
-            .canvas {
-                width: 800px;
-                height: 600px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-            }
-            
-            .toolbar {
-                width: 100%;
-                height: 60px;
-                flex-direction: row;
-                overflow-x: auto;
-                padding: 5px;
-            }
-            
-            .right-panel {
-                width: 100%;
-                height: 250px;
-                flex-direction: row;
-                overflow-x: auto;
-            }
-            
-            .canvas {
-                width: 100%;
-                height: 400px;
-            }
-            
-            .hero-title {
-                font-size: 36px;
-            }
-            
-            .section-title {
-                font-size: 32px;
-            }
-        }
-    </style>
+    <title>Ekbara Creative - Equipe de Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
+<style>
+    /* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  background-color: #000000;
+  overflow-x: hidden;
+}
+
+/* Color variables */
+:root {
+  --primary-color: #8b0000; /* Dark red */
+  --secondary-color: #dc143c; /* Bright red */
+  --black: #000000;
+  --white: #ffffff;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.btn-outline:hover {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* Section headers */
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.section-description {
+  font-size: 1.25rem;
+  color: var(--gray-300);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+/* Animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(135deg, var(--black) 0%, var(--black) 70%, rgba(139, 0, 0, 0.2) 100%);
+  overflow: hidden;
+}
+
+.bg-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  background: rgba(139, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.shape-1 {
+  top: 80px;
+  left: 40px;
+  width: 128px;
+  height: 128px;
+  transform: rotate(45deg);
+  animation: float 3s ease-in-out infinite;
+}
+
+.shape-2 {
+  bottom: 80px;
+  right: 40px;
+  width: 96px;
+  height: 96px;
+  transform: rotate(12deg);
+  animation: float 3s ease-in-out infinite 1s;
+}
+
+.shape-3 {
+  top: 50%;
+  left: 25%;
+  width: 64px;
+  height: 64px;
+  transform: rotate(45deg);
+  animation: float 3s ease-in-out infinite 2s;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 10;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: var(--gray-300);
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40%,
+  43% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  70% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* Services Section */
+.services-section {
+  padding: 80px 0;
+  background-color: var(--gray-100);
+  color: var(--black);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.service-card {
+  background: var(--white);
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray-200);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(139, 0, 0, 0.5);
+}
+
+.service-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(139, 0, 0, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  background: rgba(139, 0, 0, 0.2);
+}
+
+.service-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--black);
+}
+
+.service-description {
+  color: var(--gray-600);
+  margin-bottom: 16px;
+}
+
+.service-features {
+  list-style: none;
+}
+
+.service-features li {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.service-features li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+/* Team Section */
+.team-section {
+  padding: 80px 0;
+  background-color: var(--black);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.team-card {
+  background: var(--gray-900);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray-800);
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(139, 0, 0, 0.5);
+}
+
+.team-image {
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.team-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover .team-image img {
+  transform: scale(1.1);
+}
+
+.team-info {
+  padding: 24px;
+}
+
+.team-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.team-role {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.team-description {
+  color: var(--gray-400);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Projects Section */
+.projects-section {
+  padding: 80px 0;
+  background-color: var(--gray-100);
+  color: var(--black);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.project-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray-200);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.project-image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-info {
+  padding: 24px;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.project-category {
+  background: rgba(139, 0, 0, 0.1);
+  color: var(--primary-color);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--black);
+}
+
+.project-description {
+  color: var(--gray-600);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: var(--gray-200);
+  color: var(--gray-600);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.projects-cta {
+  text-align: center;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--black) 0%, var(--black) 70%, rgba(139, 0, 0, 0.1) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.shape-4 {
+  top: 40px;
+  right: 40px;
+  width: 160px;
+  height: 160px;
+  background: rgba(139, 0, 0, 0.05);
+  transform: rotate(45deg);
+  animation: float 3s ease-in-out infinite;
+}
+
+.shape-5 {
+  bottom: 80px;
+  left: 40px;
+  width: 128px;
+  height: 128px;
+  background: rgba(220, 20, 60, 0.05);
+  transform: rotate(12deg);
+  animation: float 3s ease-in-out infinite 1.5s;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.contact-info-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.contact-items {
+  margin-bottom: 32px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(139, 0, 0, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.contact-label {
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.contact-value {
+  color: var(--gray-400);
+}
+
+.benefits-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.benefits-list {
+  list-style: none;
+}
+
+.benefits-list li {
+  color: var(--gray-300);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.benefits-list li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+/* Contact Form */
+.contact-form-container {
+  background: rgba(23, 23, 23, 0.5);
+  border: 1px solid var(--gray-800);
+  border-radius: 12px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 8px;
+  font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  background: var(--gray-800);
+  border: 1px solid var(--gray-700);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--gray-400);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .services-grid,
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-description,
+  .section-description {
+    font-size: 1rem;
+  }
+}
+
+</style>
+
 <body>
-    <!-- Menu Bar -->
-    <div class="menu-bar">
-        <div class="menu-item" data-menu="file">
-            Arquivo
-            <div class="dropdown">
-                <div class="dropdown-item">Novo (Ctrl+N)</div>
-                <div class="dropdown-item">Abrir (Ctrl+O)</div>
-                <div class="dropdown-item">Salvar (Ctrl+S)</div>
-                <div class="dropdown-item">Exportar</div>
-            </div>
-        </div>
-        <div class="menu-item" data-menu="edit">
-            Editar
-            <div class="dropdown">
-                <div class="dropdown-item">Desfazer (Ctrl+Z)</div>
-                <div class="dropdown-item">Refazer (Ctrl+Y)</div>
-                <div class="dropdown-item">Copiar (Ctrl+C)</div>
-                <div class="dropdown-item">Colar (Ctrl+V)</div>
-            </div>
-        </div>
-        <div class="menu-item" data-menu="object">Objeto</div>
-        <div class="menu-item" data-menu="text">Texto</div>
-        <div class="menu-item" data-menu="select">Selecionar</div>
-        <div class="menu-item" data-menu="effect">Efeito</div>
-        <div class="menu-item" data-menu="view">Visualizar</div>
-        <div class="menu-item" data-menu="window">Janela</div>
-        <div class="menu-item" data-menu="help">Ajuda</div>
-    </div>
-
-    <div class="main-container">
-        <!-- Toolbar -->
-        <div class="toolbar">
-            <div class="tool active" data-tool="select" title="Seleção (V)">↖</div>
-            <div class="tool" data-tool="text" title="Texto (T)">T</div>
-            <div class="tool" data-tool="rectangle" title="Retângulo (M)">⬜</div>
-            <div class="tool" data-tool="circle" title="Círculo (L)">⭕</div>
-            <div class="tool" data-tool="line" title="Linha (\\)">📏</div>
-            <div class="tool" data-tool="brush" title="Pincel (B)">🖌</div>
-            <div class="tool" data-tool="eyedropper" title="Conta-gotas (I)">💧</div>
-            <div class="tool" data-tool="zoom" title="Zoom (Z)">🔍</div>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <!-- Background geometric shapes -->
+        <div class="bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
 
-        <!-- Canvas Area -->
-        <div class="canvas-area">
-            <div class="canvas-container">
-                <div class="canvas" id="mainCanvas">
-                    <!-- Hero Section -->
-                    <div class="content-section hero-section active" data-section="0">
-                        <h1 class="hero-title">EKBARA CREATIVE</h1>
-                        <p class="hero-subtitle">Transformando ideias em experiências visuais extraordinárias que conectam marcas aos seus públicos de forma autêntica e impactante</p>
-                        <div class="hero-cta">Conheça Nossos Projetos</div>
-                    </div>
-
-                    <!-- Services Section -->
-                    <div class="content-section services-section" data-section="1">
-                        <h2 class="section-title">Nossos Serviços</h2>
-                        <p class="section-subtitle">Oferecemos soluções criativas completas para elevar sua marca a um novo patamar de excelência visual e comunicação estratégica</p>
-                        
-                        <div class="services-grid">
-                            <div class="service-card">
-                                <div class="service-icon">🎨</div>
-                                <h3 class="service-title">Design Gráfico</h3>
-                                <p class="service-desc">Criação de identidades visuais marcantes, logotipos memoráveis e materiais gráficos que comunicam a essência única da sua marca com precisão e criatividade.</p>
-                                <ul class="service-features">
-                                    <li>Identidade Visual Completa</li>
-                                    <li>Logotipos e Símbolos</li>
-                                    <li>Material Promocional</li>
-                                    <li>Papelaria Corporativa</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="service-card">
-                                <div class="service-icon">💻</div>
-                                <h3 class="service-title">UI/UX Design</h3>
-                                <p class="service-desc">Desenvolvimento de interfaces intuitivas e experiências digitais excepcionais que conectam usuários aos seus produtos de forma natural e envolvente.</p>
-                                <ul class="service-features">
-                                    <li>Design de Interface</li>
-                                    <li>Experiência do Usuário</li>
-                                    <li>Prototipagem Interativa</li>
-                                    <li>Testes de Usabilidade</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="service-card">
-                                <div class="service-icon">🏷️</div>
-                                <h3 class="service-title">Branding Estratégico</h3>
-                                <p class="service-desc">Desenvolvimento completo de marca, desde conceituação estratégica até implementação em todos os pontos de contato com o cliente.</p>
-                                <ul class="service-features">
-                                    <li>Estratégia de Marca</li>
-                                    <li>Posicionamento</li>
-                                    <li>Manual de Identidade</li>
-                                    <li>Aplicações da Marca</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="service-card">
-                                <div class="service-icon">🎬</div>
-                                <h3 class="service-title">Motion Graphics</h3>
-                                <p class="service-desc">Animações sofisticadas e vídeos dinâmicos que dão vida às suas ideias e engajam seu público de forma única e memorável.</p>
-                                <ul class="service-features">
-                                    <li>Animações 2D/3D</li>
-                                    <li>Vídeos Promocionais</li>
-                                    <li>Apresentações Animadas</li>
-                                    <li>Conteúdo para Redes Sociais</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="service-card">
-                                <div class="service-icon">🌐</div>
-                                <h3 class="service-title">Web Design</h3>
-                                <p class="service-desc">Criação de websites responsivos e modernos que combinam estética impecável com funcionalidade superior e performance otimizada.</p>
-                                <ul class="service-features">
-                                    <li>Sites Responsivos</li>
-                                    <li>E-commerce</li>
-                                    <li>Landing Pages</li>
-                                    <li>Otimização SEO</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="service-card">
-                                <div class="service-icon">✏️</div>
-                                <h3 class="service-title">Ilustração Digital</h3>
-                                <p class="service-desc">Ilustrações personalizadas e arte digital exclusiva que transmitem mensagens complexas de forma visualmente atrativa e impactante.</p>
-                                <ul class="service-features">
-                                    <li>Ilustrações Customizadas</li>
-                                    <li>Arte Conceitual</li>
-                                    <li>Iconografia</li>
-                                    <li>Infográficos</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- About Section -->
-                    <div class="content-section about-section" data-section="2">
-                        <h2 class="about-title">Sobre a Ekbara Creative</h2>
-                        <p class="about-text">Somos um estúdio criativo especializado em transformar conceitos abstratos em realidades visuais impactantes e estratégicas. Nossa equipe multidisciplinar combina criatividade excepcional, pensamento estratégico e domínio tecnológico para entregar soluções que não apenas impressionam visualmente, mas também geram resultados mensuráveis e duradouros para nossos clientes.</p>
-                        
-                        <p class="about-text">Fundada com a missão de democratizar o design de excelência, a Ekbara Creative acredita que toda marca, independente do seu tamanho, merece uma identidade visual que reflita sua essência e conecte genuinamente com seu público-alvo.</p>
-                        
-                        <div class="about-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">150+</span>
-                                <span class="stat-label">Projetos Concluídos</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">50+</span>
-                                <span class="stat-label">Clientes Satisfeitos</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">5</span>
-                                <span class="stat-label">Anos de Experiência</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Portfolio Section -->
-                    <div class="content-section portfolio-section" data-section="3">
-                        <h2 class="section-title">Portfolio</h2>
-                        <p class="section-subtitle">Uma seleção cuidadosa dos nossos trabalhos mais representativos, demonstrando nossa versatilidade e excelência em diferentes segmentos e desafios criativos</p>
-                        
-                        <div class="portfolio-grid">
-                            <div class="portfolio-item">
-                                <div class="portfolio-icon">🎨</div>
-                                <h4 class="portfolio-title">Identidade Visual Corporativa</h4>
-                                <p class="portfolio-desc">Desenvolvimento completo de identidade visual para empresas de tecnologia, incluindo logotipo, manual de marca e aplicações diversas.</p>
-                            </div>
-                            
-                            <div class="portfolio-item">
-                                <div class="portfolio-icon">💻</div>
-                                <h4 class="portfolio-title">Plataformas Digitais</h4>
-                                <p class="portfolio-desc">Design e desenvolvimento de interfaces para aplicativos móveis e plataformas web com foco em experiência do usuário.</p>
-                            </div>
-                            
-                            <div class="portfolio-item">
-                                <div class="portfolio-icon">📱</div>
-                                <h4 class="portfolio-title">Apps Mobile</h4>
-                                <p class="portfolio-desc">Criação de interfaces intuitivas para aplicativos iOS e Android, priorizando usabilidade e design responsivo.</p>
-                            </div>
-                            
-                            <div class="portfolio-item">
-                                <div class="portfolio-icon">📦</div>
-                                <h4 class="portfolio-title">Design de Embalagens</h4>
-                                <p class="portfolio-desc">Desenvolvimento de embalagens inovadoras que combinam funcionalidade, sustentabilidade e apelo visual no ponto de venda.</p>
-                            </div>
-                            
-                            <div class="portfolio-item">
-                                <div class="portfolio-icon">🎬</div>
-                                <h4 class="portfolio-title">Conteúdo Audiovisual</h4>
-                                <p class="portfolio-desc">Produção de vídeos promocionais, motion graphics e conteúdo animado para campanhas digitais e apresentações corporativas.</p>
-                            </div>
-                            
-                            <div class="portfolio-item">
-                                <div class="portfolio-icon">🏪</div>
-                                <h4 class="portfolio-title">E-commerce Design</h4>
-                                <p class="portfolio-desc">Criação de lojas virtuais otimizadas para conversão, com design atrativo e experiência de compra simplificada.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Team Section -->
-                    <div class="content-section team-section" data-section="4">
-                        <h2 class="section-title">Nossa Equipe</h2>
-                        <p class="section-subtitle">Profissionais apaixonados e especializados, unidos pela busca constante da excelência criativa e inovação em design</p>
-                        
-                        <div class="team-grid">
-                            <div class="team-member">
-                                <div class="member-avatar"></div>
-                                <h4 class="member-name">Ana Silva</h4>
-                                <p class="member-role">Diretora Criativa</p>
-                                <p class="member-bio">Especialista em branding com mais de 8 anos de experiência em grandes agências. Lidera projetos estratégicos de identidade visual.</p>
-                            </div>
-                            
-                            <div class="team-member">
-                                <div class="member-avatar"></div>
-                                <h4 class="member-name">Carlos Mendes</h4>
-                                <p class="member-role">UI/UX Designer</p>
-                                <p class="member-bio">Expert em design de interfaces digitais e experiência do usuário. Focado em criar soluções intuitivas e funcionais.</p>
-                            </div>
-                            
-                            <div class="team-member">
-                                <div class="member-avatar"></div>
-                                <h4 class="member-name">Marina Costa</h4>
-                                <p class="member-role">Motion Designer</p>
-                                <p class="member-bio">Especializada em animação e motion graphics. Transforma ideias estáticas em experiências visuais dinâmicas e envolventes.</p>
-                            </div>
-                            
-                            <div class="team-member">
-                                <div class="member-avatar"></div>
-                                <h4 class="member-name">Pedro Santos</h4>
-                                <p class="member-role">Desenvolvedor Front-end</p>
-                                <p class="member-bio">Responsável por transformar designs em código, garantindo fidelidade visual e performance otimizada em todas as plataformas.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Navigation Dots -->
-                    <div class="nav-dots">
-                        <div class="nav-dot active" data-section="0"></div>
-                        <div class="nav-dot" data-section="1"></div>
-                        <div class="nav-dot" data-section="2"></div>
-                        <div class="nav-dot" data-section="3"></div>
-                        <div class="nav-dot" data-section="4"></div>
-                    </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    EKBARA
+                    <span class="text-primary">CREATIVE</span>
+                </h1>
+                <p class="hero-description">
+                    Transformamos ideias em experiências visuais extraordinárias. Somos uma equipe multidisciplinar que cria, inova e inspira.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Conheça Nosso Trabalho</button>
+                    <button class="btn btn-outline">Fale Conosco</button>
                 </div>
-            </div>
-
-            <!-- Zoom Controls -->
-            <div class="zoom-controls">
-                <button class="zoom-btn" id="zoomOut">-</button>
-                <span class="zoom-level" id="zoomLevel">100%</span>
-                <button class="zoom-btn" id="zoomIn">+</button>
-                <button class="zoom-btn" id="zoomFit">⌂</button>
             </div>
         </div>
 
-        <!-- Right Panel -->
-        <div class="right-panel">
-            <!-- Layers Panel -->
-            <div class="panel-section">
-                <div class="panel-header">
-                    Camadas
-                    <span>▼</span>
-                </div>
-                <div class="panel-content">
-                    <div class="layer active">
-                        <div class="layer-visibility">👁</div>
-                        <div class="layer-icon">H</div>
-                        <span class="layer-name">Hero Section</span>
-                        <div class="layer-lock">🔓</div>
-                    </div>
-                    <div class="layer">
-                        <div class="layer-visibility">👁</div>
-                        <div class="layer-icon">S</div>
-                        <span class="layer-name">Services Grid</span>
-                        <div class="layer-lock">🔓</div>
-                    </div>
-                    <div class="layer">
-                        <div class="layer-visibility">👁</div>
-                        <div class="layer-icon">A</div>
-                        <span class="layer-name">About Content</span>
-                        <div class="layer-lock">🔓</div>
-                    </div>
-                    <div class="layer">
-                        <div class="layer-visibility">👁</div>
-                        <div class="layer-icon">P</div>
-                        <span class="layer-name">Portfolio Gallery</span>
-                        <div class="layer-lock">🔓</div>
-                    </div>
-                    <div class="layer">
-                        <div class="layer-visibility">👁</div>
-                        <div class="layer-icon">T</div>
-                        <span class="layer-name">Team Section</span>
-                        <div class="layer-lock">🔓</div>
-                    </div>
-                </div>
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    O QUE <span class="text-primary">FAZEMOS</span>
+                </h2>
+                <p class="section-description">
+                    Oferecemos soluções criativas completas para elevar sua marca a um novo patamar
+                </p>
             </div>
 
-            <!-- Tools Panel -->
-            <div class="panel-section">
-                <div class="panel-header">
-                    Ferramentas
-                    <span>▼</span>
-                </div>
-                <div class="panel-content">
-                    <div class="tools-panel">
-                        <button class="tool-button active" data-tool="select">Selecionar</button>
-                        <button class="tool-button" data-tool="text">Texto</button>
-                        <button class="tool-button" data-tool="rectangle">Retângulo</button>
-                        <button class="tool-button" data-tool="circle">Círculo</button>
-                        <button class="tool-button" data-tool="line">Linha</button>
-                        <button class="tool-button" data-tool="brush">Pincel</button>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
                     </div>
+                    <h3 class="service-title">Design Gráfico</h3>
+                    <p class="service-description">Criamos identidades visuais marcantes que conectam sua marca com o público.</p>
+                    <ul class="service-features">
+                        <li>Identidade Visual</li>
+                        <li>Branding</li>
+                        <li>Design Editorial</li>
+                        <li>Packaging</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="23 7 16 12 23 17 23 7"/>
+                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Produção Audiovisual</h3>
+                    <p class="service-description">Desenvolvemos conteúdo audiovisual que conta histórias e engaja audiências.</p>
+                    <ul class="service-features">
+                        <li>Motion Graphics</li>
+                        <li>Vídeos Corporativos</li>
+                        <li>Animações</li>
+                        <li>Direção de Arte</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Social Media</h3>
+                    <p class="service-description">Criamos estratégias e conteúdos que fazem sua marca brilhar nas redes sociais.</p>
+                    <ul class="service-features">
+                        <li>Estratégia Digital</li>
+                        <li>Criação de Posts</li>
+                        <li>Stories</li>
+                        <li>Campanhas</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Edição Profissional</h3>
+                    <p class="service-description">Transformamos material bruto em conteúdo polido e impactante.</p>
+                    <ul class="service-features">
+                        <li>Edição de Vídeo</li>
+                        <li>Pós-Produção</li>
+                        <li>Color Grading</li>
+                        <li>Finalização</li>
+                    </ul>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Color Palette -->
-            <div class="panel-section">
-                <div class="panel-header">
-                    Paleta de Cores
-                    <span>▼</span>
-                </div>
-                <div class="panel-content">
-                    <div class="color-palette">
-                        <div class="color-swatch active" style="background: #667eea;">
-                            <div class="color-info">#667eea</div>
-                        </div>
-                        <div class="color-swatch" style="background: #764ba2;">
-                            <div class="color-info">#764ba2</div>
-                        </div>
-                        <div class="color-swatch" style="background: #ff6b6b;">
-                            <div class="color-info">#ff6b6b</div>
-                        </div>
-                        <div class="color-swatch" style="background: #feca57;">
-                            <div class="color-info">#feca57</div>
-                        </div>
-                        <div class="color-swatch" style="background: #0066cc;">
-                            <div class="color-info">#0066cc</div>
-                        </div>
-                        <div class="color-swatch" style="background: #333333;">
-                            <div class="color-info">#333333</div>
-                        </div>
-                        <div class="color-swatch" style="background: #ffffff;">
-                            <div class="color-info">#ffffff</div>
-                        </div>
-                        <div class="color-swatch" style="background: #1a1a1a;">
-                            <div class="color-info">#1a1a1a</div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    NOSSA <span class="text-primary">EQUIPE</span>
+                </h2>
+                <p class="section-description">Conheça os talentos por trás da Ekbara Creative</p>
             </div>
 
-            <!-- Properties Panel -->
-            <div class="panel-section">
-                <div class="panel-header">
-                    Propriedades
-                    <span>▼</span>
-                </div>
-                <div class="panel-content">
-                    <div class="property">
-                        <span class="property-label">X:</span>
-                        <input type="text" class="property-value" value="500" id="propX">
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Alex Designer">
                     </div>
-                    <div class="property">
-                        <span class="property-label">Y:</span>
-                        <input type="text" class="property-value" value="350" id="propY">
-                    </div>
-                    <div class="property">
-                        <span class="property-label">Largura:</span>
-                        <input type="text" class="property-value" value="1000" id="propW">
-                    </div>
-                    <div class="property">
-                        <span class="property-label">Altura:</span>
-                        <input type="text" class="property-value" value="700" id="propH">
-                    </div>
-                    <div class="property">
-                        <span class="property-label">Opacidade:</span>
-                        <input type="range" class="property-slider" min="0" max="100" value="100" id="propOpacity">
-                        <span class="property-value" style="width: 50px;">100%</span>
-                    </div>
-                    <div class="property">
-                        <span class="property-label">Rotação:</span>
-                        <input type="text" class="property-value" value="0°" id="propRotation">
+                    <div class="team-info">
+                        <h3 class="team-name">Alex Designer</h3>
+                        <p class="team-role">Designer Gráfico</p>
+                        <p class="team-description">Especialista em identidade visual e branding, com mais de 5 anos criando marcas memoráveis.</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- History Panel -->
-            <div class="panel-section">
-                <div class="panel-header">
-                    Histórico
-                    <span>▼</span>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Marina Video">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Marina Video</h3>
+                        <p class="team-role">Videomaker</p>
+                        <p class="team-description">Diretora criativa especializada em storytelling visual e produção audiovisual inovadora.</p>
+                    </div>
                 </div>
-                <div class="panel-content">
-                    <div class="layer">
-                        <div class="layer-icon">📝</div>
-                        <span class="layer-name">Documento criado</span>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Carlos Social">
                     </div>
-                    <div class="layer">
-                        <div class="layer-icon">🎨</div>
-                        <span class="layer-name">Seção Hero adicionada</span>
+                    <div class="team-info">
+                        <h3 class="team-name">Carlos Social</h3>
+                        <p class="team-role">Social Media</p>
+                        <p class="team-description">Estrategista digital que transforma ideias em conteúdos virais e engajadores.</p>
                     </div>
-                    <div class="layer">
-                        <div class="layer-icon">📋</div>
-                        <span class="layer-name">Grid de serviços criado</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Ana Editor">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Ana Editor</h3>
+                        <p class="team-role">Editora</p>
+                        <p class="team-description">Especialista em pós-produção e finalização, dando vida às ideias mais criativas.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Status Bar -->
-    <div class="status-bar">
-        <span class="status-item">Documento: Ekbara Creative</span>
-        <span class="status-item">Ferramenta: Seleção</span>
-        <span class="status-item">Zoom: 100%</span>
-        <span class="status-item">Posição: 500, 350</span>
-    </div>
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    NOSSOS <span class="text-primary">PROJETOS</span>
+                </h2>
+                <p class="section-description">
+                    Alguns dos trabalhos que nos orgulhamos de ter criado
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=400&width=600" alt="Rebranding TechCorp">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header">
+                            <span class="project-category">Identidade Visual</span>
+                        </div>
+                        <h3 class="project-title">Rebranding TechCorp</h3>
+                        <p class="project-description">Redesign completo da identidade visual de uma startup de tecnologia, incluindo logo, paleta de cores e aplicações.</p>
+                        <div class="project-tags">
+                            <span class="tag">Branding</span>
+                            <span class="tag">Logo Design</span>
+                            <span class="tag">Aplicações</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=400&width=600" alt="Campanha Digital Fashion">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header">
+                            <span class="project-category">Social Media</span>
+                        </div>
+                        <h3 class="project-title">Campanha Digital Fashion</h3>
+                        <p class="project-description">Estratégia completa de social media para marca de moda, resultando em 300% de aumento no engagement.</p>
+                        <div class="project-tags">
+                            <span class="tag">Instagram</span>
+                            <span class="tag">Estratégia</span>
+                            <span class="tag">Conteúdo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=400&width=600" alt="Vídeo Institucional">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header">
+                            <span class="project-category">Audiovisual</span>
+                        </div>
+                        <h3 class="project-title">Vídeo Institucional</h3>
+                        <p class="project-description">Produção de vídeo institucional para empresa de arquitetura, destacando projetos e valores da marca.</p>
+                        <div class="project-tags">
+                            <span class="tag">Motion Graphics</span>
+                            <span class="tag">Direção</span>
+                            <span class="tag">Edição</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=400&width=600" alt="E-commerce Redesign">
+                    </div>
+                    <div class="project-info">
+                        <div class="project-header">
+                            <span class="project-category">Design Digital</span>
+                        </div>
+                        <h3 class="project-title">E-commerce Redesign</h3>
+                        <p class="project-description">Redesign completo de interface para e-commerce, melhorando UX e aumentando conversões em 45%.</p>
+                        <div class="project-tags">
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">E-commerce</span>
+                            <span class="tag">Conversão</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects-cta">
+                <button class="btn btn-outline-primary">Ver Todos os Projetos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <!-- Background elements -->
+        <div class="bg-shapes">
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    VAMOS <span class="text-primary">TRABALHAR JUNTOS</span>
+                </h2>
+                <p class="section-description">
+                    Pronto para transformar suas ideias em realidade? Entre em contato conosco!
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <h3 class="contact-info-title">Entre em Contato</h3>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <p class="contact-label">Email</p>
+                                <p class="contact-value">contato@ekbaracreative.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <p class="contact-label">Telefone</p>
+                                <p class="contact-value">+55 (11) 99999-9999</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <p class="contact-label">Localização</p>
+                                <p class="contact-value">São Paulo, Brasil</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-benefits">
+                        <h4 class="benefits-title">Por que escolher a Ekbara Creative?</h4>
+                        <ul class="benefits-list">
+                            <li>Equipe multidisciplinar especializada</li>
+                            <li>Soluções criativas personalizadas</li>
+                            <li>Resultados comprovados e mensuráveis</li>
+                            <li>Atendimento próximo e dedicado</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h3 class="form-title">Fale Conosco</h3>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" name="name" placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" name="company" placeholder="Nome da sua empresa">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Serviço de Interesse</label>
+                            <select id="service" name="service">
+                                <option value="">Selecione um serviço</option>
+                                <option value="design">Design Gráfico</option>
+                                <option value="video">Produção Audiovisual</option>
+                                <option value="social">Social Media</option>
+                                <option value="edicao">Edição</option>
+                                <option value="completo">Pacote Completo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Conte-nos sobre seu projeto..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22,2 15,22 11,13 2,9 22,2"/>
+                            </svg>
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script>
-        // Global variables
-        let currentTool = 'select';
-        let currentSection = 0;
-        let zoomLevel = 1;
-        let selectedElement = null;
-        let isDrawing = false;
-        let canvasElements = [];
-        let history = [];
-        let historyIndex = -1;
+        // Smooth scrolling for navigation
+document.addEventListener("DOMContentLoaded", () => {
+  // Add scroll indicator functionality
+  const scrollIndicator = document.querySelector(".scroll-indicator")
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener("click", () => {
+      document.querySelector("#services").scrollIntoView({
+        behavior: "smooth",
+      })
+    })
+  }
 
-        // DOM elements
-        const tools = document.querySelectorAll('.tool');
-        const toolButtons = document.querySelectorAll('.tool-button');
-        const sections = document.querySelectorAll('.content-section');
-        const navDots = document.querySelectorAll('.nav-dot');
-        const layers = document.querySelectorAll('.layer');
-        const canvas = document.getElementById('mainCanvas');
-        const canvasContainer = document.querySelector('.canvas-container');
-        const colorSwatches = document.querySelectorAll('.color-swatch');
-        const panelHeaders = document.querySelectorAll('.panel-header');
+  // Add animation on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  }
 
-        // Initialize
-        init();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1"
+        entry.target.style.transform = "translateY(0)"
+      }
+    })
+  }, observerOptions)
 
-        function init() {
-            setupEventListeners();
-            updateStatusBar();
-            addToHistory('Documento criado');
-        }
+  // Observe all cards and sections
+  const animatedElements = document.querySelectorAll(
+    ".service-card, .team-card, .project-card, .contact-info, .contact-form-container",
+  )
+  animatedElements.forEach((el) => {
+    el.style.opacity = "0"
+    el.style.transform = "translateY(30px)"
+    el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+    observer.observe(el)
+  })
 
-        function setupEventListeners() {
-            // Tool selection
-            tools.forEach((tool, index) => {
-                tool.addEventListener('click', () => {
-                    selectTool(tool.dataset.tool || 'select');
-                    if (index < sections.length) {
-                        showSection(index);
-                    }
-                });
-            });
+  // Contact form handling
+  const contactForm = document.getElementById("contactForm")
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault()
 
-            toolButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    selectTool(button.dataset.tool);
-                });
-            });
+      // Get form data
+      const formData = new FormData(contactForm)
+      const data = Object.fromEntries(formData)
 
-            // Navigation
-            navDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => showSection(index));
-            });
+      // Simple validation
+      if (!data.name || !data.email || !data.message) {
+        alert("Por favor, preencha todos os campos obrigatórios.")
+        return
+      }
 
-            layers.forEach((layer, index) => {
-                layer.addEventListener('click', () => showSection(index));
-            });
+      // Simulate form submission
+      const submitButton = contactForm.querySelector('button[type="submit"]')
+      const originalText = submitButton.innerHTML
 
-            // Canvas interactions
-            canvas.addEventListener('mousedown', handleCanvasMouseDown);
-            canvas.addEventListener('mousemove', handleCanvasMouseMove);
-            canvas.addEventListener('mouseup', handleCanvasMouseUp);
+      submitButton.innerHTML = "Enviando..."
+      submitButton.disabled = true
 
-            // Color swatches
-            colorSwatches.forEach(swatch => {
-                swatch.addEventListener('click', () => {
-                    colorSwatches.forEach(s => s.classList.remove('active'));
-                    swatch.classList.add('active');
-                });
-            });
+      setTimeout(() => {
+        alert("Mensagem enviada com sucesso! Entraremos em contato em breve.")
+        contactForm.reset()
+        submitButton.innerHTML = originalText
+        submitButton.disabled = false
+      }, 2000)
+    })
+  }
 
-            // Panel collapsing
-            panelHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.nextElementSibling;
-                    const arrow = header.querySelector('span');
-                    content.classList.toggle('collapsed');
-                    arrow.textContent = content.classList.contains('collapsed') ? '▶' : '▼';
-                });
-            });
+  // Add hover effects to buttons
+  const buttons = document.querySelectorAll(".btn")
+  buttons.forEach((button) => {
+    button.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-2px)"
+    })
 
-            // Zoom controls
-            document.getElementById('zoomIn').addEventListener('click', () => zoom(1.2));
-            document.getElementById('zoomOut').addEventListener('click', () => zoom(0.8));
-            document.getElementById('zoomFit').addEventListener('click', () => zoomFit());
+    button.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0)"
+    })
+  })
 
-            // Property inputs
-            const propInputs = document.querySelectorAll('.property-value, .property-slider');
-            propInputs.forEach(input => {
-                input.addEventListener('input', updateProperties);
-            });
+  // Add click effects to hero buttons
+  const heroButtons = document.querySelectorAll(".hero-buttons .btn")
+  heroButtons.forEach((button, index) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault()
 
-            // Keyboard shortcuts
-            document.addEventListener('keydown', handleKeyboard);
+      if (index === 0) {
+        // "Conheça Nosso Trabalho" button
+        document.querySelector("#projects").scrollIntoView({
+          behavior: "smooth",
+        })
+      } else {
+        // "Fale Conosco" button
+        document.querySelector("#contact").scrollIntoView({
+          behavior: "smooth",
+        })
+      }
+    })
+  })
 
-            // Menu interactions
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const dropdown = item.querySelector('.dropdown');
-                    if (dropdown) {
-                        // Close all other dropdowns
-                        document.querySelectorAll('.dropdown').forEach(d => {
-                            if (d !== dropdown) d.style.display = 'none';
-                        });
-                        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-                    }
-                });
-            });
+  // Add floating animation to shapes
+  const shapes = document.querySelectorAll(".shape")
+  shapes.forEach((shape, index) => {
+    shape.style.animationDelay = `${index * 0.5}s`
+  })
+})
 
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', () => {
-                document.querySelectorAll('.dropdown').forEach(d => d.style.display = 'none');
-            });
+// Add parallax effect to background shapes
+window.addEventListener("scroll", () => {
+  const scrolled = window.pageYOffset
+  const shapes = document.querySelectorAll(".shape")
 
-            // Layer visibility and lock toggles
-            document.querySelectorAll('.layer-visibility').forEach(vis => {
-                vis.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    vis.textContent = vis.textContent === '👁' ? '🚫' : '👁';
-                });
-            });
+  shapes.forEach((shape, index) => {
+    const speed = 0.5 + index * 0.1
+    shape.style.transform += ` translateY(${scrolled * speed}px)`
+  })
+})
 
-            document.querySelectorAll('.layer-lock').forEach(lock => {
-                lock.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    lock.textContent = lock.textContent === '🔓' ? '🔒' : '🔓';
-                });
-            });
-        }
-
-        function selectTool(toolName) {
-            currentTool = toolName;
-            
-            // Update tool buttons
-            tools.forEach(t => t.classList.remove('active'));
-            toolButtons.forEach(t => t.classList.remove('active'));
-            
-            document.querySelector(`[data-tool="${toolName}"]`).classList.add('active');
-            document.querySelector(`.tool-button[data-tool="${toolName}"]`)?.classList.add('active');
-            
-            // Update cursor
-            switch(toolName) {
-                case 'select':
-                    canvas.style.cursor = 'default';
-                    break;
-                case 'text':
-                    canvas.style.cursor = 'text';
-                    break;
-                case 'rectangle':
-                case 'circle':
-                case 'line':
-                    canvas.style.cursor = 'crosshair';
-                    break;
-                case 'brush':
-                    canvas.style.cursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'%3E%3Ccircle cx=\'10\' cy=\'10\' r=\'8\' fill=\'none\' stroke=\'black\' stroke-width=\'2\'/%3E%3C/svg%3E") 10 10, auto';
-                    break;
-                case 'eyedropper':
-                    canvas.style.cursor = 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 20 20\'%3E%3Cpath d=\'M2 18l4-4 12-12-2-2L4 12l-2 6z\' fill=\'black\'/%3E%3C/svg%3E") 2 18, auto';
-                    break;
-                case 'zoom':
-                    canvas.style.cursor = 'zoom-in';
-                    break;
-            }
-            
-            updateStatusBar();
-        }
-
-        function showSection(sectionIndex) {
-            currentSection = sectionIndex;
-            
-            // Update sections
-            sections.forEach(section => section.classList.remove('active'));
-            tools.forEach(tool => tool.classList.remove('active'));
-            navDots.forEach(dot => dot.classList.remove('active'));
-            layers.forEach(layer => layer.classList.remove('active'));
-
-            if (sections[sectionIndex]) {
-                sections[sectionIndex].classList.add('active');
-                tools[sectionIndex]?.classList.add('active');
-                navDots[sectionIndex]?.classList.add('active');
-                layers[sectionIndex]?.classList.add('active');
-            }
-        }
-
-        function handleCanvasMouseDown(e) {
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            switch(currentTool) {
-                case 'text':
-                    createTextElement(x, y);
-                    break;
-                case 'rectangle':
-                    startDrawingShape('rectangle', x, y);
-                    break;
-                case 'circle':
-                    startDrawingShape('circle', x, y);
-                    break;
-                case 'line':
-                    startDrawingShape('line', x, y);
-                    break;
-                case 'brush':
-                    startBrushing(x, y);
-                    break;
-                case 'zoom':
-                    zoom(e.shiftKey ? 0.8 : 1.2);
-                    break;
-            }
-
-            isDrawing = true;
-        }
-
-        function handleCanvasMouseMove(e) {
-            if (!isDrawing) return;
-
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            updateStatusBar(x, y);
-        }
-
-        function handleCanvasMouseUp(e) {
-            isDrawing = false;
-        }
-
-        function createTextElement(x, y) {
-            const textElement = document.createElement('div');
-            textElement.className = 'canvas-element';
-            textElement.style.left = x + 'px';
-            textElement.style.top = y + 'px';
-            textElement.style.color = '#333';
-            textElement.style.fontSize = '16px';
-            textElement.style.fontFamily = 'Inter, sans-serif';
-            textElement.contentEditable = true;
-            textElement.textContent = 'Texto editável';
-            
-            canvas.appendChild(textElement);
-            textElement.focus();
-            
-            addToHistory('Texto adicionado');
-        }
-
-        function startDrawingShape(type, x, y) {
-            const shapeElement = document.createElement('div');
-            shapeElement.className = 'canvas-element';
-            shapeElement.style.left = x + 'px';
-            shapeElement.style.top = y + 'px';
-            shapeElement.style.width = '100px';
-            shapeElement.style.height = '100px';
-            
-            const activeColor = document.querySelector('.color-swatch.active');
-            const color = activeColor ? window.getComputedStyle(activeColor).backgroundColor : '#667eea';
-            
-            switch(type) {
-                case 'rectangle':
-                    shapeElement.style.backgroundColor = color;
-                    shapeElement.style.borderRadius = '4px';
-                    break;
-                case 'circle':
-                    shapeElement.style.backgroundColor = color;
-                    shapeElement.style.borderRadius = '50%';
-                    break;
-                case 'line':
-                    shapeElement.style.height = '2px';
-                    shapeElement.style.backgroundColor = color;
-                    shapeElement.style.width = '150px';
-                    break;
-            }
-            
-            canvas.appendChild(shapeElement);
-            addToHistory(`${type} adicionado`);
-        }
-
-        function zoom(factor) {
-            zoomLevel *= factor;
-            zoomLevel = Math.max(0.1, Math.min(5, zoomLevel));
-            
-            canvasContainer.style.transform = `scale(${zoomLevel})`;
-            document.getElementById('zoomLevel').textContent = Math.round(zoomLevel * 100) + '%';
-            
-            updateStatusBar();
-        }
-
-        function zoomFit() {
-            zoomLevel = 1;
-            canvasContainer.style.transform = 'scale(1)';
-            document.getElementById('zoomLevel').textContent = '100%';
-            updateStatusBar();
-        }
-
-        function updateProperties() {
-            // Update property values in real-time
-            const opacitySlider = document.getElementById('propOpacity');
-            const opacityDisplay = opacitySlider.nextElementSibling;
-            opacityDisplay.textContent = opacitySlider.value + '%';
-        }
-
-        function updateStatusBar(x = 500, y = 350) {
-            const statusItems = document.querySelectorAll('.status-item');
-            if (statusItems.length >= 4) {
-                statusItems[1].textContent = `Ferramenta: ${currentTool.charAt(0).toUpperCase() + currentTool.slice(1)}`;
-                statusItems[2].textContent = `Zoom: ${Math.round(zoomLevel * 100)}%`;
-                statusItems[3].textContent = `Posição: ${Math.round(x)}, ${Math.round(y)}`;
-            }
-        }
-
-        function addToHistory(action) {
-            history.push({
-                action: action,
-                timestamp: new Date().toLocaleTimeString()
-            });
-            historyIndex = history.length - 1;
-            
-            // Update history panel
-            const historyPanel = document.querySelector('.panel-section:last-child .panel-content');
-            const historyItem = document.createElement('div');
-            historyItem.className = 'layer';
-            historyItem.innerHTML = `
-                <div class="layer-icon">📝</div>
-                <span class="layer-name">${action}</span>
-            `;
-            historyPanel.appendChild(historyItem);
-        }
-
-        function handleKeyboard(e) {
-            // Tool shortcuts
-            switch(e.key.toLowerCase()) {
-                case 'v':
-                    selectTool('select');
-                    break;
-                case 't':
-                    selectTool('text');
-                    break;
-                case 'm':
-                    selectTool('rectangle');
-                    break;
-                case 'l':
-                    selectTool('circle');
-                    break;
-                case 'b':
-                    selectTool('brush');
-                    break;
-                case 'i':
-                    selectTool('eyedropper');
-                    break;
-                case 'z':
-                    if (e.ctrlKey || e.metaKey) {
-                        e.preventDefault();
-                        // Undo functionality
-                        console.log('Undo');
-                    } else {
-                        selectTool('zoom');
-                    }
-                    break;
-                case 'y':
-                    if (e.ctrlKey || e.metaKey) {
-                        e.preventDefault();
-                        // Redo functionality
-                        console.log('Redo');
-                    }
-                    break;
-                case 'delete':
-                case 'backspace':
-                    if (selectedElement) {
-                        selectedElement.remove();
-                        selectedElement = null;
-                        addToHistory('Elemento removido');
-                    }
-                    break;
-            }
-
-            // Section navigation
-            if (e.key >= '1' && e.key <= '5') {
-                const sectionIndex = parseInt(e.key) - 1;
-                if (sectionIndex < sections.length) {
-                    showSection(sectionIndex);
-                }
-            }
-
-            // Zoom shortcuts
-            if (e.ctrlKey || e.metaKey) {
-                switch(e.key) {
-                    case '=':
-                    case '+':
-                        e.preventDefault();
-                        zoom(1.2);
-                        break;
-                    case '-':
-                        e.preventDefault();
-                        zoom(0.8);
-                        break;
-                    case '0':
-                        e.preventDefault();
-                        zoomFit();
-                        break;
-                }
-            }
-        }
-
-        // Auto-rotate sections (optional)
-        let autoRotate = true;
-        setInterval(() => {
-            if (autoRotate) {
-                currentSection = (currentSection + 1) % sections.length;
-                showSection(currentSection);
-            }
-        }, 12000);
-
-        // Pause auto-rotate on user interaction
-        document.addEventListener('click', () => {
-            autoRotate = false;
-            setTimeout(() => autoRotate = true, 30000);
-        });
-
-        // Initialize with first section
-        showSection(0);
     </script>
 </body>
 </html>
