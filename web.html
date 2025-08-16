@@ -1,96 +1,620 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ekbara Web - Desenvolvimento de Sites Profissionais</title>
-    <meta name="description" content="A Ekbara Web cria sites modernos, responsivos e otimizados para o seu negócio. Especialistas em desenvolvimento web com foco em performance e conversão.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Custom Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                        },
-                        accent: {
-                            500: '#f59e0b',
-                            600: '#d97706',
-                        }
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'slide-up': 'slideUp 0.6s ease-out',
-                        'float': 'float 6s ease-in-out infinite',
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .glass-effect {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Custom CSS adicional se necessário */
-.scroll-smooth {
-  scroll-behavior: smooth;
+    <title>Ekbara Web - Criação de Sites Profissionais</title>
+</head>
+<style>
+    /* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Animações personalizadas */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #0f1211;
+  color: #e7eceb;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.page-container {
+  min-height: 100vh;
+  position: relative;
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #e7eceb;
+  color: #141a18;
+}
+
+.btn-primary:hover {
+  background-color: rgba(231, 236, 235, 0.9);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #e7eceb;
+  color: #141a18;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(231, 236, 235, 0.9);
+  transform: translateY(-1px);
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 24px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  height: 400px;
+  max-width: 1220px;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    height: 600px;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    height: 810px;
+  }
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Generate grid pattern with JavaScript */
+.grid-pattern rect {
+  stroke: rgba(231, 236, 235, 0.11);
+  stroke-width: 0.4;
+  stroke-dasharray: 2 2;
+  fill: none;
+}
+
+/* Header */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  width: 100%;
+  padding: 16px 24px;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo-text {
+  color: #e7eceb;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .nav-desktop {
+    display: flex;
+  }
+}
+
+.nav-link {
+  color: #888888;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #e7eceb;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-only {
+    display: inline-block;
+  }
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+.hamburger {
+  width: 24px;
+  height: 2px;
+  background-color: #e7eceb;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #0f1211;
+  border-top: 1px solid rgba(231, 236, 235, 0.1);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.mobile-nav-link {
+  color: #888888;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+  color: #e7eceb;
+}
+
+.mobile-cta {
+  margin-top: 16px;
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 500px;
+  margin-top: 64px;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .hero-content {
+    gap: 20px;
+    max-width: 500px;
+    margin-top: 120px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-content {
+    gap: 24px;
+    max-width: 588px;
+    margin-top: 160px;
+  }
+}
+
+.hero-title {
+  color: #e7eceb;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 60px;
+  }
+}
+
+.hero-description {
+  color: rgba(231, 236, 235, 0.7);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  text-align: center;
+  max-width: 500px;
+}
+
+@media (min-width: 1024px) {
+  .hero-description {
+    font-size: 18px;
+  }
+}
+
+.hero-cta {
+  margin-top: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Sections */
+.services-section,
+.portfolio-section,
+.contact-section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #e7eceb;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 48px;
+  }
+}
+
+.section-description {
+  font-size: 18px;
+  color: rgba(231, 236, 235, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(120, 252, 214, 0.3);
+  box-shadow: 0 12px 32px rgba(120, 252, 214, 0.1);
+}
+
+.service-icon {
+  font-size: 48px;
+  margin-bottom: 24px;
+}
+
+.service-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #e7eceb;
+  margin-bottom: 16px;
+}
+
+.service-description {
+  color: rgba(231, 236, 235, 0.7);
+  line-height: 1.6;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.portfolio-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(120, 252, 214, 0.3);
+  box-shadow: 0 12px 32px rgba(120, 252, 214, 0.1);
+}
+
+.portfolio-image {
+  height: 200px;
+  background: linear-gradient(135deg, rgba(120, 252, 214, 0.1), rgba(231, 236, 235, 0.05));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-placeholder {
+  color: rgba(231, 236, 235, 0.6);
+  font-weight: 500;
+}
+
+.portfolio-content {
+  padding: 24px;
+}
+
+.portfolio-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e7eceb;
+  margin-bottom: 8px;
+}
+
+.portfolio-description {
+  color: rgba(231, 236, 235, 0.7);
+}
+
+/* Contact Section */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .contact-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contact-icon {
+  font-size: 24px;
+  margin-top: 4px;
+}
+
+.contact-item h4 {
+  color: #e7eceb;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.contact-item p {
+  color: rgba(231, 236, 235, 0.7);
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  color: #e7eceb;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #78fcd6;
+  box-shadow: 0 0 0 3px rgba(120, 252, 214, 0.1);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(231, 236, 235, 0.5);
+}
+
+.form-submit {
+  align-self: flex-start;
+}
+
+/* Footer */
+.footer {
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 48px 0 24px;
+  margin-top: 80px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-description {
+  color: rgba(231, 236, 235, 0.7);
+  margin-top: 12px;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.footer-column h4 {
+  color: #e7eceb;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+  color: rgba(231, 236, 235, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #78fcd6;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 24px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(231, 236, 235, 0.6);
+}
+
+/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -102,509 +626,480 @@
   }
 }
 
-.fade-in-up {
+.animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* Efeitos de hover personalizados */
-.service-card {
-  transition: all 0.3s ease;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-/* Gradientes personalizados */
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Responsividade adicional */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.5rem;
-    line-height: 1.2;
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .hero-section {
+    margin: 12px;
   }
 
-  .hero-subtitle {
-    font-size: 1.1rem;
+  .services-section,
+  .portfolio-section,
+  .contact-section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .section-description {
+    font-size: 16px;
   }
 }
 
-    </style>
-</head>
-<body class="font-sans bg-white text-gray-900">
-    <!-- Header -->
-    <header class="fixed top-0 w-full z-50 glass-effect">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">E</span>
-                    </div>
-                    <span class="text-xl font-bold text-gray-900">Ekbara Web</span>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#inicio" class="text-gray-700 hover:text-primary-500 transition-colors">Início</a>
-                    <a href="#servicos" class="text-gray-700 hover:text-primary-500 transition-colors">Serviços</a>
-                    <a href="#sobre" class="text-gray-700 hover:text-primary-500 transition-colors">Sobre</a>
-                    <a href="#contato" class="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors">Contato</a>
-                </div>
-                
-                <!-- Mobile menu button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Mobile menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <div class="flex flex-col space-y-4">
-                    <a href="#inicio" class="text-gray-700 hover:text-primary-500 transition-colors">Início</a>
-                    <a href="#servicos" class="text-gray-700 hover:text-primary-500 transition-colors">Serviços</a>
-                    <a href="#sobre" class="text-gray-700 hover:text-primary-500 transition-colors">Sobre</a>
-                    <a href="#contato" class="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors text-center">Contato</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="pt-20 pb-16 gradient-bg text-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center justify-between">
-                <div class="lg:w-1/2 mb-12 lg:mb-0">
-                    <h1 class="text-4xl lg:text-6xl font-bold mb-6 animate-fade-in">
-                        Criamos Sites que 
-                        <span class="text-accent-500">Convertem</span>
-                    </h1>
-                    <p class="text-xl mb-8 text-gray-100 animate-slide-up">
-                        A Ekbara Web desenvolve sites modernos, responsivos e otimizados para impulsionar o seu negócio online com performance e design de alta qualidade.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 animate-slide-up">
-                        <button class="bg-accent-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent-600 transition-colors hover-lift">
-                            Solicitar Orçamento
-                        </button>
-                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-                            Ver Portfólio
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="lg:w-1/2 flex justify-center">
-                    <div class="relative">
-                        <div class="w-80 h-80 bg-white/10 rounded-full animate-float"></div>
-                        <div class="absolute top-10 left-10 w-60 h-60 bg-accent-500/20 rounded-full animate-pulse"></div>
-                        <div class="absolute top-20 left-20 w-40 h-40 bg-white/20 rounded-full"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="servicos" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl lg:text-5xl font-bold mb-6">Nossos Serviços</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Oferecemos soluções completas em desenvolvimento web para empresas que querem se destacar no digital
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-lg hover-lift">
-                    <div class="w-12 h-12 bg-primary-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Sites Responsivos</h3>
-                    <p class="text-gray-600">
-                        Desenvolvemos sites que se adaptam perfeitamente a qualquer dispositivo, garantindo uma experiência única em desktop, tablet e mobile.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-lg hover-lift">
-                    <div class="w-12 h-12 bg-accent-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Performance Otimizada</h3>
-                    <p class="text-gray-600">
-                        Sites rápidos e otimizados para SEO, garantindo melhor posicionamento no Google e experiência superior para seus usuários.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-lg hover-lift">
-                    <div class="w-12 h-12 bg-primary-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">E-commerce</h3>
-                    <p class="text-gray-600">
-                        Lojas virtuais completas com sistema de pagamento integrado, gestão de produtos e painel administrativo intuitivo.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-lg hover-lift">
-                    <div class="w-12 h-12 bg-accent-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Design Personalizado</h3>
-                    <p class="text-gray-600">
-                        Criamos identidades visuais únicas que refletem a personalidade da sua marca e conectam com seu público-alvo.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-lg hover-lift">
-                    <div class="w-12 h-12 bg-primary-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Analytics & SEO</h3>
-                    <p class="text-gray-600">
-                        Implementamos ferramentas de análise e otimização para SEO, ajudando seu site a ser encontrado e gerar mais leads.
-                    </p>
-                </div>
-                
-                <div class="bg-white p-8 rounded-xl shadow-lg hover-lift">
-                    <div class="w-12 h-12 bg-accent-500 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 100 19.5 9.75 9.75 0 000-19.5z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Suporte Contínuo</h3>
-                    <p class="text-gray-600">
-                        Oferecemos manutenção, atualizações e suporte técnico para garantir que seu site esteja sempre funcionando perfeitamente.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="sobre" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="lg:w-1/2">
-                    <h2 class="text-3xl lg:text-5xl font-bold mb-6">Sobre a Ekbara Web</h2>
-                    <p class="text-xl text-gray-600 mb-6">
-                        Somos uma divisão especializada da Ekbara, focada exclusivamente em desenvolvimento web. Nossa missão é transformar ideias em experiências digitais excepcionais.
-                    </p>
-                    <p class="text-gray-600 mb-8">
-                        Com anos de experiência no mercado, combinamos criatividade, tecnologia de ponta e estratégia digital para criar sites que não apenas impressionam visualmente, mas também geram resultados concretos para nossos clientes.
-                    </p>
+</style>
+<body>
+    <div class="page-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <!-- Background Grid SVG -->
+            <div class="hero-background">
+                <svg width="100%" height="100%" viewBox="0 0 1220 810" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                    <g clip-path="url(#clip0)">
+                        <mask id="mask0" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="10" y="-1" width="1200" height="812">
+                            <rect x="10" y="-0.84668" width="1200" height="811.693" fill="url(#paint0_linear)" />
+                        </mask>
+                        <g mask="url(#mask0)">
+                            <!-- Grid Pattern -->
+                            <g class="grid-pattern"></g>
+                            <!-- Highlighted squares -->
+                            <rect x="699.711" y="81" width="36" height="36" fill="rgba(231, 236, 235, 0.08)" />
+                            <rect x="195.711" y="153" width="36" height="36" fill="rgba(231, 236, 235, 0.09)" />
+                            <rect x="1023.71" y="153" width="36" height="36" fill="rgba(231, 236, 235, 0.09)" />
+                            <rect x="123.711" y="225" width="36" height="36" fill="rgba(231, 236, 235, 0.09)" />
+                            <rect x="1095.71" y="225" width="36" height="36" fill="rgba(231, 236, 235, 0.09)" />
+                            <rect x="951.711" y="297" width="36" height="36" fill="rgba(231, 236, 235, 0.09)" />
+                            <rect x="231.711" y="333" width="36" height="36" fill="rgba(231, 236, 235, 0.07)" />
+                            <rect x="303.711" y="405" width="36" height="36" fill="rgba(231, 236, 235, 0.07)" />
+                            <rect x="87.7109" y="405" width="36" height="36" fill="rgba(231, 236, 235, 0.09)" />
+                            <rect x="519.711" y="405" width="36" height="36" fill="rgba(231, 236, 235, 0.08)" />
+                            <rect x="771.711" y="405" width="36" height="36" fill="rgba(231, 236, 235, 0.09)" />
+                            <rect x="591.711" y="477" width="36" height="36" fill="rgba(231, 236, 235, 0.07)" />
+                        </g>
+                        
+                        <!-- Gradient overlays -->
+                        <g filter="url(#filter0_f)">
+                            <path d="M1447.45 -87.0203V-149.03H1770V1248.85H466.158V894.269C1008.11 894.269 1447.45 454.931 1447.45 -87.0203Z" fill="url(#paint1_linear)" />
+                        </g>
+                        <g filter="url(#filter1_f)">
+                            <path d="M1383.45 -151.02V-213.03H1706V1184.85H402.158V830.269C944.109 830.269 1383.45 390.931 1383.45 -151.02Z" fill="url(#paint2_linear)" fill-opacity="0.69" />
+                        </g>
+                        <g style="mix-blend-mode: lighten" filter="url(#filter2_f)">
+                            <path d="M1567.45 -231.02V-293.03H1890V1104.85H586.158V750.269C1128.11 750.269 1567.45 310.931 1567.45 -231.02Z" fill="url(#paint3_linear)" />
+                        </g>
+                        <g style="mix-blend-mode: overlay" filter="url(#filter3_f)">
+                            <path d="M65.625 750.269H284.007C860.205 750.269 1327.31 283.168 1327.31 -293.03H1650V1104.85H65.625V750.269Z" fill="url(#paint4_radial)" fill-opacity="0.64" />
+                        </g>
+                    </g>
+                    <rect x="0.5" y="0.5" width="1219" height="809" rx="15.5" stroke="rgba(231, 236, 235, 0.06)" />
                     
-                    <div class="grid grid-cols-2 gap-8">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-primary-500 mb-2">50+</div>
-                            <div class="text-gray-600">Projetos Entregues</div>
+                    <defs>
+                        <filter id="filter0_f" x="147.369" y="-467.818" width="1941.42" height="2035.46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                            <feGaussianBlur stdDeviation="159.394" result="effect1_foregroundBlur" />
+                        </filter>
+                        <filter id="filter1_f" x="-554.207" y="-1169.39" width="3216.57" height="3310.61" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                            <feGaussianBlur stdDeviation="478.182" result="effect1_foregroundBlur" />
+                        </filter>
+                        <filter id="filter2_f" x="426.762" y="-452.424" width="1622.63" height="1716.67" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                            <feGaussianBlur stdDeviation="79.6969" result="effect1_foregroundBlur" />
+                        </filter>
+                        <filter id="filter3_f" x="-253.163" y="-611.818" width="2221.95" height="2035.46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                            <feGaussianBlur stdDeviation="159.394" result="effect1_foregroundBlur" />
+                        </filter>
+                        <linearGradient id="paint0_linear" x1="35.0676" y1="23.6807" x2="903.8" y2="632.086" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="rgba(231, 236, 235, 0)" />
+                            <stop offset="1" stop-color="rgba(231, 236, 235, 0.7)" />
+                        </linearGradient>
+                        <linearGradient id="paint1_linear" x1="1118.08" y1="-149.03" x2="1118.08" y2="1248.85" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#e7eceb" />
+                            <stop offset="0.578125" stop-color="#a0f0d6" />
+                            <stop offset="1" stop-color="#78fcd6" />
+                        </linearGradient>
+                        <linearGradient id="paint2_linear" x1="1054.08" y1="-213.03" x2="1054.08" y2="1184.85" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#e7eceb" />
+                            <stop offset="0.578125" stop-color="#a0f0d6" />
+                            <stop offset="1" stop-color="#78fcd6" />
+                        </linearGradient>
+                        <linearGradient id="paint3_linear" x1="1238.08" y1="-293.03" x2="1238.08" y2="1104.85" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#e7eceb" />
+                            <stop offset="0.578125" stop-color="#a0f0d6" />
+                            <stop offset="1" stop-color="#78fcd6" />
+                        </linearGradient>
+                        <radialGradient id="paint4_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(989.13 557.24) rotate(47.9516) scale(466.313 471.424)">
+                            <stop stop-color="#e7eceb" />
+                            <stop offset="0.157789" stop-color="#a0f0d6" />
+                            <stop offset="1" stop-color="#78fcd6" />
+                        </radialGradient>
+                        <clipPath id="clip0">
+                            <rect width="1220" height="810" rx="16" fill="#e7eceb" />
+                        </clipPath>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- Header -->
+            <header class="header">
+                <div class="header-container">
+                    <div class="header-left">
+                        <div class="logo">
+                            <span class="logo-text">Ekbara Web</span>
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-accent-500 mb-2">98%</div>
-                            <div class="text-gray-600">Satisfação dos Clientes</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-primary-500 mb-2">24/7</div>
-                            <div class="text-gray-600">Suporte Disponível</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-accent-500 mb-2">5+</div>
-                            <div class="text-gray-600">Anos de Experiência</div>
-                        </div>
+                        <nav class="nav-desktop">
+                            <a href="#servicos" class="nav-link">Serviços</a>
+                            <a href="#portfolio" class="nav-link">Portfólio</a>
+                            <a href="#contato" class="nav-link">Contato</a>
+                        </nav>
+                    </div>
+                    <div class="header-right">
+                        <a href="#contato" class="btn btn-secondary desktop-only">Solicitar Orçamento</a>
+                        <button class="mobile-menu-btn" id="mobileMenuBtn">
+                            <span class="hamburger"></span>
+                            <span class="hamburger"></span>
+                            <span class="hamburger"></span>
+                        </button>
                     </div>
                 </div>
                 
-                <div class="lg:w-1/2">
-                    <div class="relative">
-                        <div class="w-full h-96 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl"></div>
-                        <div class="absolute inset-4 bg-white rounded-xl shadow-2xl flex items-center justify-center">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-primary-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <span class="text-white font-bold text-2xl">E</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-900">Ekbara Web</h3>
-                                <p class="text-gray-600">Desenvolvimento Web Profissional</p>
+                <!-- Mobile Menu -->
+                <div class="mobile-menu" id="mobileMenu">
+                    <nav class="mobile-nav">
+                        <a href="#servicos" class="mobile-nav-link">Serviços</a>
+                        <a href="#portfolio" class="mobile-nav-link">Portfólio</a>
+                        <a href="#contato" class="mobile-nav-link">Contato</a>
+                        <a href="#contato" class="btn btn-secondary mobile-cta">Solicitar Orçamento</a>
+                    </nav>
+                </div>
+            </header>
+
+            <!-- Hero Content -->
+            <div class="hero-content">
+                <h1 class="hero-title">Criamos Sites que Convertem e Impressionam</h1>
+                <p class="hero-description">
+                    Desenvolvemos sites profissionais, responsivos e otimizados para SEO que fazem sua empresa se destacar no digital.
+                </p>
+                <a href="#contato" class="btn btn-primary hero-cta">Começar Meu Projeto</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicos" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Nossos Serviços</h2>
+                    <p class="section-description">Soluções completas para sua presença digital</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3 class="service-title">Sites Institucionais</h3>
+                        <p class="service-description">Sites elegantes e profissionais que transmitem credibilidade para sua empresa.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🛒</div>
+                        <h3 class="service-title">E-commerce</h3>
+                        <p class="service-description">Lojas virtuais completas com sistema de pagamento e gestão de produtos.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3 class="service-title">Design Responsivo</h3>
+                        <p class="service-description">Sites que funcionam perfeitamente em todos os dispositivos e tamanhos de tela.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🚀</div>
+                        <h3 class="service-title">Otimização SEO</h3>
+                        <p class="service-description">Seu site otimizado para aparecer no topo dos resultados do Google.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Nosso Portfólio</h2>
+                    <p class="section-description">Alguns dos projetos que desenvolvemos com sucesso</p>
+                </div>
+                
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">Site Corporativo</div>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-title">Empresa de Consultoria</h3>
+                            <p class="portfolio-description">Site institucional moderno com foco em conversão</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">E-commerce</div>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-title">Loja de Roupas</h3>
+                            <p class="portfolio-description">E-commerce completo com integração de pagamentos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">Landing Page</div>
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-title">Startup de Tecnologia</h3>
+                            <p class="portfolio-description">Landing page otimizada para captação de leads</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contato" class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Vamos Conversar?</h2>
+                    <p class="section-description">Entre em contato e vamos criar algo incrível juntos</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>contato@ekbaraweb.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <p>(11) 99999-9999</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div>
+                                <h4>Horário</h4>
+                                <p>Seg - Sex: 9h às 18h</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section id="contato" class="py-20 gradient-bg text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl lg:text-5xl font-bold mb-6">
-                Pronto para Transformar sua Presença Digital?
-            </h2>
-            <p class="text-xl mb-8 text-gray-100 max-w-3xl mx-auto">
-                Entre em contato conosco hoje mesmo e descubra como podemos ajudar seu negócio a crescer online com um site profissional e otimizado.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <button class="bg-accent-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-accent-600 transition-colors hover-lift">
-                    Solicitar Orçamento Gratuito
-                </button>
-                <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-                    Agendar Reunião
-                </button>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-8 text-gray-100">
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                    </svg>
-                    <span>contato@ekbaraweb.com</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                    </svg>
-                    <span>(11) 99999-9999</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-sm">E</span>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Seu nome" required>
                         </div>
-                        <span class="text-xl font-bold">Ekbara Web</span>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Seu email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="Seu telefone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Conte-nos sobre seu projeto" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary form-submit">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <span class="logo-text">Ekbara Web</span>
+                        <p class="footer-description">Criando experiências digitais que fazem a diferença.</p>
                     </div>
-                    <p class="text-gray-400">
-                        Transformando ideias em experiências digitais excepcionais.
-                    </p>
+                    
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Serviços</h4>
+                            <ul>
+                                <li><a href="#servicos">Sites Institucionais</a></li>
+                                <li><a href="#servicos">E-commerce</a></li>
+                                <li><a href="#servicos">SEO</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4>Empresa</h4>
+                            <ul>
+                                <li><a href="#portfolio">Portfólio</a></li>
+                                <li><a href="#contato">Contato</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 
-                <div>
-                    <h4 class="font-semibold mb-4">Serviços</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Sites Responsivos</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">E-commerce</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">SEO & Analytics</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Suporte Técnico</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">Empresa</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">Sobre Nós</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Portfólio</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contato</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-semibold mb-4">Contato</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>contato@ekbaraweb.com</li>
-                        <li>(11) 99999-9999</li>
-                        <li>São Paulo, SP</li>
-                    </ul>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Ekbara Web. Todos os direitos reservados.</p>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 Ekbara Web. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
-// Mobile menu toggle
+        // Mobile menu functionality
 document.addEventListener("DOMContentLoaded", () => {
-  const mobileMenuBtn = document.getElementById("mobile-menu-btn")
-  const mobileMenu = document.getElementById("mobile-menu")
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn")
+  const mobileMenu = document.getElementById("mobileMenu")
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link")
 
+  // Toggle mobile menu
   mobileMenuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden")
+    mobileMenu.classList.toggle("active")
+
+    // Animate hamburger menu
+    const hamburgers = mobileMenuBtn.querySelectorAll(".hamburger")
+    if (mobileMenu.classList.contains("active")) {
+      hamburgers[0].style.transform = "rotate(45deg) translate(5px, 5px)"
+      hamburgers[1].style.opacity = "0"
+      hamburgers[2].style.transform = "rotate(-45deg) translate(7px, -6px)"
+    } else {
+      hamburgers[0].style.transform = "none"
+      hamburgers[1].style.opacity = "1"
+      hamburgers[2].style.transform = "none"
+    }
   })
 
   // Close mobile menu when clicking on links
-  const mobileLinks = mobileMenu.querySelectorAll("a")
-  mobileLinks.forEach((link) => {
+  mobileNavLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      mobileMenu.classList.add("hidden")
+      mobileMenu.classList.remove("active")
+      const hamburgers = mobileMenuBtn.querySelectorAll(".hamburger")
+      hamburgers[0].style.transform = "none"
+      hamburgers[1].style.opacity = "1"
+      hamburgers[2].style.transform = "none"
     })
   })
-})
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-    const target = document.querySelector(this.getAttribute("href"))
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
+  // Smooth scrolling for anchor links
+  const allLinks = document.querySelectorAll('a[href^="#"]')
+  allLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault()
+      const targetId = this.getAttribute("href").substring(1)
+      const targetElement = document.getElementById(targetId)
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    })
   })
+
+  // Generate grid pattern for hero background
+  generateGridPattern()
+
+  // Contact form handling
+  const contactForm = document.getElementById("contactForm")
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    // Get form data
+    const formData = new FormData(contactForm)
+    const name = formData.get("name")
+    const email = formData.get("email")
+    const phone = formData.get("phone")
+    const message = formData.get("message")
+
+    // Simple validation
+    if (!name || !email || !message) {
+      alert("Por favor, preencha todos os campos obrigatórios.")
+      return
+    }
+
+    // Simulate form submission
+    alert("Mensagem enviada com sucesso! Entraremos em contato em breve.")
+    contactForm.reset()
+  })
+
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate-fade-in-up")
+      }
+    })
+  }, observerOptions)
+
+  // Observe elements for animation
+  const animateElements = document.querySelectorAll(".service-card, .portfolio-item, .contact-item")
+  animateElements.forEach((el) => observer.observe(el))
 })
 
-// Scroll animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
+// Generate grid pattern for hero background
+function generateGridPattern() {
+  const gridPattern = document.querySelector(".grid-pattern")
+  if (!gridPattern) return
+
+  // Create grid rectangles
+  for (let i = 0; i < 35; i++) {
+    for (let j = 0; j < 22; j++) {
+      const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect")
+      rect.setAttribute("x", -20.0891 + i * 36)
+      rect.setAttribute("y", 9.2 + j * 36)
+      rect.setAttribute("width", "35.6")
+      rect.setAttribute("height", "35.6")
+      rect.setAttribute("stroke", "rgba(231, 236, 235, 0.11)")
+      rect.setAttribute("stroke-width", "0.4")
+      rect.setAttribute("stroke-dasharray", "2 2")
+      rect.setAttribute("fill", "none")
+      gridPattern.appendChild(rect)
+    }
+  }
 }
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("animate-fade-in")
-    }
-  })
-}, observerOptions)
-
-// Observe all sections for scroll animations
-document.querySelectorAll("section").forEach((section) => {
-  observer.observe(section)
-})
-
-// Header background on scroll
+// Add scroll effect to header
 window.addEventListener("scroll", () => {
-  const header = document.querySelector("header")
-  if (window.scrollY > 100) {
-    header.classList.add("bg-white/90")
-    header.classList.remove("glass-effect")
+  const header = document.querySelector(".header")
+  if (window.scrollY > 50) {
+    header.style.backgroundColor = "rgba(15, 18, 17, 0.95)"
+    header.style.backdropFilter = "blur(10px)"
   } else {
-    header.classList.remove("bg-white/90")
-    header.classList.add("glass-effect")
+    header.style.backgroundColor = "transparent"
+    header.style.backdropFilter = "none"
   }
 })
-
-// Form handling (exemplo para futuros formulários)
-function handleContactForm(event) {
-  event.preventDefault()
-
-  // Aqui você pode adicionar lógica para enviar o formulário
-  alert("Obrigado pelo contato! Entraremos em contato em breve.")
-}
-
-// Counter animation for statistics
-function animateCounters() {
-  const counters = document.querySelectorAll("[data-counter]")
-
-  counters.forEach((counter) => {
-    const target = Number.parseInt(counter.getAttribute("data-counter"))
-    const duration = 2000 // 2 seconds
-    const step = target / (duration / 16) // 60fps
-    let current = 0
-
-    const timer = setInterval(() => {
-      current += step
-      if (current >= target) {
-        current = target
-        clearInterval(timer)
-      }
-      counter.textContent = Math.floor(current)
-    }, 16)
-  })
-}
-
-// Trigger counter animation when stats section is visible
-const statsSection = document.querySelector("#sobre")
-if (statsSection) {
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounters()
-          statsObserver.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  statsObserver.observe(statsSection)
-}
-
-// Parallax effect for hero section
-window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset
-  const parallaxElements = document.querySelectorAll(".animate-float")
-
-  parallaxElements.forEach((element) => {
-    const speed = 0.5
-    element.style.transform = `translateY(${scrolled * speed}px)`
-  })
-})
-
-// Button click effects
-document.querySelectorAll("button").forEach((button) => {
-  button.addEventListener("click", function (e) {
-    // Create ripple effect
-    const ripple = document.createElement("span")
-    const rect = this.getBoundingClientRect()
-    const size = Math.max(rect.width, rect.height)
-    const x = e.clientX - rect.left - size / 2
-    const y = e.clientY - rect.top - size / 2
-
-    ripple.style.width = ripple.style.height = size + "px"
-    ripple.style.left = x + "px"
-    ripple.style.top = y + "px"
-    ripple.classList.add("ripple")
-
-    this.appendChild(ripple)
-
-    setTimeout(() => {
-      ripple.remove()
-    }, 600)
-  })
-})
-
-// Add ripple CSS
-const style = document.createElement("style")
-style.textContent = `
-    button {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-        pointer-events: none;
-    }
-    
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-`
-document.head.appendChild(style)
 
     </script>
 </body>
