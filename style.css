@@ -158,56 +158,87 @@
     }
 
     .ekbara-areas {
-  padding: 4rem 2rem;
-  background: #f5f5f5;
-  text-align: center;
+  background: #111;
+  padding: 60px 40px;
+  color: white;
   font-family: 'Poppins', sans-serif;
 }
 
-.ekbara-areas h2 {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
+.areas-title {
+  text-transform: uppercase;
+  font-size: 28px;
   font-weight: 700;
-  color: #222;
+  margin-bottom: 40px;
+  color: #fff;
+  letter-spacing: 1px;
 }
 
 .areas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }
 
 .area-card {
-  padding: 2rem;
-  border-radius: 1rem;
-  color: #fff;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  display: block; /* garante que o link ocupe todo o card */
-  text-decoration: none; /* remove o sublinhado do link */
+  background: #1a1a1a;
+  padding: 30px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  position: relative;
 }
-
-.area-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.15);
-}
-
-/* Cores diferentes para cada área */
-.creative { background: linear-gradient(135deg, #ff3b3b, #dd4c2b); }
-.atelier  { background: linear-gradient(135deg, #ff7b00, #ef8624, #f09131); }
-.web      { background: linear-gradient(135deg, #0f2027, #18323a, #233c43); }     
-.sounds   { background: linear-gradient(135deg, #0a8934, #26a34c); }
-.forma    { background: linear-gradient(135deg, #544579, #8b699b); }
 
 .area-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 15px;
 }
 
 .area-card p {
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.5;
+  color: #aaa;
+}
+
+.area-card .arrow {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: #d1ff00;
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.area-card:hover {
+  background: #222;
+  transform: translateY(-5px);
+}
+
+.area-card:hover .arrow {
+  transform: rotate(45deg);
+}
+
+/* Card em destaque (como o azul da imagem) */
+.area-card.destaque {
+  background: #0056ff;
+}
+
+.area-card.destaque h3,
+.area-card.destaque p {
+  color: #fff;
 }
 
 
@@ -216,7 +247,7 @@
   padding: 60px 30px;
   background-color: #f9fafb;
   overflow: hidden;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Container com os dois lados */
