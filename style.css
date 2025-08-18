@@ -158,40 +158,46 @@
     }
 
     /*áreas da ekbara*/
-    .services {
-  padding: 40px;
+    /* ===== Ekbara – Services (nomes únicos) ===== */
+.ekb-services {
+  padding: 40px 20px;
   background: #111;
   color: #fff;
 }
 
-.services h2 {
+.ekb-services__title {
   font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-weight: 800;
+  margin: 0 auto 20px;
+  max-width: 1200px;
   text-transform: uppercase;
 }
 
-.services-grid {
+.ekb-services__grid {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas lado a lado */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
-.service-card {
+.ekb-services__card {
   background: #222;
+  border-radius: 12px;
   padding: 20px;
-  border-radius: 10px;
-  transition: 0.3s;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
 }
 
-.service-card:hover {
-  background: #333;
+.ekb-services__card:hover {
+  background: #2b2b2b;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0,0,0,.28);
 }
 
-.service-card.highlighted {
-  background: royalblue; /* destaque igual da referência */
+.ekb-services__card--accent {
+  background: #184cff; /* azul de destaque */
 }
-
 
 
 /*carrocel equipe*/
