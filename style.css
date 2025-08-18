@@ -157,10 +157,11 @@
       color: #333;
     }
 
+    /*áreas da ekbara*/
     .ekbara-areas {
-  background: #111;
+  background: #0e0e0e;
   padding: 60px 40px;
-  color: white;
+  color: #fff;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -169,7 +170,6 @@
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 40px;
-  color: #fff;
   letter-spacing: 1px;
 }
 
@@ -180,68 +180,72 @@
 }
 
 .area-card {
-  background: #1a1a1a;
-  padding: 30px 25px;
-  border-radius: 8px;
+  background: #151515;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 28px 24px 72px; /* espaço pro ícone */
+  border-radius: 10px;
   text-decoration: none;
-  color: #ccc;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.3s ease;
+  color: #cfcfcf;
+  display: block;
   position: relative;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.35);
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+  min-height: 240px;
 }
 
-.area-card h3 {
+.area-card:hover {
+  background: #1b1b1b;
+  transform: translateY(-6px);
+  box-shadow: 0 16px 46px rgba(0,0,0,0.45);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.area-card .area-content h3 {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
-  margin-bottom: 15px;
+  margin: 0 0 12px;
+  text-transform: uppercase;
 }
 
-.area-card p {
+.area-card .area-content p {
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: #aaa;
+  margin: 0;
 }
 
 .area-card .arrow {
   position: absolute;
-  bottom: 20px;
   right: 20px;
-  background: #d1ff00;
-  color: #000;
-  font-size: 18px;
-  font-weight: bold;
-  width: 40px;
-  height: 40px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-}
-
-.area-card:hover {
-  background: #222;
-  transform: translateY(-5px);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  border: 2px solid #d1ff00;     /* círculo neon contornado */
+  color: #d1ff00;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .area-card:hover .arrow {
-  transform: rotate(45deg);
+  transform: rotate(45deg) scale(1.05);
+  box-shadow: 0 0 18px rgba(209,255,0,0.55);
 }
 
-/* Card em destaque (como o azul da imagem) */
+/* Card em destaque (azul) */
 .area-card.destaque {
-  background: #0056ff;
+  background: #0b49ff;
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: 0 18px 52px rgba(11,73,255,0.35);
 }
+.area-card.destaque .area-content p,
+.area-card.destaque .area-content h3 { color:#fff; }
 
-.area-card.destaque h3,
-.area-card.destaque p {
-  color: #fff;
-}
-
-
+/*carrocel equipe*/
 .testimonials-section {
   max-width: 100%;
   padding: 60px 30px;
