@@ -158,92 +158,87 @@
     }
 
     /*áreas da ekbara*/
-    .ekbara-areas {
-  background: #0e0e0e;
-  padding: 60px 40px;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-}
-
-.areas-title {
-  text-transform: uppercase;
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 40px;
-  letter-spacing: 1px;
-}
-
-.areas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
-
-.area-card {
-  background: #151515;
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 28px 24px 72px; /* espaço pro ícone */
-  border-radius: 10px;
-  text-decoration: none;
-  color: #cfcfcf;
-  display: block;
+    .gallery-section {
+  padding: 60px 20px;
   position: relative;
-  box-shadow: 0 6px 22px rgba(0,0,0,0.35);
-  transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
-  min-height: 240px;
+  background: #f9f9f9;
 }
 
-.area-card:hover {
-  background: #1b1b1b;
-  transform: translateY(-6px);
-  box-shadow: 0 16px 46px rgba(0,0,0,0.45);
-  border-color: rgba(255,255,255,0.12);
+.gallery-header {
+  margin-bottom: 40px;
+  position: relative;
 }
 
-.area-card .area-content h3 {
-  font-size: 20px;
-  font-weight: 800;
-  color: #fff;
-  margin: 0 0 12px;
-  text-transform: uppercase;
-}
-
-.area-card .area-content p {
+.gallery-header .section-label {
+  position: absolute;
+  top: -20px;
+  left: 0;
   font-size: 14px;
-  line-height: 1.55;
-  color: #aaa;
-  margin: 0;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #555;
 }
 
-.area-card .arrow {
+.gallery-header h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.gallery-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.gallery-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-card .card-content {
+  padding: 20px;
+  position: relative;
+}
+
+.gallery-card .card-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.gallery-card .card-content p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.gallery-card .card-content .arrow {
   position: absolute;
   right: 20px;
   bottom: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 18px;
-  font-weight: 700;
-  border: 2px solid #d1ff00;     /* círculo neon contornado */
-  color: #d1ff00;
-  transition: transform .25s ease, box-shadow .25s ease;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
 }
 
-.area-card:hover .arrow {
-  transform: rotate(45deg) scale(1.05);
-  box-shadow: 0 0 18px rgba(209,255,0,0.55);
+/* Cards invertidos */
+.gallery-card.invert {
+  flex-direction: column-reverse;
 }
 
-/* Card em destaque (azul) */
-.area-card.destaque {
-  background: #0b49ff;
-  border-color: rgba(255,255,255,0.18);
-  box-shadow: 0 18px 52px rgba(11,73,255,0.35);
+.gallery-card.invert .card-content .arrow {
+  top: 20px;
+  bottom: auto;
 }
-.area-card.destaque .area-content p,
-.area-card.destaque .area-content h3 { color:#fff; }
+
 
 /*carrocel equipe*/
 .testimonials-section {
