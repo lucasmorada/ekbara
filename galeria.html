@@ -5,10 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Galeria Ekbara</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
   body {
-    background: #f8f2eb;
-    font-family: sans-serif;
+    background: #30302f;
+    font-family: 'Poppins', sans-serif;
     padding: 20px;
+    color: white;
+  }
+
+  /* Título no canto esquerdo */
+  .titulo {
+    font-size: 48px;
+    font-weight: 700;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
   }
 
   .galeria {
@@ -16,6 +29,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 200px;
     gap: 15px;
+    margin-top: 100px; /* desce a galeria pra não sobrepor o título */
   }
 
   .item {
@@ -44,15 +58,34 @@
   .quadrado {
     grid-row: span 1;
   }
+
+  /* Logo embaixo da arte 4 */
+  .logo-ekbara {
+    position: absolute;
+    bottom: -60px; /* joga para baixo da imagem */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+  }
+
+  /* Ajuste para a arte 4 */
+  .arte4 {
+    position: relative;
+  }
 </style>
 </head>
 <body>
+
+<h1 class="titulo">Ekbara's Gallery</h1>
 
 <div class="galeria">
   <div class="item quadrado"><img src="eu.jpeg" alt="Arte 1"></div>
   <div class="item horizontal"><img src="eu.jpeg" alt="Arte 2"></div>
   <div class="item grande"><img src="eu.jpeg" alt="Arte 3"></div>
-  <div class="item quadrado"><img src="eu.jpeg" alt="Arte 4"></div>
+  <div class="item quadrado arte4">
+    <img src="eu.jpeg" alt="Arte 4">
+    <img class="logo-ekbara" src="logo.png" alt="Logo Ekbara">
+  </div>
   <div class="item horizontal"><img src="eu.jpeg" alt="Arte 5"></div>
   <div class="item quadrado"><img src="eu.jpeg" alt="Arte 6"></div>
 </div>
