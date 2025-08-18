@@ -158,47 +158,96 @@
     }
 
     /*áreas da ekbara*/
-    /* ===== Ekbara – Services (nomes únicos) ===== */
-.ekb-services {
-  padding: 40px 20px;
-  background: #111;
-  color: #fff;
-}
+   .service-section1 {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
 
-.ekb-services__title {
-  font-size: 28px;
-  font-weight: 800;
-  margin: 0 auto 20px;
-  max-width: 1200px;
-  text-transform: uppercase;
-}
+    .service-header1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
 
-.ekb-services__grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
+    .service-header h2 {
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
 
-.ekb-services__card {
-  background: #222;
-  border-radius: 12px;
-  padding: 20px;
-  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,.2);
-}
+    .all-services-btn {
+      background: transparent;
+      border: 1px solid #888;
+      padding: 8px 16px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
 
-.ekb-services__card:hover {
-  background: #2b2b2b;
-  transform: translateY(-4px);
-  box-shadow: 0 14px 28px rgba(0,0,0,.28);
-}
+    .service-grid1 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
 
-.ekb-services__card--accent {
-  background: #184cff; /* azul de destaque */
-}
+    .service-card1 {
+      background: #1c1c1c;
+      border: 1px solid #333;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      transition: 0.3s;
+      position: relative;
+    }
 
+    .service-card1 img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border: 1px solid #333;
+    }
+
+    .service-card1 h3 {
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .service-card1 p {
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    .service-card1 .arrow-btn {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      background: #c1ff00;
+      color: #000;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .service-card1 .arrow-btn:hover {
+      transform: rotate(45deg);
+    }
+
+    /* Card azul do meio */
+    .highlight-card1 {
+      background: #0044ff;
+    }
 
 /*carrocel equipe*/
 .testimonials-section {
