@@ -164,8 +164,10 @@
 
 .services-title {
   font-size: 3rem; /* título maior */
-  margin-bottom: 100px; /* distância da borda */
+  margin-bottom: 100px;
+  margin-left: 70px;
   color: #242424;
+  font-weight: 600;
 }
 
 /* Centralizar cards */
