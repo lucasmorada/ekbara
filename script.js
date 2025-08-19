@@ -20,6 +20,19 @@ function updateActiveArea(entries) {
   });
 }
 
+// JS para animação ao scroll da seção "Quem Somos"
+const fadeInObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.fade-in').forEach(el => fadeInObserver.observe(el));
+
+
+
 // === HEADER AO SCROLL ===
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {

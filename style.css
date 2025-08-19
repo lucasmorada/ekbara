@@ -139,6 +139,76 @@
       color: #ffffff;
     }
 
+    /*QUEM SOMOS*/
+    /* QUEM SOMOS */
+.quem-somos {
+  padding: 100px 20px;
+  background: linear-gradient(120deg, #0d0d0d, #1a1a1a);
+  color: #fff;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.quem-somos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  align-items: center;
+  justify-content: center;
+}
+
+.quem-somos-text {
+  flex: 1 1 400px;
+  max-width: 600px;
+}
+
+.quem-somos-text p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+/* Efeito fade-in sequencial */
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in.delay-1 {
+  transition-delay: 0.3s;
+}
+
+.fade-in.delay-2 {
+  transition-delay: 0.6s;
+}
+
+.quem-somos-image {
+  flex: 1 1 400px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.quem-somos-image img {
+  width: 100%;
+  border-radius: 20px;
+  transform: scale(0.95);
+  transition: transform 0.5s ease;
+}
+
+.quem-somos-image img:hover {
+  transform: scale(1);
+}
+
+
     /* PRÓXIMA SEÇÃO */
     .section-content {
       background: white;
