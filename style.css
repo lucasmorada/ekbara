@@ -205,71 +205,45 @@
 
 /* Header só com o título */
 .services-card-header {
-  padding: 16px 24px 8px;
+  padding: 16px 24px 16px;
   font-size: 1.4rem;
   font-weight: 700;
   color: #fff;
-}
-
-/* Texto com seta */
-.services-card-text {
-  padding: 0 24px 24px;
-  font-size: 1rem;
-  line-height: 1.5;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* título à esquerda, seta à direita */
   align-items: center;
-  color: #cccccc;
-  flex-grow: 0; /* não estica */
 }
 
-/* Cards azuis: texto branco e não estica */
-.services-card-blue .services-card-text {
-  color: #ffffff;
-}
-
-/* Imagens */
-.services-card-image {
-  width: 100%;
-  height: 220px; /* ajustável, não exagerar */
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.services-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.85);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.services-card:hover .services-card-image img,
-.services-card-blue:hover .services-card-image img {
-  filter: brightness(1);
-  transform: scale(1.05);
-}
-
-/* Seta: maior, grossa e inicial nordeste */
+/* Seta e bola: mais grossa, maior */
 .services-card-arrow-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  color: #555555;
   font-weight: bold;
-  font-size: 1.6rem;
-  transform: rotate(45deg); /* nordeste */
+  font-size: 1.8rem;
   transition: transform 0.3s ease;
+  transform: rotate(45deg); /* nordeste */
 }
 
 /* Hover: todos os cards giram a seta */
 .services-card:hover .services-card-arrow-circle,
 .services-card-blue:hover .services-card-arrow-circle {
   transform: rotate(135deg); /* sudeste */
+}
+
+/* Cor da seta para os cards escuros */
+.services-card:not(.services-card-blue) .services-card-arrow-circle {
+  background-color: #7FFF00; /* verde padrão */
+  color: #555555;
+}
+
+/* Cor da seta para os cards azuis */
+.services-card-blue .services-card-arrow-circle {
+  background-color: #ffffff;
+  color: #555555;
 }
 
 @media (max-width: 1200px) {
