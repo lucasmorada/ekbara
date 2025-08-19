@@ -774,83 +774,50 @@
 }
 
 /*footer*/
-.ekbara-footer-clouds {
-  position: relative;
-  height: 500px;
-  background: linear-gradient(to top, #e0f0ff, #ffffff);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+.ekbara-footer {
+  background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+  padding: 80px 20px;
   text-align: center;
+  position: relative;
+  color: #fff;
+  overflow: hidden;
 }
 
-/* Texto central */
-.ekbara-footer-text {
+.footer-title {
   font-size: 5rem;
   font-weight: 900;
-  color: #555;
-  z-index: 2;
-  position: relative;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
 }
 
-/* Camadas de nuvens */
-.cloud-layer {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.cloud-layer.back .cloud {
-  position: absolute;
-  width: 300px;
-  opacity: 0.5;
-  animation: floatBack 90s linear infinite;
-}
-
-.cloud-layer.front .cloud {
-  position: absolute;
-  width: 300px;
-  opacity: 0.8;
-  animation: floatFront 60s linear infinite;
-}
-
-/* Posicionamento individual das nuvens */
-.cloud1 { top: 50px; left: -350px; }
-.cloud2 { top: 150px; left: -250px; }
-.cloud3 { top: 200px; left: -300px; }
-.cloud4 { top: 80px; left: -200px; }
-.cloud5 { top: 180px; left: -150px; }
-
-/* Animações de movimento */
-@keyframes floatBack {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(150vw); }
-}
-
-@keyframes floatFront {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(120vw); }
-}
-
-/* Ícones */
-.ekbara-footer-icons {
-  margin-top: 50px;
+.social-icons {
   display: flex;
+  justify-content: center;
   gap: 30px;
-  z-index: 3;
-  position: relative;
 }
 
-.ekbara-icon {
-  font-size: 2rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+.social-link img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: brightness(0) invert(1);
 }
 
-.ekbara-icon:hover {
-  transform: scale(1.3);
-  color: #ffd700;
+.social-link:hover img {
+  transform: scale(1.2);
+  filter: brightness(1) invert(0.7);
+}
+
+/* Nuvens suaves ao fundo (opcional) */
+.ekbara-footer::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 200%;
+  height: 200%;
+  background: url('https://i.ibb.co/fqkHQZ2/clouds.png') no-repeat center;
+  background-size: cover;
+  opacity: 0.1;
+  pointer-events: none;
 }
