@@ -774,7 +774,7 @@
 }
 
 /*footer*/
-.ekbara-footer-2 {
+.ekbara-footer-3 {
   background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
   color: #fff;
   padding: 60px 20px;
@@ -798,7 +798,7 @@
 }
 
 .footer-logo {
-  width: 200px;
+  width: 250px;  /* maior */
   margin-bottom: 20px;
 }
 
@@ -808,14 +808,14 @@
 }
 
 .social-icons img {
-  width: 28px;  /* ajuste menor */
-  height: 28px; /* ajuste menor */
+  width: 32px;  /* maior */
+  height: 32px;
   transition: transform 0.3s ease, filter 0.3s ease;
   filter: brightness(0) invert(1);
 }
 
 .social-icons a:hover img {
-  transform: scale(1.2);
+  transform: scale(1.3);
   filter: brightness(1) invert(0.8);
 }
 
@@ -823,6 +823,7 @@
 .footer-right {
   flex: 2;
   min-width: 250px;
+  text-align: right; /* move texto para o canto direito */
 }
 
 .footer-text {
@@ -830,12 +831,14 @@
   line-height: 1.6;
   font-size: 1rem;
   max-width: 500px;
+  margin-left: auto; /* garante alinhamento direito */
 }
 
 .footer-links {
   list-style: none;
   padding: 0;
   display: flex;
+  justify-content: flex-end; /* links à direita */
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -848,7 +851,7 @@
 }
 
 .footer-links li a:hover {
-  color: #00bcd4; /* cor de destaque ao passar o mouse */
+  color: #00bcd4;
 }
 
 /* RESPONSIVO */
@@ -860,6 +863,10 @@
   }
 
   .footer-right {
-    max-width: 100%;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
   }
 }
