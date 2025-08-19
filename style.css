@@ -152,7 +152,8 @@
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 60px;
-  text-align: center;
+  text-align: left;
+  color: #131313;
 }
 
 .quem-somos-grid {
@@ -169,7 +170,7 @@
 }
 
 .quem-somos-text p {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   line-height: 1.8;
   margin-bottom: 20px;
   opacity: 0;
@@ -235,7 +236,7 @@
 .services-title {
   font-size: 3rem;
   margin-bottom: 100px;
-  margin-left: 100px;
+  margin-left: 150px;
   color: #242424;
   font-weight: 800; 
 }
