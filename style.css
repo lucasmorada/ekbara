@@ -158,7 +158,17 @@
     }
 
     /*áreas da ekbara*/
-   /* Centralizar cards */
+   .services-section {
+  padding: 60px 20px; /* mais espaço para o título */
+}
+
+.services-title {
+  font-size: 3rem; /* título maior */
+  margin-bottom: 50px; /* distância da borda */
+  color: #fff;
+}
+
+/* Centralizar cards */
 .services-cards {
   display: flex;
   gap: 32px;
@@ -170,7 +180,7 @@
 /* Cards padrão escuro */
 .services-card {
   background: #222222;
-  flex: 1 1 calc(25% - 32px); /* 4 cards na linha */
+  flex: 1 1 calc(30% - 32px); /* 3 cards na linha */
   max-width: 380px;
   display: flex;
   flex-direction: column;
@@ -180,7 +190,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.services-card:nth-child(n+5) {
+.services-card:nth-child(n+4) {
   flex: 1 1 calc(45% - 32px); /* 2 cards na segunda linha */
 }
 
@@ -194,10 +204,8 @@
   background: #0014FF;
   color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-  flex-direction: column;
 }
 
-/* Invertendo layout da imagem/texto */
 .services-card-blue.invert {
   flex-direction: column-reverse;
 }
@@ -229,7 +237,7 @@
   color: #555555;
   font-weight: bold;
   font-size: 1.2rem;
-  background-color: #7FFF00; /* verde padrão */
+  background-color: #7FFF00;
 }
 
 .services-card-blue .services-card-arrow-circle {
@@ -275,7 +283,7 @@
   .services-card {
     flex: 1 1 calc(45% - 32px);
   }
-  .services-card:nth-child(n+5) {
+  .services-card:nth-child(n+4) {
     flex: 1 1 calc(45% - 32px);
   }
 }
