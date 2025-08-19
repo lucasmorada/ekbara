@@ -246,6 +246,20 @@
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+.services-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block; /* faz o link ocupar todo o card */
+}
+
+/* Hover no card inteiro */
+.services-card:hover,
+.services-card-blue:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+}
+
+/* Imagem já tinha efeito, só mantive */
 .services-card:hover .services-card-image img,
 .services-card-blue:hover .services-card-image img {
   filter: brightness(1);
