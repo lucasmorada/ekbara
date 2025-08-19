@@ -164,8 +164,8 @@
 
 .services-title {
   font-size: 3rem; /* título maior */
-  margin-bottom: 50px; /* distância da borda */
-  color: #fff;
+  margin-bottom: 100px; /* distância da borda */
+  color: #242424;
 }
 
 /* Centralizar cards */
@@ -204,76 +204,68 @@
   background: #0014FF;
   color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.services-card-blue.invert {
-  flex-direction: column-reverse;
-}
-
-.services-card-blue:hover {
-  transform: scale(1.03);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.8);
-}
-
-/* Card Header */
-.services-card-header {
-  padding: 24px 24px 16px;
+/* Header só com o título */
+.services-card-blue .services-card-header {
+  padding: 16px 24px 8px;
   font-size: 1.4rem;
   font-weight: 700;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: #fff;
 }
 
-/* Card Arrow em círculo */
-.services-card-arrow-circle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555555;
-  font-weight: bold;
-  font-size: 1.2rem;
-  background-color: #7FFF00;
-}
-
-.services-card-blue .services-card-arrow-circle {
-  background-color: #ffffff;
-  color: #555555;
-}
-
-/* Texto do card */
+/* Texto com seta ao lado */
 .services-card-text {
   padding: 0 24px 24px;
   font-size: 1rem;
   line-height: 1.5;
   flex-grow: 1;
-  color: #cccccc;
-}
-
-.services-card-blue .services-card-text {
   color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Imagem */
-.services-card-image {
+/* Seta maior, grossa e inclinada nordeste inicialmente */
+.services-card-arrow-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #555555;
+  font-weight: bold;
+  font-size: 1.6rem;
+  transform: rotate(45deg); /* nordeste */
+  transition: transform 0.3s ease;
+}
+
+/* Hover do card azul: seta gira */
+.services-card-blue:hover .services-card-arrow-circle {
+  transform: rotate(135deg); /* sudeste */
+}
+
+/* Hover do card */
+.services-card-blue:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+}
+
+.services-card-blue .services-card-image img {
   width: 100%;
   height: 220px;
-  overflow: hidden;
-}
-
-.services-card-image img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   filter: brightness(0.85);
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.services-card:hover .services-card-image img,
 .services-card-blue:hover .services-card-image img {
   filter: brightness(1);
   transform: scale(1.05);
