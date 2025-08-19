@@ -180,7 +180,7 @@
 /* Cards padrão escuro */
 .services-card {
   background: #222222;
-  flex: 0 1 30%; /* não estica verticalmente */
+  flex: 0 1 30%;
   max-width: 380px;
   display: flex;
   flex-direction: column;
@@ -188,6 +188,7 @@
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.6);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 4 / 3; /* mantém proporção sem aumentar verticalmente */
 }
 
 /* Cards azuis */
@@ -199,8 +200,9 @@
   flex-direction: column;
   border-radius: 12px;
   overflow: hidden;
-  flex: 0 1 30%; /* não estica verticalmente */
+  flex: 0 1 30%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 4 / 3; /* mesma proporção */
 }
 
 /* Header só com o título */
