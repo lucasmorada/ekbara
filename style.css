@@ -210,6 +210,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #fff;
 }
 
 /* Card Arrow em círculo */
