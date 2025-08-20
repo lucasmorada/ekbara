@@ -160,23 +160,23 @@
 .quem-somos-grid {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;   /* alinha topo do texto com topo da imagem */
-  justify-content: space-between; /* deixa texto à esquerda e imagem à direita */
-  gap: 40px;
+  align-items: flex-start;  
+  justify-content: flex-start; /* deixa o texto colado à esquerda, mas perto da imagem */
+  gap: 60px; /* aumenta o espaço entre texto e imagem */
   margin-bottom: 50px;
 }
 
 /* Texto */
 .section-content.quem-somos .quem-somos-text {
-  flex: 1 1 50%;   /* ocupa metade da seção */
-  max-width: 600px;
+  flex: 1 1 55%;   /* aumenta a largura do texto para se aproximar da imagem */
+  max-width: 650px; /* mais espaço horizontal */
 }
 
 .section-content.quem-somos .quem-somos-text p {
-  font-size: 1.6rem;
-  line-height: 1.8;
+  font-size: 1.8rem;  /* deixa o texto maior */
+  line-height: 1.9;
   color: #333333;
-  text-align: left;   /* texto na esquerda */
+  text-align: left;
   margin-bottom: 20px;
 }
 
