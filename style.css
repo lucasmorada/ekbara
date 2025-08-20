@@ -140,20 +140,23 @@
     }
 
     /*QUEM SOMOS*/
-.quem-somos {
+.section-content.quem-somos {
+  /* força o fundo escuro mesmo que .section-content defina branco */
+  background: linear-gradient(120deg, #0d0d0d, #1a1a1a) !important;
+  color: #ffffff !important; /* texto padrão claro */
   padding: 100px 20px;
-  background: linear-gradient(120deg, #0d0d0d, #1a1a1a);
-  color: #ffffff;
   overflow: hidden;
 }
 
-.section-title {
+/* Título visível e alinhado à esquerda */
+.section-content.quem-somos .section-title {
+  color: #ff6600 !important;   /* cor do título */
+  text-align: left;
   font-size: 4rem;
   font-weight: 800;
   margin-bottom: 60px;
-  text-align: left;
-  color: #ff6600; /* exemplo: laranja */
 }
+
 
 .quem-somos-grid {
   display: flex;
@@ -164,9 +167,10 @@
   margin-bottom: 50px;
 }
 
-.quem-somos-text {
-  flex: 1 1 600px;
-  max-width: 600px;
+.section-content.quem-somos .quem-somos-text p {
+  font-size: 1.8rem;
+  line-height: 1.9;
+  color: #e6e6e6;  /* contraste bom no fundo escuro */
 }
 
 .quem-somos-text p {
