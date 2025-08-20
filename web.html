@@ -14,6 +14,15 @@
             --accent: #ffffff;
             --text: #e0e0e0;
         }
+
+        /* Tema claro */
+body.light-mode {
+  --primary: #ffffff;
+  --secondary: #f2f2f2;
+  --accent: #000000;
+  --text: #1a1a1a;
+}
+
         
         body {
             font-family: 'Space Grotesk', sans-serif;
@@ -385,6 +394,9 @@
             <div class="flex justify-between items-center">
                 <div class="text-2xl font-bold gradient-text animate-float">QAZO</div>
                 <div class="hidden md:flex space-x-12">
+                    <button id="theme-toggle" class="ml-6 p-2 rounded-full border border-gray-500 hover:bg-gray-700 transition">
+                    🌙
+                    </button>
                     <a href="#services" class="nav-link text-white hover:text-gray-300 transition-colors">Serviços</a>
                     <a href="#projects" class="nav-link text-white hover:text-gray-300 transition-colors">Projetos</a>
                     <a href="#process" class="nav-link text-white hover:text-gray-300 transition-colors">Processo</a>
@@ -1131,6 +1143,16 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     
     <script>
+
+  const toggleBtn = document.getElementById("theme-toggle");
+  const body = document.body;
+
+  toggleBtn.addEventListener("click", () => {
+    body.classList.toggle("light-mode");
+    toggleBtn.textContent = body.classList.contains("light-mode") ? "☀️" : "🌙";
+  });
+
+
         // Mobile Menu Toggle
         document.getElementById('menu-btn').addEventListener('click', function() {
             document.getElementById('mobile-menu').classList.toggle('hidden');
