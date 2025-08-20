@@ -152,7 +152,8 @@
   color: #444444;
   font-size: 4rem; /* maior */
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  margin-left: 150px;
   text-align: left; /* ainda alinhado à esquerda */
 }
 
@@ -173,11 +174,12 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  font-size: 1.4rem;
 }
 
 /* Parágrafos maiores */
 .quem-somos-text p {
-  font-size: 1.2rem; /* aumenta o texto */
+  font-size: 1.4rem; /* aumenta o texto */
   margin-bottom: 25px;
   line-height: 1.8;
 }
