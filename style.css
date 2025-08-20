@@ -141,92 +141,74 @@
 
     /*QUEM SOMOS*/
 .section-content.quem-somos {
-  background: #ffffff !important;  /* fundo branco */
-  color: #333333 !important;       /* cor padrão do texto */
+  background: #ffffff;
+  color: #333333;
   padding: 100px 20px;
   overflow: hidden;
 }
 
 /* Título */
 .section-content.quem-somos .section-title {
-  color: #444444 !important;   /* cinza escuro */
-  text-align: left;
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin-bottom: 30px;
+  color: #444444;
+  font-size: 3rem;
+  margin-bottom: 40px;
 }
 
-/* Grid da seção */
+/* Grid interno */
 .quem-somos-grid {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between; /* texto à esquerda, imagem à direita */
-  gap: 40px;  /* espaço entre texto e imagem */
-  width: 100%; /* garante largura total da seção */
-  max-width: 1200px; /* opcional: limita largura máxima */
-  margin: 0 auto 50px auto; /* centraliza a grid */
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px; /* espaço entre texto e imagem */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-
-.section-content.quem-somos .quem-somos-text {
-  flex: 1 1 50%;   /* ocupa metade da largura */
-  max-width: 600px;
+/* Texto alinhado à esquerda, mas não centralizado */
+.quem-somos-text {
+  flex: 1;
+  max-width: 550px; /* define "quadrado" do texto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-
-.section-content.quem-somos .quem-somos-text p {
-  font-size: 1.8rem;  /* deixa o texto maior */
-  line-height: 1.9;
-  color: #333333;
-  text-align: left;
+/* Parágrafos com animação */
+.quem-somos-text p {
   margin-bottom: 20px;
+  line-height: 1.6;
 }
 
-/* Imagem */
+/* Imagem no lado direito */
 .quem-somos-image {
-  flex: 1 1 45%;   /* ocupa menos que o texto */
-  max-width: 500px;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end; /* mantém a imagem no canto direito */
 }
 
 .quem-somos-image img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  display: block;
+  border-radius: 10px;
 }
 
+/* Responsivo */
+@media (max-width: 900px) {
+  .quem-somos-grid {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
 
-/* Efeito fade-in sequencial */
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+  .quem-somos-text {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .quem-somos-image {
+    justify-content: center;
+    margin-bottom: 30px;
+  }
 }
-
-.fade-in.delay-1 {
-  transition-delay: 0.3s;
-}
-
-.fade-in.delay-2 {
-  transition-delay: 0.6s;
-}
-
-.quem-somos-image {
-  flex: 1 1 400px;
-  max-width: 500px;
-  text-align: center;
-}
-
-.quem-somos-image img {
-  width: 100%;
-  border-radius: 20px;
-  transform: scale(0.95);
-  transition: transform 0.5s ease;
-}
-
-.quem-somos-image img:hover {
-  transform: scale(1);
-}
-
 
     /* PRÓXIMA SEÇÃO */
     .section-content {
