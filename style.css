@@ -174,7 +174,8 @@
   font-size: 4.2rem;
   font-weight: 700;
   margin-bottom: 30px;
-  margin-left: 90px; /* desloca mais para a direita */
+  margin-left: 90px;
+  text-align: left;
 }
 
 /* Parágrafos */
