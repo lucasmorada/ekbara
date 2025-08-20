@@ -264,18 +264,6 @@ section.section-content.quem-somos h2.section-title {
 
 /* Cards padrão escuro */
 .services-card {
-  background: #262626;
-  flex: 0 1 30%;
-  max-width: 380px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.services-card1 {
   background: #cdff00;
   flex: 0 1 30%;
   max-width: 380px;
