@@ -164,7 +164,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center; /* centraliza verticalmente em relação à imagem */
-  font-size: 2rem; /* aumenta o texto */
+  font-size: 20px; /* aumenta o texto */
   line-height: 2;
 }
 
@@ -174,7 +174,7 @@
   font-size: 4.2rem;
   font-weight: 700;
   margin-bottom: 30px;
-  margin-left: 150px; /* desloca mais para a direita */
+  margin-left: 100px; /* desloca mais para a direita */
 }
 
 /* Parágrafos */
