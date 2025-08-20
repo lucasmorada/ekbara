@@ -141,46 +141,57 @@
 
     /*QUEM SOMOS*/
 .section-content.quem-somos {
-  /* força o fundo escuro mesmo que .section-content defina branco */
-  background: linear-gradient(120deg, #0d0d0d, #1a1a1a) !important;
-  color: #ffffff !important; /* texto padrão claro */
+  background: #ffffff !important;  /* fundo branco */
+  color: #333333 !important;       /* cor padrão do texto */
   padding: 100px 20px;
   overflow: hidden;
 }
 
-/* Título visível e alinhado à esquerda */
+/* Título */
 .section-content.quem-somos .section-title {
-  color: #ff6600 !important;   /* cor do título */
+  color: #444444 !important;   /* cinza escuro */
   text-align: left;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 800;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
-
+/* Grid da seção */
 .quem-somos-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 60px;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;   /* alinha topo do texto com topo da imagem */
+  justify-content: space-between; /* deixa texto à esquerda e imagem à direita */
+  gap: 40px;
   margin-bottom: 50px;
 }
 
-.section-content.quem-somos .quem-somos-text p {
-  font-size: 1.8rem;
-  line-height: 1.9;
-  color: #e6e6e6;  /* contraste bom no fundo escuro */
+/* Texto */
+.section-content.quem-somos .quem-somos-text {
+  flex: 1 1 50%;   /* ocupa metade da seção */
+  max-width: 600px;
 }
 
-.quem-somos-text p {
+.section-content.quem-somos .quem-somos-text p {
   font-size: 1.6rem;
   line-height: 1.8;
+  color: #333333;
+  text-align: left;   /* texto na esquerda */
   margin-bottom: 20px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
 }
+
+/* Imagem */
+.quem-somos-image {
+  flex: 1 1 40%;   /* ocupa menos espaço que o texto */
+  max-width: 500px;
+}
+
+.quem-somos-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 /* Efeito fade-in sequencial */
 .fade-in.visible {
