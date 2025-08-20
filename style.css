@@ -144,23 +144,14 @@
 .section-content.quem-somos {
   background: #ffffff;
   color: #333333;
-  padding: 120px 20px; /* mais espaço em cima */
+  padding: 120px 20px;
   overflow: hidden;
-}
-
-/* Título acima do texto, maior */
-.section-content.quem-somos .section-title {
-  color: #444444;
-  font-size: 4rem; /* maior */
-  font-weight: 700;
-  margin-bottom: 40px;
-  text-align: left; /* alinhado à esquerda */
 }
 
 /* Grid interno */
 .quem-somos-grid {
   display: flex;
-  align-items: flex-start; /* alinha a imagem ao topo do texto */
+  align-items: center; /* centraliza verticalmente */
   justify-content: space-between;
   gap: 50px;
   max-width: 1200px;
@@ -170,25 +161,34 @@
 /* Texto */
 .quem-somos-text {
   flex: 1;
-  max-width: 600px; /* define "quadrado" do texto */
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  font-size: 1.4rem; /* aumenta o texto */
+  justify-content: center; /* centraliza verticalmente em relação à imagem */
+  font-size: 1.6rem; /* aumenta o texto */
+  line-height: 1.9;
+  margin-top: 50px; /* ajusta mais para baixo se quiser */
 }
 
-/* Parágrafos maiores */
+/* Título maior e deslocado para a direita */
+.section-content.quem-somos .section-title {
+  color: #444444;
+  font-size: 4.2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  margin-left: 50px; /* desloca mais para a direita */
+}
+
+/* Parágrafos */
 .quem-somos-text p {
-  font-size: 1.4rem;
   margin-bottom: 25px;
-  line-height: 1.8;
 }
 
 /* Imagem */
 .quem-somos-image {
   flex: 1;
   display: flex;
-  justify-content: flex-end; /* mantém a imagem no canto direito */
+  justify-content: flex-end;
 }
 
 .quem-somos-image img {
@@ -207,14 +207,14 @@
   .quem-somos-text {
     max-width: 100%;
     align-items: center;
+    margin-top: 0;
+    font-size: 1.2rem;
   }
 
   .section-content.quem-somos .section-title {
     font-size: 3rem;
-  }
-
-  .quem-somos-text p {
-    font-size: 1.1rem;
+    margin-left: 0;
+    margin-bottom: 20px;
   }
 
   .quem-somos-image {
