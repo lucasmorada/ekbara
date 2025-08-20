@@ -897,6 +897,7 @@
 .footer-logo {
   width: 250px;  /* maior */
   margin-bottom: 20px;
+  margin-left: 0px;
 }
 
 .social-icons {
