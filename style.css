@@ -168,14 +168,13 @@
   line-height: 2;
 }
 
-/* Título maior e deslocado para a direita */
-.section-content.quem-somos .section-title {
+section.section-content.quem-somos h2.section-title {
   color: #444444;
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 10px;
-  margin-left: 100px;
+  margin-bottom: 30px;
   text-align: left;
+  margin-left: 10px;
 }
 
 /* Parágrafos */
