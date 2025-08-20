@@ -172,7 +172,7 @@ section.section-content.quem-somos h2.section-title {
   color: #444444;
   font-size: 3rem;
   font-weight: 700;
-  margin-top: 40px;
+  margin-top: 70px;
   text-align: left;
   margin-left: 150px;
 }
@@ -264,7 +264,7 @@ section.section-content.quem-somos h2.section-title {
 
 /* Cards padrão escuro */
 .services-card {
-  background: #222222;
+  background: #bf0808;
   flex: 0 1 30%; /* não estica verticalmente */
   max-width: 380px;
   display: flex;
@@ -277,7 +277,7 @@ section.section-content.quem-somos h2.section-title {
 
 /* Cards azuis */
 .services-card-blue {
-  background: #0014FF;
+  background: #4e0688;
   color: white;
   box-shadow: 0 4px 12px rgba(0,0,0,0.6);
   display: flex;
