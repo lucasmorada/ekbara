@@ -139,8 +139,7 @@
       color: #ffffff;
     }
 
-    /*QUEM SOMOS*/
-/*QUEM SOMOS*/
+    /* QUEM SOMOS */
 .section-content.quem-somos {
   background: #ffffff;
   color: #333333;
@@ -165,9 +164,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center; /* centraliza verticalmente em relação à imagem */
-  font-size: 1.6rem; /* aumenta o texto */
-  line-height: 1.9;
-  margin-top: 50px; /* ajusta mais para baixo se quiser */
+  font-size: 1.8rem; /* aumenta o texto */
+  line-height: 2;
 }
 
 /* Título maior e deslocado para a direita */
@@ -176,7 +174,7 @@
   font-size: 4.2rem;
   font-weight: 700;
   margin-bottom: 30px;
-  margin-left: 50px; /* desloca mais para a direita */
+  margin-left: 100px; /* desloca mais para a direita */
 }
 
 /* Parágrafos */
@@ -207,8 +205,8 @@
   .quem-somos-text {
     max-width: 100%;
     align-items: center;
-    margin-top: 0;
-    font-size: 1.2rem;
+    margin-top: 30px;
+    font-size: 1.3rem;
   }
 
   .section-content.quem-somos .section-title {
