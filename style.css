@@ -288,6 +288,18 @@ section.section-content.quem-somos h2.section-title {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.services-card-preto {
+  background: #131313;
+  flex: 0 1 30%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* Header só com o título */
 .services-card-header {
   padding: 16px 24px 8px;
