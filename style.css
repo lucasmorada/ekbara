@@ -300,6 +300,18 @@ section.section-content.quem-somos h2.section-title {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.services-card-blue-pink {
+  background: #ff0062;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  flex: 0 1 30%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 /* Header só com o título */
 .services-card-header {
   padding: 16px 24px 8px;
@@ -349,6 +361,7 @@ section.section-content.quem-somos h2.section-title {
 
 /* Hover no card inteiro */
 .services-card:hover,
+.services-card-preto:hover,
 .services-card-blue:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.7);
