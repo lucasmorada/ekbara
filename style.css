@@ -320,6 +320,13 @@ section.section-content.quem-somos h2.section-title {
   color: #fff;
 }
 
+.services-card-header-black {
+  padding: 16px 24px 8px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000000;
+}
+
 /* Texto com seta */
 .services-card-text {
   padding: 0 24px 24px;
@@ -328,7 +335,18 @@ section.section-content.quem-somos h2.section-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #cccccc;
+  color: #ffffff;
+  flex-grow: 0; /* não estica */
+}
+
+.services-card-text-black {
+  padding: 0 24px 24px;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #030303;
   flex-grow: 0; /* não estica */
 }
 
