@@ -32,6 +32,15 @@ body {
     z-index: 100;
 }
 
+.header.hide {
+    transform: translateY(-120%);
+    transition: transform 0.3s ease;
+}
+
+.header {
+    transition: transform 0.3s ease, backdrop-filter 0.3s ease;
+}
+
 .title {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
@@ -258,6 +267,37 @@ body {
     font-size: 0.9rem;
 }
 
+.modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s ease;
+}
+
+.modal-arrow:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+.modal-left {
+    left: -70px; /* fora da imagem à esquerda */
+}
+
+.modal-right {
+    right: -70px; /* fora da imagem à direita */
+}
+
 /* Animations */
 @keyframes fadeInUp {
     to {
@@ -353,16 +393,18 @@ html {
 
     <!-- Modal para visualização ampliada -->
     <div class="modal" id="modal">
-        <div class="modal-backdrop" id="modalBackdrop"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <img class="modal-image" id="modalImage" src="" alt="">
-            <div class="modal-info">
-                <h3 class="modal-title" id="modalTitle"></h3>
-                <p class="modal-artist" id="modalArtist"></p>
-            </div>
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <button class="modal-arrow modal-left" id="modalPrev">&#10094;</button>
+        <img class="modal-image" id="modalImage" src="" alt="">
+        <button class="modal-arrow modal-right" id="modalNext">&#10095;</button>
+        <div class="modal-info">
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <p class="modal-artist" id="modalArtist"></p>
         </div>
     </div>
+</div>
 
     <script>
       class Gallery {
@@ -374,22 +416,97 @@ html {
         this.modalArtist = document.getElementById('modalArtist');
         this.modalClose = document.getElementById('modalClose');
         this.modalBackdrop = document.getElementById('modalBackdrop');
+        this.modalPrev = document.getElementById('modalPrev');
+        this.modalNext = document.getElementById('modalNext');
         this.searchInput = document.querySelector('.search-input');
         this.loading = document.getElementById('loading');
-        
+        this.header = document.querySelector('.header');
+
         this.artworks = [];
         this.filteredArtworks = [];
         this.currentPage = 1;
         this.isLoading = false;
-        
+        this.currentIndex = 0; // índice da imagem atual no modal
+        this.lastScroll = 0;
+
         this.init();
     }
-    
+
     init() {
         this.generateArtworks();
         this.renderGallery();
         this.bindEvents();
         this.setupInfiniteScroll();
+        this.handleHeaderScroll();
+    }
+
+    bindEvents() {
+        this.modalClose.addEventListener('click', () => this.closeModal());
+        this.modalBackdrop.addEventListener('click', () => this.closeModal());
+        this.modalPrev.addEventListener('click', () => this.showPrev());
+        this.modalNext.addEventListener('click', () => this.showNext());
+
+        document.addEventListener('keydown', (e) => {
+            if (!this.modal.classList.contains('show')) return;
+            if (e.key === 'Escape') this.closeModal();
+            else if (e.key === 'ArrowLeft') this.showPrev();
+            else if (e.key === 'ArrowRight') this.showNext();
+        });
+
+        this.gallery.addEventListener('click', (e) => {
+            const container = e.target.closest('.image-container');
+            if (container) {
+                const artworkId = parseInt(container.dataset.id);
+                this.openModal(artworkId);
+            }
+        });
+
+        this.searchInput.addEventListener('input', (e) => {
+            this.filterArtworks(e.target.value);
+        });
+    }
+
+    openModal(artworkId) {
+        this.currentIndex = this.filteredArtworks.findIndex(a => a.id === artworkId);
+        this.showImage(this.currentIndex);
+        this.modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    showImage(index) {
+        const artwork = this.filteredArtworks[index];
+        if (!artwork) return;
+        this.modalImage.src = artwork.image;
+        this.modalImage.alt = artwork.title;
+        this.modalTitle.textContent = artwork.title;
+        this.modalArtist.textContent = `por ${artwork.artist}`;
+    }
+
+    showPrev() {
+        this.currentIndex = (this.currentIndex - 1 + this.filteredArtworks.length) % this.filteredArtworks.length;
+        this.showImage(this.currentIndex);
+    }
+
+    showNext() {
+        this.currentIndex = (this.currentIndex + 1) % this.filteredArtworks.length;
+        this.showImage(this.currentIndex);
+    }
+
+    closeModal() {
+        this.modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+
+    handleHeaderScroll() {
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (currentScroll > this.lastScroll && currentScroll > 100) {
+                this.header.classList.add('hide'); // esconde
+            } else {
+                this.header.classList.remove('hide'); // mostra
+            }
+            this.lastScroll = currentScroll;
+        });
     }
     
     generateArtworks() {
