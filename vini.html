@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lucas Dias</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    background-color: #fafafa;
+    font-family: 'Poppins', sans-serif;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 100vw;
+    padding: 0 10px;
+  }
+  .gallery img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    object-fit: cover;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  /* Lightbox styles */
+  .lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 60vw;   /* antes: 80vw */
+    max-height: 60vh;  /* antes: 80vh */
+    border-radius: 20px; /* mais arredondado */
+    overflow: hidden;   /* garante que borda arredondada apareça */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px; /* mesmo arredondado do container */
+    user-select: none;
+    pointer-events: auto;
+    display: block;
+}
+
+  /* Arrow buttons - corrigido */
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    background: rgba(0,0,0,0.45);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-arrow:hover {
+    background: rgba(0,0,0,0.65);
+  }
+
+  .nav-left {
+    left: 10px;
+  }
+
+  .nav-right {
+    right: 10px;
+  }
+
+  @media (max-width: 1024px) {
+    .nav-left { left: 10px; }
+    .nav-right { right: 10px; }
+  }
+
+  @media (max-width: 640px) {
+    .nav-left, .nav-right { display: none; }
+    .lightbox-content { max-width: 95vw; max-height: 95vh; }
+  }
+
+</style>
+</head>
+<body class="text-gray-900">
+
+<header class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center gap-12">
+  <!-- Foto à esquerda -->
+  <div class="flex-shrink-0 w-48 h-auto md:w-64 flex flex-col items-center">
+  <img src="eu.jpeg" alt="Lucas Dias" class="w-full h-auto object-cover rounded-full shadow-lg mb-6" />
+
+  <!-- Botão WhatsApp -->
+  <a href="https://wa.me/554199016634" target="_blank"
+    class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full shadow-md transition mt-4 whitespace-nowrap">
+    <img src="WhatsApp.svg.webp" alt="WhatsApp" class="w-5 h-5" />
+    Vamos conversar?
+  </a>
+</div>
+
+
+  <!-- Texto + Ícones -->
+  <div class="flex flex-col items-start text-left w-full">
+    <!-- Título + Ícones lado a lado -->
+    <div class="flex items-center justify-between w-full mb-6">
+      <h1 class="text-5xl font-extrabold">
+        Olá, eu sou <span class="text-indigo-600">Vini Costa</span>
+      </h1>
+
+      <!-- Ícones redes sociais -->
+      <div class="flex items-center gap-4">
+        <a href="https://instagram.com/@vinicostabr" target="_blank">
+          <img src="PERFILEKBARA.jpg" alt="Instagram" class="w-8 h-8 hover:opacity-80 transition">
+        </a>
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <p class="max-w-3xl text-lg leading-relaxed text-gray-700">
+       ⁠Sou o Vinícius Costa, publicitário, designer e comunicador apaixonado por criatividade. 
+       Depois de quase 10 anos criando e atendendo marcas, decidi transformar a Ekbara em um movimento 
+       criativo paraeclesiástico, um espaço onde ideias viram expressão e cada projeto carrega propósito. 
+       Na Ekbara, lidero a visão criativa e estratégica, conectando pessoas, talentos e projetos para expressar 
+       a beleza de Cristo em todas as esferas da sociedade.
+    </p>
+  </div>
+</header>
+
+<main class="max-w-7xl mx-auto pb-16">
+  <section class="gallery" aria-label="Galeria de fotos">
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/887c33f8-31b7-4196-8dd7-89ac3aaae9a8.png" alt="Vista panorâmica de montanhas ao pôr do sol com céu alaranjado e nuvens suaves" data-index="0" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/531c4036-52fe-4779-ac18-972d568ecc5a.png" alt="Close-up de flores roxas em campo aberto em dia ensolarado" data-index="1" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8e201730-0ef4-407e-800b-3b20dd3629ce.png" alt="Rua antiga de cidade europeia com arquitetura charmosa e céu azul" data-index="2" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ec7b74b5-3941-487b-8117-09f6ff403e17.png" alt="Cachoeira caindo entre pedras com vegetação verde ao redor em dia claro" data-index="3" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/77936c2f-59aa-42fe-b7c3-c967854ce6ee.png" alt="Retrato artístico com luz natural suave destacando rosto pensativo" data-index="4" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c212a21e-4d50-402a-aa26-478b01fcc01e.png" alt="Cidade iluminada à noite refletida no rio com céu estrelado" data-index="5" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ad811f6c-7ef6-4b30-874d-07a06a6818c4.png" alt="Mar calmo durante nascer do sol com tons rosados e amarelos no horizonte" data-index="6" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d89447e4-b3bc-4ac6-9d05-65461d26ee48.png" alt="Pôr do sol ao longo de estrada de terra cercada por árvores outonais" data-index="7" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1fc3c5b6-d9b9-4378-bfc4-9a7a5a25de36.png" alt="Detalhe de mãos segurando uma câmera fotográfica antiga" data-index="8" loading="lazy" />
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e6e5e493-f054-40e4-88f4-2bad7ba19c29.png" alt="Praia deserta com ondas suaves e céu azul com poucas nuvens brancas" data-index="9" loading="lazy" />
+  </section>
+</main>
+
+<!-- Lightbox Modal -->
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagens">
+  <div class="lightbox-content">
+    <button class="nav-arrow nav-left" aria-label="Foto anterior" tabindex="0">❮</button>
+    <img src="" alt="" />
+    <button class="nav-arrow nav-right" aria-label="Foto seguinte" tabindex="0">❯</button>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxImage = lightbox.querySelector('img');
+    const btnPrev = lightbox.querySelector('.nav-left');
+    const btnNext = lightbox.querySelector('.nav-right');
+
+    let currentIndex = 0;
+
+    function openLightbox(index){
+      currentIndex = index;
+      const img = images[currentIndex];
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      btnPrev.focus();
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function showPrev(){
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      const img = images[currentIndex];
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+    }
+
+    function showNext(){
+      currentIndex = (currentIndex + 1) % images.length;
+      const img = images[currentIndex];
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.alt;
+    }
+
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => openLightbox(index));
+      img.tabIndex = 0;
+    });
+
+    // Fecha clicando fora da imagem
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Teclado
+    window.addEventListener('keydown', (e) => {
+      if(!lightbox.classList.contains('open')) return;
+      if(e.key === 'Escape') closeLightbox();
+      else if(e.key === 'ArrowLeft') showPrev();
+      else if(e.key === 'ArrowRight') showNext();
+    });
+
+    btnPrev.addEventListener('click', showPrev);
+    btnNext.addEventListener('click', showNext);
+  })();
+
+</script>
+
+</body>
+</html>
+
