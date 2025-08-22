@@ -5,273 +5,484 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ekbara's Gallery</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-    <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Poppins', sans-serif; background:#212020; color:#2c2c2c; line-height:1.6; }
-
-        /* Header */
-        .header { background:rgba(255,255,255,0.95); backdrop-filter:blur(20px); border-bottom:1px solid rgba(0,0,0,0.08); padding:2rem 0; text-align:center; position:sticky; top:0; z-index:100; transition: transform 0.3s ease, backdrop-filter 0.3s ease; }
-        .header.hide { transform:translateY(-120%); }
-        .title { font-size:clamp(2rem,5vw,3.5rem); font-weight:700; color:#1a1a1a; margin-bottom:1.5rem; }
-        .search-container { max-width:400px; margin:0 auto; padding:0 1rem; }
-        .search-input { width:100%; padding:0.75rem 1.5rem; border:1px solid rgba(0,0,0,0.1); border-radius:25px; background:white; font-size:0.9rem; outline:none; transition:all 0.3s ease; }
-        .search-input:focus { border-color:#666; box-shadow:0 0 0 3px rgba(102,102,102,0.1); }
-
-        /* Gallery */
-        .main { padding:2rem 1rem; max-width:1400px; margin:0 auto; }
-        .gallery { display:columns; column-count:1; column-gap:1rem; width:100%; }
-        .gallery-item { display:inline-block; width:100%; margin-bottom:1rem; break-inside:avoid; opacity:0; transform:translateY(20px); animation:fadeInUp 0.6s ease forwards; }
-        .image-container { position:relative; overflow:hidden; border-radius:12px; background:white; box-shadow:0 2px 20px rgba(0,0,0,0.08); cursor:pointer; transition:all 0.3s ease; }
-        .image-container:hover { transform:translateY(-4px); box-shadow:0 8px 30px rgba(0,0,0,0.15); }
-        .gallery-image { width:100%; height:auto; display:block; transition:transform 0.3s ease; }
-        .image-container:hover .gallery-image { transform:scale(1.05); }
-        .image-overlay { position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.7), transparent); opacity:0; transition:opacity 0.3s ease; display:flex; align-items:flex-end; padding:1rem; }
-        .image-container:hover .image-overlay { opacity:1; }
-        .image-info h3 { color:white; font-size:0.9rem; font-weight:500; margin-bottom:0.25rem; }
-        .image-info p { color:rgba(255,255,255,0.8); font-size:0.8rem; }
-
-        /* Loading */
-        .loading { text-align:center; padding:2rem; display:none; }
-        .loading.show { display:block; }
-        .spinner { width:40px; height:40px; border:3px solid rgba(0,0,0,0.1); border-left:3px solid #666; border-radius:50%; animation:spin 1s linear infinite; margin:0 auto; }
-
-        /* Modal */
-        .modal { position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:1000; display:none; align-items:center; justify-content:center; padding:2rem; }
-        .modal.show { display:flex; }
-        .modal-backdrop { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); backdrop-filter:blur(10px); }
-        .modal-content { position:relative; max-width:90vw; max-height:90vh; background:white; border-radius:16px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.3); animation:modalSlideIn 0.3s ease; }
-        .modal-close { position:absolute; top:1rem; right:1rem; width:40px; height:40px; background:rgba(0,0,0,0.7); color:white; border:none; border-radius:50%; font-size:1.5rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s ease; z-index:10; }
-        .modal-close:hover { background:rgba(0,0,0,0.9); }
-        .modal-image { width:100%; height:auto; max-height:70vh; object-fit:contain; }
-        .modal-info { padding:1.5rem; }
-        .modal-title { font-size:1.2rem; font-weight:500; margin-bottom:0.5rem; color:#1a1a1a; }
-        .modal-artist { color:#666; font-size:0.9rem; }
-
-        /* Arrows */
-        .modal-arrow { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.5); color:white; border:none; width:50px; height:50px; border-radius:50%; font-size:28px; cursor:pointer; display:flex; justify-content:center; align-items:center; z-index:20; transition:background 0.2s ease; }
-        .modal-arrow:hover { background:rgba(0,0,0,0.7); }
-        .modal-left { left:-70px; }
-        .modal-right { right:-70px; }
-
-        /* Animations */
-        @keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
-        @keyframes spin { to { transform:rotate(360deg); } }
-        @keyframes modalSlideIn { from { opacity:0; transform:scale(0.9) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
-
-        /* Responsive */
-        @media (min-width:640px) { .gallery { column-count:2; column-gap:1.5rem; } .main{padding:3rem 2rem;} }
-        @media (min-width:968px) { .gallery { column-count:3; column-gap:2rem; } }
-        @media (min-width:1200px) { .gallery { column-count:4; } }
-
-        html { scroll-behavior:smooth; }
-    </style>
 </head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #212020;
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 2rem 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: transform 0.3s ease, backdrop-filter 0.3s ease;
+}
+.header.hide {
+    transform: translateY(-120%);
+}
+
+.title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+}
+
+.search-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    background: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+.search-input:focus {
+    border-color: #666;
+    box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.1);
+}
+
+/* Main content */
+.main {
+    padding: 2rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Gallery - Masonry Layout */
+.gallery {
+    display: columns;
+    column-count: 1;
+    column-gap: 1rem;
+    width: 100%;
+}
+
+.gallery-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1rem;
+    break-inside: avoid;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.gallery-item:nth-child(even) { animation-delay: 0.1s; }
+.gallery-item:nth-child(3n) { animation-delay: 0.2s; }
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.image-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.image-container:hover .gallery-image {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+}
+.image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-info h3 {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+.image-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    display: none;
+}
+.loading.show {
+    display: block;
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-left: 3px solid #666;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+.modal.show { display: flex; }
+
+.modal-backdrop {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    width: 40px; height: 40px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+.modal-close:hover { background: rgba(0,0,0,0.9); }
+
+.modal-image {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+}
+.modal-info {
+    padding: 1.5rem;
+}
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+.modal-artist {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s ease;
+}
+.modal-arrow:hover { background: rgba(0,0,0,0.7); }
+.modal-left { left: -70px; }
+.modal-right { right: -70px; }
+
+/* Animations */
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes modalSlideIn { from { opacity: 0; transform: scale(0.9) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+
+/* Responsive Design */
+@media (min-width: 640px) {
+    .gallery { column-count: 2; column-gap: 1.5rem; }
+    .main { padding: 3rem 2rem; }
+}
+@media (min-width: 968px) { .gallery { column-count: 3; column-gap: 2rem; } }
+@media (min-width: 1200px) { .gallery { column-count: 4; } }
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #999; }
+</style>
+
 <body>
-    <header class="header">
-        <h1 class="title">ekbara's gallery</h1>
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="buscar arte...">
-        </div>
-    </header>
+<header class="header">
+    <h1 class="title">ekbara's gallery</h1>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="buscar arte...">
+    </div>
+</header>
 
-    <main class="main">
-        <div class="gallery" id="gallery"></div>
-        <div class="loading" id="loading"><div class="spinner"></div></div>
-    </main>
+<main class="main">
+    <div class="gallery" id="gallery">
+        <!-- As imagens serão carregadas dinamicamente via JS -->
+    </div>
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+</main>
 
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-backdrop" id="modalBackdrop"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose">&times;</button>
-            <button class="modal-arrow modal-left" id="modalPrev">&#10094;</button>
-            <img class="modal-image" id="modalImage" src="" alt="">
-            <button class="modal-arrow modal-right" id="modalNext">&#10095;</button>
-            <div class="modal-info">
-                <h3 class="modal-title" id="modalTitle"></h3>
-                <p class="modal-artist" id="modalArtist"></p>
-            </div>
+<!-- Modal para visualização ampliada -->
+<div class="modal" id="modal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <button class="modal-arrow modal-left" id="modalPrev">&#10094;</button>
+        <img class="modal-image" id="modalImage" src="" alt="">
+        <button class="modal-arrow modal-right" id="modalNext">&#10095;</button>
+        <div class="modal-info">
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <p class="modal-artist" id="modalArtist"></p>
         </div>
     </div>
+</div>
 
-    <script>
-        class Gallery {
-            constructor() {
-                this.gallery = document.getElementById('gallery');
-                this.modal = document.getElementById('modal');
-                this.modalImage = document.getElementById('modalImage');
-                this.modalTitle = document.getElementById('modalTitle');
-                this.modalArtist = document.getElementById('modalArtist');
-                this.modalClose = document.getElementById('modalClose');
-                this.modalBackdrop = document.getElementById('modalBackdrop');
-                this.modalPrev = document.getElementById('modalPrev');
-                this.modalNext = document.getElementById('modalNext');
-                this.searchInput = document.querySelector('.search-input');
-                this.loading = document.getElementById('loading');
-                this.header = document.querySelector('.header');
+<script>
+class Gallery {
+    constructor() {
+        this.gallery = document.getElementById('gallery');
+        this.modal = document.getElementById('modal');
+        this.modalImage = document.getElementById('modalImage');
+        this.modalTitle = document.getElementById('modalTitle');
+        this.modalArtist = document.getElementById('modalArtist');
+        this.modalClose = document.getElementById('modalClose');
+        this.modalBackdrop = document.getElementById('modalBackdrop');
+        this.modalPrev = document.getElementById('modalPrev');
+        this.modalNext = document.getElementById('modalNext');
+        this.searchInput = document.querySelector('.search-input');
+        this.loading = document.getElementById('loading');
+        this.header = document.querySelector('.header');
+        this.artworks = [];
+        this.filteredArtworks = [];
+        this.currentPage = 1;
+        this.isLoading = false;
+        this.currentIndex = 0;
+        this.lastScroll = 0;
+        this.init();
+    }
 
-                this.artworks = [];
-                this.filteredArtworks = [];
-                this.currentPage = 1;
-                this.isLoading = false;
-                this.currentIndex = 0;
-                this.lastScroll = 0;
+    init() {
+        this.generateArtworks();
+        this.renderGallery();
+        this.bindEvents();
+        this.setupInfiniteScroll();
+        this.handleHeaderScroll();
+    }
 
-                this.init();
+    bindEvents() {
+        // Modal
+        this.modalClose.addEventListener('click', () => this.closeModal());
+        this.modalBackdrop.addEventListener('click', () => this.closeModal());
+        this.modalPrev.addEventListener('click', () => this.showPrev());
+        this.modalNext.addEventListener('click', () => this.showNext());
+        document.addEventListener('keydown', (e) => {
+            if (!this.modal.classList.contains('show')) return;
+            if (e.key === 'Escape') this.closeModal();
+            else if (e.key === 'ArrowLeft') this.showPrev();
+            else if (e.key === 'ArrowRight') this.showNext();
+        });
+
+        // Gallery click
+        this.gallery.addEventListener('click', (e) => {
+            const container = e.target.closest('.image-container');
+            if (container) {
+                const artworkId = parseInt(container.dataset.id);
+                this.openModal(artworkId);
             }
+        });
 
-            init() {
-                this.generateArtworks();
-                this.renderGallery();
-                this.bindEvents();
-                this.setupInfiniteScroll();
-                this.handleHeaderScroll();
+        // Search
+        this.searchInput.addEventListener('input', (e) => {
+            this.filterArtworks(e.target.value);
+        });
+    }
+
+    openModal(artworkId) {
+        this.currentIndex = this.filteredArtworks.findIndex(a => a.id === artworkId);
+        this.showImage(this.currentIndex);
+        this.modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    showImage(index) {
+        const artwork = this.filteredArtworks[index];
+        if (!artwork) return;
+        this.modalImage.src = artwork.image;
+        this.modalImage.alt = artwork.title;
+        this.modalTitle.textContent = artwork.title;
+        this.modalArtist.textContent = `por ${artwork.artist}`;
+    }
+
+    showPrev() {
+        this.currentIndex = (this.currentIndex - 1 + this.filteredArtworks.length) % this.filteredArtworks.length;
+        this.showImage(this.currentIndex);
+    }
+
+    showNext() {
+        this.currentIndex = (this.currentIndex + 1) % this.filteredArtworks.length;
+        this.showImage(this.currentIndex);
+    }
+
+    closeModal() {
+        this.modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+
+    handleHeaderScroll() {
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            if (currentScroll > this.lastScroll && currentScroll > 100) {
+                this.header.classList.add('hide');
+            } else {
+                this.header.classList.remove('hide');
             }
+            this.lastScroll = currentScroll;
+        });
+    }
 
-            bindEvents() {
-                this.modalClose.addEventListener('click', () => this.closeModal());
-                this.modalBackdrop.addEventListener('click', () => this.closeModal());
-                this.modalPrev.addEventListener('click', () => this.showPrev());
-                this.modalNext.addEventListener('click', () => this.showNext());
+    generateArtworks() {
+        const artData = [
+            { id: 1, title: "SDA", artist: "Victor Santana", image: "WhatsApp Image 2025-08-20 at 10.47.29 (1).jpeg" },
+            { id: 2, title: "Geometric Dreams", artist: "Modern Creator", image: "https://images.pexels.com/photos/2693212/pexels-photo-2693212.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 3, title: "SDA", artist: "Victor Santana", image: "WhatsApp Image 2025-08-20 at 10.47.33.jpeg" },
+            { id: 4, title: "Urban Expression", artist: "Street Artist", image: "https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 5, title: "Digital Landscape", artist: "Contemporary Artist", image: "https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 6, title: "Minimalist Study", artist: "Clean Designer", image: "https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: 7, title: "Nature's Pattern", artist: "Organic Artist", image: "https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 8, title: "Fluid Motion", artist: "Dynamic Creator", image: "https://images.pexels.com/photos/1509534/pexels-photo-1509534.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 9, title: "Textural Exploration", artist: "Material Artist", image: "https://images.pexels.com/photos/1646953/pexels-photo-1646953.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: 10, title: "Light and Shadow", artist: "Photography Art", image: "https://images.pexels.com/photos/1500610/pexels-photo-1500610.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 11, title: "Cultural Fusion", artist: "Mixed Media", image: "https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 12, title: "Digital Collage", artist: "Tech Artist", image: "https://images.pexels.com/photos/1568607/pexels-photo-1568607.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 13, title: "Emotional Spectrum", artist: "Expressive Artist", image: "https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: 14, title: "Architectural Vision", artist: "Space Designer", image: "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 15, title: "Natural Harmony", artist: "Eco Artist", image: "https://images.pexels.com/photos/1070059/pexels-photo-1070059.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 16, title: "Urban Reflection", artist: "City Photographer", image: "https://images.pexels.com/photos/1292241/pexels-photo-1292241.jpeg?auto=compress&cs=tinysrgb&w=600" },
+            { id: 17, title: "Abstract Reality", artist: "Surreal Creator", image: "https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=800" },
+            { id: 18, title: "Modern Lines", artist: "Minimalist Artist", image: "https://images.pexels.com/photos/1078999/pexels-photo-1078999.jpeg?auto=compress&cs=tinysrgb&w=800" },
+        ];
+        this.artworks = artData;
+        this.filteredArtworks = [...this.artworks];
+    }
 
-                document.addEventListener('keydown', (e) => {
-                    if (!this.modal.classList.contains('show')) return;
-                    if (e.key === 'Escape') this.closeModal();
-                    else if (e.key === 'ArrowLeft') this.showPrev();
-                    else if (e.key === 'ArrowRight') this.showNext();
-                });
-
-                this.gallery.addEventListener('click', (e) => {
-                    const container = e.target.closest('.image-container');
-                    if (container) {
-                        const artworkId = parseInt(container.dataset.id);
-                        this.openModal(artworkId);
-                    }
-                });
-
-                this.searchInput.addEventListener('input', (e) => this.filterArtworks(e.target.value));
-            }
-
-            openModal(artworkId) {
-                this.currentIndex = this.filteredArtworks.findIndex(a => a.id === artworkId);
-                if (this.currentIndex === -1) return;
-                this.showImage(this.currentIndex);
-                this.modal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
-
-            closeModal() {
-                this.modal.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            }
-
-            showImage(index) {
-                const artwork = this.filteredArtworks[index];
-                if (!artwork) return;
-                this.modalImage.src = artwork.image;
-                this.modalImage.alt = artwork.title;
-                this.modalTitle.textContent = artwork.title;
-                this.modalArtist.textContent = `por ${artwork.artist}`;
-            }
-
-            showPrev() {
-                if (this.filteredArtworks.length === 0) return;
-                this.currentIndex = (this.currentIndex - 1 + this.filteredArtworks.length) % this.filteredArtworks.length;
-                this.showImage(this.currentIndex);
-            }
-
-            showNext() {
-                if (this.filteredArtworks.length === 0) return;
-                this.currentIndex = (this.currentIndex + 1) % this.filteredArtworks.length;
-                this.showImage(this.currentIndex);
-            }
-
-            handleHeaderScroll() {
-                window.addEventListener('scroll', () => {
-                    const currentScroll = window.scrollY;
-                    if (currentScroll > this.lastScroll && currentScroll > 100) this.header.classList.add('hide');
-                    else this.header.classList.remove('hide');
-                    this.lastScroll = currentScroll;
-                });
-            }
-
-            generateArtworks() {
-                this.artworks = [
-                    {id:1,title:"SDA",artist:"Victor Santana",image:"WhatsApp Image 2025-08-20 at 10.47.29 (1).jpeg"},
-                    {id:2,title:"Geometric Dreams",artist:"Modern Creator",image:"https://images.pexels.com/photos/2693212/pexels-photo-2693212.jpeg?auto=compress&cs=tinysrgb&w=800"},
-                    {id:3,title:"SDA",artist:"Victor Santana",image:"WhatsApp Image 2025-08-20 at 10.47.33.jpeg"},
-                    {id:4,title:"Urban Expression",artist:"Street Artist",image:"https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800"},
-                    {id:5,title:"SDA",artist:"Victor Santana",image:"WhatsApp Image 2025-08-20 at 10.47.33.jpeg"},
-                    {id:6,title:"Urban Expression",artist:"Street Artist",image:"https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=800"}
-                    // Adicione mais imagens conforme precisar
-                ];
-                this.filteredArtworks = [...this.artworks];
-            }
-
-            renderGallery() {
-                if (this.isLoading) return;
-                this.isLoading = true;
-                this.loading.classList.add('show');
-
-                setTimeout(() => {
-                    const itemsToShow = 9;
-                    const startIndex = (this.currentPage - 1) * itemsToShow;
-                    const endIndex = startIndex + itemsToShow;
-                    const itemsToRender = this.filteredArtworks.slice(startIndex, endIndex);
-
-                    itemsToRender.forEach((artwork, index) => {
-                        const item = this.createGalleryItem(artwork, startIndex + index);
-                        this.gallery.appendChild(item);
-                    });
-
-                    this.loading.classList.remove('show');
-                    this.isLoading = false;
-                    this.currentPage++;
-                }, 800);
-            }
-
-            createGalleryItem(artwork, index) {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                item.style.animationDelay = `${index*0.1}s`;
-                item.innerHTML = `
-                    <div class="image-container" data-id="${artwork.id}">
-                        <img class="gallery-image" src="${artwork.image}" alt="${artwork.title}" loading="lazy">
-                        <div class="image-overlay">
-                            <div class="image-info">
-                                <h3>${artwork.title}</h3>
-                                <p>por ${artwork.artist}</p>
-                            </div>
+    renderGallery() {
+        this.gallery.innerHTML = '';
+        this.filteredArtworks.forEach(art => {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.innerHTML = `
+                <div class="image-container" data-id="${art.id}">
+                    <img class="gallery-image" src="${art.image}" alt="${art.title}" />
+                    <div class="image-overlay">
+                        <div class="image-info">
+                            <h3>${art.title}</h3>
+                            <p>${art.artist}</p>
                         </div>
                     </div>
-                `;
-                return item;
-            }
+                </div>
+            `;
+            this.gallery.appendChild(div);
+        });
+    }
 
-            setupInfiniteScroll() {
-                window.addEventListener('scroll', () => {
-                    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
-                        if (!this.isLoading && this.hasMoreItems()) this.renderGallery();
-                    }
-                });
-            }
+    filterArtworks(query) {
+        const lowerQuery = query.toLowerCase();
+        this.filteredArtworks = this.artworks.filter(art =>
+            art.title.toLowerCase().includes(lowerQuery) ||
+            art.artist.toLowerCase().includes(lowerQuery)
+        );
+        this.renderGallery();
+    }
 
-            hasMoreItems() {
-                const itemsToShow = 9;
-                return (this.currentPage-1)*itemsToShow < this.filteredArtworks.length;
+    setupInfiniteScroll() {
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && !this.isLoading) {
+                this.loadMore();
             }
+        });
+    }
 
-            filterArtworks(query) {
-                const q = query.toLowerCase();
-                this.filteredArtworks = q === '' ? [...this.artworks] :
-                    this.artworks.filter(a => a.title.toLowerCase().includes(q) || a.artist.toLowerCase().includes(q));
-                this.gallery.innerHTML = '';
-                this.currentPage = 1;
-                this.renderGallery();
-            }
-        }
+    loadMore() {
+        // Simula carregamento infinito
+        this.isLoading = true;
+        this.loading.classList.add('show');
+        setTimeout(() => {
+            // Aqui poderia puxar mais dados de uma API
+            this.isLoading = false;
+            this.loading.classList.remove('show');
+        }, 1000);
+    }
+}
 
-        document.addEventListener('DOMContentLoaded', () => new Gallery());
-    </script>
+window.addEventListener('DOMContentLoaded', () => new Gallery());
+</script>
 </body>
 </html>
