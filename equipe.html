@@ -53,23 +53,23 @@
 
 .lightbox-content {
     position: relative;
-    max-width: 80vw;
-    max-height: 80vh;
-    border-radius: 12px;
-    overflow: visible;
+    max-width: 60vw;   /* antes: 80vw */
+    max-height: 60vh;  /* antes: 80vh */
+    border-radius: 20px; /* mais arredondado */
+    overflow: hidden;   /* garante que borda arredondada apareça */
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .lightbox-content img {
+.lightbox-content img {
     max-width: 100%;
     max-height: 100%;
-    border-radius: 12px;
+    border-radius: 20px; /* mesmo arredondado do container */
     user-select: none;
-    pointer-events: auto; /* antes estava 'none', agora pode clicar na imagem */
+    pointer-events: auto;
     display: block;
-  }
+}
 
   /* Arrow buttons - corrigido */
   .nav-arrow {
