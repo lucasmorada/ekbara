@@ -55,37 +55,6 @@ if (areaSections.length > 0) {
 }
 
 
-
-const carousel = document.getElementById('carousel');
-const prevBtn = document.getElementById('prev');
-const nextBtn = document.getElementById('next');
-const range = document.getElementById('carousel-range');
-
-const scrollAmount = 320; // Largura do card + gap
-
-// Botões
-prevBtn.addEventListener('click', () => {
-  carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-});
-
-nextBtn.addEventListener('click', () => {
-  carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-});
-
-// Barra de rolagem
-carousel.addEventListener('scroll', () => {
-  const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-  range.value = (carousel.scrollLeft / maxScroll) * 100;
-});
-
-range.addEventListener('input', () => {
-  const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-  carousel.scrollLeft = (range.value / 100) * maxScroll;
-});
-
-
-
-
 // === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
 const brandsCarousel = document.getElementById('brandsCarousel');
 if (brandsCarousel) {
