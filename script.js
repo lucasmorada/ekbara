@@ -54,38 +54,34 @@ if (areaSections.length > 0) {
   progressBars.forEach(bar => bar.classList.toggle('active', bar.dataset.id === firstId));
 }
 
-// === CARROSSEL DA EQUIPE (DRAG HORIZONTAL) ===
-const teamCarousel = document.querySelector('.carousel');
-if (teamCarousel) {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+const container = document.querySelector('.carousel-container');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const range = document.getElementById('carousel-range');
 
-  teamCarousel.addEventListener('mousedown', (e) => {
-    isDown = true;
-    teamCarousel.classList.add('active');
-    startX = e.pageX - teamCarousel.offsetLeft;
-    scrollLeft = teamCarousel.scrollLeft;
-  });
+const scrollAmount = 300; // quantidade que o carrossel anda com o botão
 
-  teamCarousel.addEventListener('mouseleave', () => {
-    isDown = false;
-    teamCarousel.classList.remove('active');
-  });
+// Botões
+prevBtn.addEventListener('click', () => {
+  container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+});
 
-  teamCarousel.addEventListener('mouseup', () => {
-    isDown = false;
-    teamCarousel.classList.remove('active');
-  });
+nextBtn.addEventListener('click', () => {
+  container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+});
 
-  teamCarousel.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - teamCarousel.offsetLeft;
-    const walk = (x - startX) * 1; // sensibilidade
-    teamCarousel.scrollLeft = scrollLeft - walk;
-  });
-}
+// Barra de rolagem
+container.addEventListener('scroll', () => {
+  const maxScroll = container.scrollWidth - container.clientWidth;
+  range.value = (container.scrollLeft / maxScroll) * 100;
+});
+
+range.addEventListener('input', () => {
+  const maxScroll = container.scrollWidth - container.clientWidth;
+  container.scrollLeft = (range.value / 100) * maxScroll;
+});
+
+
 
 // === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
 const brandsCarousel = document.getElementById('brandsCarousel');
