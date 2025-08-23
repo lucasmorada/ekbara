@@ -32,7 +32,6 @@ const fadeInObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(el => fadeInObserver.observe(el));
 
 
-
 // === HEADER AO SCROLL ===
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
@@ -56,8 +55,10 @@ if (areaSections.length > 0) {
 
 
 // === CARROSSEL DE MARCAS COM ANIMAÇÃO ===
-const brandsCarousel = document.getElementById('brandsCarousel');
-if (brandsCarousel) {
+// Agora suporta vários carrosséis (não só 1 ID)
+const carousels = document.querySelectorAll('.brands-carousel');
+
+carousels.forEach(brandsCarousel => {
   const track = brandsCarousel.querySelector('.carousel-track');
   let isDragging = false;
   let startXBrands;
@@ -92,12 +93,14 @@ if (brandsCarousel) {
     if (track) track.style.animationPlayState = 'running';
     brandsCarousel.style.cursor = 'grab';
   }
-}
+});
 
 
-
+// === EFEITO DE DIGITAÇÃO NO FOOTER DE CÓDIGO ===
 (function () {
   const el = document.getElementById('codeFooter');
+  if (!el) return; // proteção caso não exista
+
   const raw = el.getAttribute('data-raw') || '';
 
   function startTyping() {
