@@ -529,7 +529,7 @@ section.section-content.quem-somos h2.section-title {
 }
 
 .card {
-  flex: 0 0 300px;
+  flex: 0 0 auto;
   height: 400px;
   border-radius: 20px;
   scroll-snap-align: start;
