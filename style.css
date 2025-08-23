@@ -438,11 +438,9 @@ section.section-content.quem-somos h2.section-title {
 .team-carousel {
   display: flex;
   gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  justify-content: center; /* centraliza os cards */
+  flex-wrap: wrap; /* deixa quebrar linha se faltar espaço */
   padding-bottom: 20px;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
 }
 
 .team-carousel::-webkit-scrollbar {
