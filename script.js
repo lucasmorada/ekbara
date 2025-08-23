@@ -54,32 +54,35 @@ if (areaSections.length > 0) {
   progressBars.forEach(bar => bar.classList.toggle('active', bar.dataset.id === firstId));
 }
 
-const container = document.querySelector('.carousel-container');
+
+
+const carousel = document.getElementById('carousel');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 const range = document.getElementById('carousel-range');
 
-const scrollAmount = 300; // quantidade que o carrossel anda com o botão
+const scrollAmount = 320; // Largura do card + gap
 
 // Botões
 prevBtn.addEventListener('click', () => {
-  container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
 });
 
 nextBtn.addEventListener('click', () => {
-  container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 });
 
 // Barra de rolagem
-container.addEventListener('scroll', () => {
-  const maxScroll = container.scrollWidth - container.clientWidth;
-  range.value = (container.scrollLeft / maxScroll) * 100;
+carousel.addEventListener('scroll', () => {
+  const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+  range.value = (carousel.scrollLeft / maxScroll) * 100;
 });
 
 range.addEventListener('input', () => {
-  const maxScroll = container.scrollWidth - container.clientWidth;
-  container.scrollLeft = (range.value / 100) * maxScroll;
+  const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+  carousel.scrollLeft = (range.value / 100) * maxScroll;
 });
+
 
 
 
