@@ -49,22 +49,25 @@
   }
 
   .lightbox-content {
-    position: relative;
-    max-width: 95vw;   /* ocupa quase toda a tela */
-    max-height: 95vh;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  position: relative;
+  max-width: 70vw;   /* largura máxima: 70% da tela */
+  max-height: 70vh;  /* altura máxima: 70% da tela */
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111; /* fundo discreto atrás da imagem */
+  padding: 10px;    /* dá respiro dentro do bloco */
+}
 
-  .lightbox-content img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* garante que não corte a foto */
-    border-radius: 12px;
-    display: block;
-  }
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* não corta nada */
+  border-radius: 12px;
+  display: block;
+}
+
 
   /* Botões de navegação */
   .nav-arrow {
