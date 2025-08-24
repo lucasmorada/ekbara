@@ -442,7 +442,7 @@ section.section-content.quem-somos h2.section-title {
 .team-header {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .team-text {
