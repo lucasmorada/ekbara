@@ -470,6 +470,7 @@ section.section-content.quem-somos h2.section-title {
   color: #555;
   line-height: 1.6;
   font-family: 'Poppins', sans-serif;
+  text-align: right;
 }
 
 .team-carousel {
