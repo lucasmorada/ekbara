@@ -30,68 +30,58 @@
     transform: scale(1.05);
   }
   /* Lightbox styles */
-  .lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(15, 23, 42, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.lightbox.open {
-  visibility: visible;
-  opacity: 1;
-}
-
-.lightbox-content {
-    position: relative;
-    max-width: 60vw;   /* antes: 80vw */
-    max-height: 60vh;  /* antes: 80vh */
-    border-radius: 20px; /* mais arredondado */
-    overflow: hidden;   /* garante que borda arredondada apareça */
+.lightbox {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.85);
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-.lightbox-content img {
+  .lightbox.open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 95vw;   /* ocupa quase toda a tela */
+    max-height: 95vh;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox-content img {
     max-width: 100%;
     max-height: 100%;
-    border-radius: 20px; /* mesmo arredondado do container */
-    user-select: none;
-    pointer-events: auto;
+    object-fit: contain; /* garante que não corte a foto */
+    border-radius: 12px;
     display: block;
-}
+  }
 
-.text-Crayola-Electric-Lime {
-  color: #CEFF00; /* ou rgb(205, 255, 0) */
-}
-
-
-  /* Arrow buttons - corrigido */
+  /* Botões de navegação */
   .nav-arrow {
-    position: absolute;
+    position: fixed; /* agora ficam fixos na tela, fora da foto */
     top: 50%;
     transform: translateY(-50%);
     color: #fff;
     background: rgba(0,0,0,0.45);
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    font-size: 26px;
+    font-size: 28px;
     cursor: pointer;
     user-select: none;
     transition: background-color 0.2s ease;
-    z-index: 20;
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,22 +91,12 @@
     background: rgba(0,0,0,0.65);
   }
 
-  .nav-left {
-    left: 10px;
-  }
-
-  .nav-right {
-    right: 10px;
-  }
-
-  @media (max-width: 1024px) {
-    .nav-left { left: 10px; }
-    .nav-right { right: 10px; }
-  }
+  .nav-left { left: 20px; }
+  .nav-right { right: 20px; }
 
   @media (max-width: 640px) {
     .nav-left, .nav-right { display: none; }
-    .lightbox-content { max-width: 95vw; max-height: 95vh; }
+    .lightbox-content { max-width: 100vw; max-height: 100vh; }
   }
 
 </style>
@@ -181,11 +161,11 @@
 
 <!-- Lightbox Modal -->
 <div class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagens">
+  <button class="nav-arrow nav-left" aria-label="Foto anterior" tabindex="0">❮</button>
   <div class="lightbox-content">
-    <button class="nav-arrow nav-left" aria-label="Foto anterior" tabindex="0">❮</button>
     <img src="" alt="" />
-    <button class="nav-arrow nav-right" aria-label="Foto seguinte" tabindex="0">❯</button>
   </div>
+  <button class="nav-arrow nav-right" aria-label="Foto seguinte" tabindex="0">❯</button>
 </div>
 
 <script>
