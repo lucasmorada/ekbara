@@ -438,9 +438,15 @@ section.section-content.quem-somos h2.section-title {
 .team-carousel {
   display: flex;
   gap: 20px;
-  justify-content: center; /* centraliza os cards */
-  flex-wrap: wrap; /* deixa quebrar linha se faltar espaço */
+  overflow-x: auto;   /* scroll horizontal */
+  overflow-y: hidden;
+  scroll-behavior: smooth;
   padding-bottom: 20px;
+  cursor: grab;
+}
+
+.team-carousel:active {
+  cursor: grabbing;
 }
 
 .team-carousel::-webkit-scrollbar {
@@ -460,14 +466,8 @@ section.section-content.quem-somos h2.section-title {
   height: 400px;
   border-radius: 20px;
   overflow: hidden;
-  scroll-snap-align: start;
   position: relative;
-  cursor: grab;
   transition: transform 0.3s ease;
-}
-
-.team-card:active {
-  cursor: grabbing;
 }
 
 .team-card-img {
@@ -490,7 +490,6 @@ section.section-content.quem-somos h2.section-title {
 .team-card-name {
   font-size: 24px;
   margin: 0 0 5px;
-  
 }
 
 .team-card-role {
@@ -501,9 +500,6 @@ section.section-content.quem-somos h2.section-title {
   border-radius: 5px;
   color: #fff;
 }
-
-
-
 
 
 

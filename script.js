@@ -96,6 +96,65 @@ carousels.forEach(brandsCarousel => {
 });
 
 
+// === CARROSSEL DE EQUIPE (drag + clique seguro) ===
+const teamCarousel = document.querySelector('.team-carousel');
+if (teamCarousel) {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+  let moved = false;
+
+  teamCarousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    moved = false;
+    startX = e.pageX - teamCarousel.offsetLeft;
+    scrollLeft = teamCarousel.scrollLeft;
+    teamCarousel.style.cursor = 'grabbing';
+  });
+
+  teamCarousel.addEventListener('mouseleave', () => {
+    isDown = false;
+    teamCarousel.style.cursor = 'grab';
+  });
+
+  teamCarousel.addEventListener('mouseup', (e) => {
+    isDown = false;
+    teamCarousel.style.cursor = 'grab';
+    if (moved) e.preventDefault(); // evita abrir link ao arrastar
+  });
+
+  teamCarousel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - teamCarousel.offsetLeft;
+    const walk = (x - startX) * 1.2; // sensibilidade
+    teamCarousel.scrollLeft = scrollLeft - walk;
+    moved = true;
+  });
+
+  // Suporte touch (mobile)
+  teamCarousel.addEventListener('touchstart', (e) => {
+    isDown = true;
+    moved = false;
+    startX = e.touches[0].pageX - teamCarousel.offsetLeft;
+    scrollLeft = teamCarousel.scrollLeft;
+  });
+
+  teamCarousel.addEventListener('touchend', (e) => {
+    isDown = false;
+    if (moved) e.preventDefault();
+  });
+
+  teamCarousel.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    const x = e.touches[0].pageX - teamCarousel.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    teamCarousel.scrollLeft = scrollLeft - walk;
+    moved = true;
+  });
+}
+
+
 // === EFEITO DE DIGITAÇÃO NO FOOTER DE CÓDIGO ===
 (function () {
   const el = document.getElementById('codeFooter');
