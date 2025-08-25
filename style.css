@@ -447,12 +447,15 @@ section.section-content.quem-somos h2.section-title {
 
 .team-text {
   max-width: 400px;
+  margin-left: auto; 
+  text-align: right; 
 }
+
 
 .team-subtitle {
   font-size: 18px;
   font-weight: 400;
-  color: #999; /* cinza claro */
+  color: #999; 
   margin: 0;
   font-family: 'Poppins', sans-serif;
 }
@@ -476,7 +479,7 @@ section.section-content.quem-somos h2.section-title {
 .team-carousel {
   display: flex;
   gap: 20px;
-  overflow-x: auto;   /* scroll horizontal */
+  overflow-x: auto;  
   overflow-y: hidden;
   scroll-behavior: smooth;
   padding-bottom: 20px;
