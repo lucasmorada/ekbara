@@ -180,6 +180,8 @@ section.section-content.quem-somos h2.section-title {
 /* Parágrafos */
 .quem-somos-text p {
   margin-bottom: 25px;
+  font-size: 2rem; /* ou px, exemplo: 32px */
+  line-height: 1.6; 
 }
 
 /* Imagem */
@@ -529,7 +531,12 @@ section.section-content.quem-somos h2.section-title {
   height: 100%;
   object-fit: cover;
   display: block;
+  user-drag: none;       /* Safari / Chrome antigo */
+  -webkit-user-drag: none; 
+  user-select: none;     /* não deixa selecionar */
+  pointer-events: auto;  /* ainda permite clique normal */
 }
+
 
 .team-card-overlay {
   position: absolute;
