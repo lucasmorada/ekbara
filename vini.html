@@ -55,22 +55,21 @@
 
   .lightbox-content {
   position: relative;
-  max-width: 70vw;   /* largura máxima: 70% da tela */
-  max-height: 70vh;  /* altura máxima: 70% da tela */
+  width: 600px;      /* largura fixa */
+  height: 400px;     /* altura fixa (retângulo) */
   border-radius: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #111; /* fundo discreto atrás da imagem */
-  padding: 10px;    /* dá respiro dentro do bloco */
+  background: #111;
+  padding: 10px;
 }
 
 .lightbox-content img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* não corta nada */
+  object-fit: contain;
   border-radius: 12px;
-  display: block;
 }
 
 
