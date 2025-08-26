@@ -578,7 +578,7 @@ section.section-content.quem-somos h2.section-title {
 
 .team-card:hover .team-card-arrow {
   transform: translateX(5px);
-  background: #ffdf00;
+  background: #ffffff;
   color: #000;
 }
 
