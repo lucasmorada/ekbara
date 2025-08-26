@@ -480,31 +480,6 @@ section.section-content.quem-somos h2.section-title {
   text-align: right;
 }
 
-.team-carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;  
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  padding-bottom: 20px;
-  cursor: grab;
-}
-
-.team-carousel:active {
-  cursor: grabbing;
-}
-
-.team-carousel::-webkit-scrollbar {
-  height: 8px;
-}
-.team-carousel::-webkit-scrollbar-thumb {
-  background: #999;
-  border-radius: 10px;
-}
-.team-carousel::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
 .team-card {
   flex: 0 0 auto;
   width: 320px;
@@ -512,7 +487,13 @@ section.section-content.quem-somos h2.section-title {
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .team-card-img {
@@ -529,7 +510,12 @@ section.section-content.quem-somos h2.section-title {
   padding: 20px;
   background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
   color: #fff;
-  text-align: center;
+}
+
+.team-card-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .team-card-name {
@@ -544,6 +530,19 @@ section.section-content.quem-somos h2.section-title {
   padding: 2px 8px;
   border-radius: 5px;
   color: #fff;
+}
+
+/* A seta */
+.team-card-arrow {
+  font-size: 24px;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.team-card:hover .team-card-arrow {
+  transform: translateX(5px);
+  color: #ffdf00; /* muda a cor da seta no hover do card */
 }
 
 
