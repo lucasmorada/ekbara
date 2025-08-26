@@ -512,7 +512,7 @@ section.section-content.quem-somos h2.section-title {
   color: #fff;
 }
 
-.team-card-info {
+.team-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -520,7 +520,7 @@ section.section-content.quem-somos h2.section-title {
 
 .team-card-name {
   font-size: 24px;
-  margin: 0 0 5px;
+  margin: 0;
 }
 
 .team-card-role {
@@ -530,21 +530,29 @@ section.section-content.quem-somos h2.section-title {
   padding: 2px 8px;
   border-radius: 5px;
   color: #fff;
+  margin-top: 5px;
 }
 
-/* A seta */
+/* Seta dentro do círculo */
 .team-card-arrow {
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  font-size: 18px;
   color: #fff;
   text-decoration: none;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
 .team-card:hover .team-card-arrow {
   transform: translateX(5px);
-  color: #ffdf00; /* muda a cor da seta no hover do card */
+  background: #ffdf00;
+  color: #000;
 }
-
 
 
 
