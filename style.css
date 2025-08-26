@@ -480,6 +480,34 @@ section.section-content.quem-somos h2.section-title {
   text-align: right;
 }
 
+.team-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;  
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+  cursor: grab;
+}
+
+.team-carousel:active {
+  cursor: grabbing;
+}
+
+.team-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.team-carousel::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+.team-carousel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+
 .team-card {
   flex: 0 0 auto;
   width: 320px;
