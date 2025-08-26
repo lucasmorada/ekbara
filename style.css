@@ -447,6 +447,10 @@ section.section-content.quem-somos h2.section-title {
 
 .team-text {
   max-width: 400px;
+ }
+
+.team-text-direita {
+  max-width: 400px;
   margin-left: auto; 
   text-align: right; 
 }
