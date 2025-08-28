@@ -971,19 +971,26 @@ section.section-content.quem-somos h2.section-title {
 .footer-left {
   flex: 1;
   min-width: 250px;
+  display: flex;
+  flex-direction: column; /* empilha logo e ícones verticalmente */
+  align-items: flex-start; /* alinha tudo à esquerda */
 }
 
 .footer-logo {
-  width: 250px;  /* maior */
-  margin-bottom: 20px;
+  width: 250px;
+  margin-bottom: 15px; /* um pouco de espaço entre logo e ícones */
+  /* remove margem desnecessária */
   margin-left: 0;
 }
 
 .social-icons {
   display: flex;
   gap: 20px;
-  margin-left: 20px;
+  align-items: center; /* centraliza verticalmente em relação à logo */
+  /* remove margem-left para centralizar com logo */
+  margin-left: 0;
 }
+
 
 .social-icons img {
   width: 32px;  /* maior */
