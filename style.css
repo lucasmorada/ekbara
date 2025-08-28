@@ -986,6 +986,7 @@ section.section-content.quem-somos h2.section-title {
 .social-icons {
   display: flex;
   gap: 20px;
+  margin-left: 20px;
 }
 
 .social-icons img {
