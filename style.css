@@ -644,7 +644,7 @@ section.section-content.quem-somos h2.section-title {
 
 .gallery-grid img {
   width: 100%;
-  height: auto;
+  height: 300px;
   border-radius: 16px;
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
