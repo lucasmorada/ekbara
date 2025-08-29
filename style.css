@@ -128,7 +128,7 @@
     /* BANNER */
     .banner {
       height: 100vh;
-      background: url('colle.png');
+      background: url('ekbara/colle.png');
       display: flex;
       justify-content: center;
       align-items: center;
