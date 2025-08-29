@@ -266,11 +266,12 @@ section.section-content.quem-somos h2.section-title {
   gap: 15px;
   align-items: center;
   animation: scrollBrands 20s linear infinite;
+  width: max-content;
 }
 
 /* Items do carousel */
 .mini-carousel-item {
-  width: 200px; 
+  width: 120px; 
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
