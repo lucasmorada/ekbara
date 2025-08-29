@@ -891,62 +891,46 @@ section.section-content.quem-somos h2.section-title {
 }
 
 /*pratocinadores*/
-.brands-section {
-  padding: 50px 30px;
-  background-color: #ffffff;
-  overflow: hidden;
-}
-
-.brands-section-topo {
-  padding: 30px 20px;
-  background-color: #1d1d1d;
-  overflow: hidden;
-}
-
-.brands-title {
-  font-family: 'Poppins', sans-serif;
+.client-carousel-section {
+  background-color: white;
+  padding: 50px 0;
   text-align: center;
-  font-size: 2rem;
-  color: #111827;
-  margin-bottom: 40px;
 }
 
-.brands-carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  cursor: grab;
-}
-
-.carousel-track {
+.client-carousel-container {
   display: flex;
-  gap: 60px;
-  animation: scrollBrands 30s linear infinite;
-  will-change: transform;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
 }
 
-.carousel-track img {
-  height: 60px;
+.client-logo img {
+  max-height: 60px;
   object-fit: contain;
-  flex-shrink: 0;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
+  transition: transform 0.3s ease;
 }
 
-.carousel-track img:hover {
-  opacity: 1;
+.client-logo img:hover {
+  transform: scale(1.1);
 }
 
-@keyframes scrollBrands {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.client-carousel-dots {
+  margin-top: 20px;
+}
+
+.client-carousel-dots .dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.client-carousel-dots .dot.active {
+  background-color: #000;
 }
 
 /*footer*/
