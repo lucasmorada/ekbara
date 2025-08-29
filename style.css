@@ -378,7 +378,7 @@ section.section-content.quem-somos h2.section-title {
 .services-card-link {
   text-decoration: none;
   color: inherit;
-  display: block; /* faz o link ocupar todo o card */
+  display: block;
 }
 
 /* Hover no card inteiro */
@@ -389,14 +389,12 @@ section.section-content.quem-somos h2.section-title {
   box-shadow: 0 8px 20px rgba(0,0,0,0.7);
 }
 
-/* Imagem já tinha efeito, só mantive */
 .services-card:hover .services-card-image img,
 .services-card-blue:hover .services-card-image img {
   filter: brightness(1);
   transform: scale(1.05);
 }
 
-/* Seta: maior, grossa e inicial nordeste */
 .services-card-arrow-circle {
   display: flex;
   align-items: center;
@@ -492,7 +490,6 @@ section.section-content.quem-somos h2.section-title {
   scroll-behavior: smooth;
   padding-bottom: 20px;
   cursor: grab;
-  overflow: visible;
 }
 
 .team-carousel:active {
@@ -533,10 +530,10 @@ section.section-content.quem-somos h2.section-title {
   height: 100%;
   object-fit: cover;
   display: block;
-  user-drag: none;       /* Safari / Chrome antigo */
+  user-drag: none;       
   -webkit-user-drag: none; 
-  user-select: none;     /* não deixa selecionar */
-  pointer-events: auto;  /* ainda permite clique normal */
+  user-select: none;     
+  pointer-events: auto;  
 }
 
 
@@ -626,6 +623,7 @@ section.section-content.quem-somos h2.section-title {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 6px 12px rgba(79, 70, 229, 0.5);
+  text-decoration: none;
 }
 
 .btn-access:hover {
