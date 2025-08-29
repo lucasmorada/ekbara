@@ -249,13 +249,13 @@ section.section-content.quem-somos h2.section-title {
 .mini-brands-section {
   width: 100%;
   background-color: #2a2a2a; /* cinza escuro */
-  padding: 10px 0; /* fundo fino */
+  padding: 10px 0; 
   overflow: hidden;
 }
 
 /* Carousel container */
 .mini-brands-carousel {
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   cursor: grab;
 }
@@ -270,7 +270,7 @@ section.section-content.quem-somos h2.section-title {
 
 /* Items do carousel */
 .mini-carousel-item {
-  width: 80px; /* tamanho pequeno */
+  width: 100px; 
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
