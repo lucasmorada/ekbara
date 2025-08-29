@@ -128,7 +128,7 @@
     /* BANNER */
     .banner {
       height: 100vh;
-      background: url('ekbara/colle.png');
+      background: url('colle.png');
       display: flex;
       justify-content: center;
       align-items: center;
@@ -440,6 +440,7 @@ section.section-content.quem-somos h2.section-title {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  overflow: visible;
 }
 
 .team-header {
@@ -491,6 +492,7 @@ section.section-content.quem-somos h2.section-title {
   scroll-behavior: smooth;
   padding-bottom: 20px;
   cursor: grab;
+  overflow: visible;
 }
 
 .team-carousel:active {
