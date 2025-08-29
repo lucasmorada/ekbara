@@ -244,6 +244,64 @@ section.section-content.quem-somos h2.section-title {
       color: #333;
     }
 
+    /* Section container */
+.brands-section-topo {
+  width: 100%;
+  padding: 40px 0;
+  background-color: #fff; /* fundo branco */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Carousel wrapper */
+.brands-carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar */
+.brands-carousel::-webkit-scrollbar {
+  display: none;
+}
+.brands-carousel {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Carousel track */
+.carousel-track {
+  display: flex;
+  gap: 30px; /* espaço entre imagens */
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Carousel images */
+.carousel-track img {
+  height: 80px; /* ajuste o tamanho que quiser */
+  flex-shrink: 0;
+  pointer-events: none; /* evita arrastar a imagem individualmente */
+  user-select: none;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover efeito leve */
+.carousel-track img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .carousel-track img {
+    height: 60px;
+    gap: 20px;
+  }
+}
+
     /*áreas da ekbara*/
    .services-section {
   padding: 60px 20px; /* mais espaço para o título */
