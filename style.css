@@ -270,10 +270,11 @@ section.section-content.quem-somos h2.section-title {
 
 /* Items do carousel */
 .mini-carousel-item {
-  width: 100px; 
+  width: 120px; 
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
+
 }
 
 /* Scroll automático contínuo */
