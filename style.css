@@ -271,7 +271,7 @@ section.section-content.quem-somos h2.section-title {
 
 /* Items do carousel */
 .mini-carousel-item {
-  width: 120px; 
+  width: 160px; 
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
