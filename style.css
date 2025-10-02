@@ -1209,45 +1209,45 @@ nav ul li a:hover {
   }
 }
 
+/* ===== MENU MOBILE ===== */
 @media (max-width: 768px) {
-  /* MENU MOBILE */
   nav ul {
     flex-direction: column;
-    position: absolute;
-    top: 70px;
+    position: fixed; /* fica fixo na tela */
+    top: 0;
     right: 0;
+    height: 100vh; /* ocupa a tela toda */
+    width: 70%; /* largura do menu (pode ajustar pra 100% se quiser tela cheia) */
     background: #000;
-    width: 200px;
-    padding: 20px;
+    padding: 80px 20px; /* espaço pro topo */
     transform: translateX(100%);
-    transition: 0.3s ease;
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
   }
 
   nav ul.show {
-    transform: translateX(0);
+    transform: translateX(0); /* abre menu */
   }
 
-  header {
-    position: relative;
+  nav ul li {
+    margin: 20px 0;
   }
 
-  /* Botão hamburguer */
   .menu-toggle {
     display: block;
     cursor: pointer;
-    font-size: 28px;
+    font-size: 32px;
     color: #fff;
+    z-index: 1001;
   }
+}
 
   /* Ocultar nav padrão */
   nav {
     position: relative;
   }
 
-  nav ul li {
-    margin: 15px 0;
-  }
-
+  
   /* SEÇÕES */
   .services-cards {
     grid-template-columns: 1fr;
