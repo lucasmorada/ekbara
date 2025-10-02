@@ -42,6 +42,14 @@ window.addEventListener('scroll', () => {
   }
 });
 
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('nav ul');
+
+toggle.addEventListener('click', () => {
+  nav.classList.toggle('show');
+});
+
+
 // === OBSERVADOR DE SEÇÕES ===
 const observer = new IntersectionObserver(updateActiveArea, observerOptions);
 areaSections.forEach(section => observer.observe(section));
